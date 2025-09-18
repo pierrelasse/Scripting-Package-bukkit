@@ -1,0 +1,33 @@
+---org.bukkit.Location
+---@class bukkit.Location : java.Object
+---@field setWorld fun(world: bukkit.World)
+---@field isWorldLoaded fun(): boolean
+---@field getWorld fun(): bukkit.World?
+---@field getChunk fun(): bukkit.Chunk
+---@field getBlock fun(): bukkit.block.Block
+---@field getX fun(): number
+---@field getBlockX fun(): integer
+---@field setX fun(x: number)
+---@field getY fun(): number
+---@field getBlockY fun(): integer
+---@field setY fun(y: number)
+---@field getZ fun(): number
+---@field getBlockZ fun(): integer
+---@field setZ fun(z: number)
+---@field getYaw fun(): java.float
+---@field setYaw fun(v: java.float)
+---@field getPitch fun(): java.float
+---@field setPitch fun(v: java.float)
+---@field getDirection fun(): bukkit.Vector
+---@field setDirection fun(vector: bukkit.Vector): bukkit.Location
+---@field add (fun(vec: bukkit.Location|bukkit.Vector): bukkit.Location) | (fun(x: number, y: number, z: number): bukkit.Location)
+---@field subtract (fun(vec: bukkit.Location|bukkit.Vector): bukkit.Location) | (fun(x: number, y: number, z: number): bukkit.Location)
+---@field length fun(): number
+---@field lengthSquared fun(): number
+---@field distance fun(o: bukkit.Location): number
+---@field distanceSquared fun(o: bukkit.Location): number
+---@field multiply fun(v: number): bukkit.Location
+---@field zero fun(): bukkit.Location
+---@field toVector fun(): bukkit.Vector
+---@field clone fun(): bukkit.Location
+---@field checkFinite fun()

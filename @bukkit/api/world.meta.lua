@@ -1,0 +1,184 @@
+---@class bukkit.RegionAccessor : java.Object
+
+---@class bukkit.generator.WorldInfo : java.Object
+---@field getName fun(): string
+---@field getUID fun(): java.Object
+---@field getEnvironment fun(): java.Object
+---@field getSeed fun(): java.long
+---@field getMinHeight fun(): integer
+---@field getMaxHeight fun(): integer
+
+---org.bukkit.World
+---@class bukkit.World : bukkit.RegionAccessor, bukkit.generator.WorldInfo, bukkit.metadata.Metadatable, bukkit.persistence.DataHolder, bukkit.Keyed
+---@field getBlockAt (fun(x: integer, y: integer, z: integer): bukkit.block.Block)|(fun(location: bukkit.Location): bukkit.block.Block)
+---@field getHighestBlockAt (fun(x: integer, z: integer): bukkit.block.Block)|(fun(location: bukkit.Location): bukkit.block.Block)|(fun(x: integer, z: integer, heightMap: java.Object): bukkit.block.Block)|(fun(location: bukkit.Location, heightMap: java.Object): bukkit.block.Block) -- TODO
+---@field getChunkAt (fun(x: integer, z: integer, generate: boolean): bukkit.Chunk)|(fun(location: bukkit.Location): bukkit.Chunk)|fun(block: bukkit.block.Block): bukkit.Chunk
+---@field isChunkLoaded (fun(chunk: bukkit.Chunk): boolean)|fun(x: integer, z: integer): boolean
+---@field isChunkGenerated fun(x: integer, z: integer): boolean
+---@field getLoadedChunks fun(): java.array<bukkit.Chunk>
+---@field loadChunk fun(chunk: bukkit.Chunk)|(fun(x: integer, y: integer, generate: boolean): boolean)
+---@field unloadChunk (fun(chunk: bukkit.Chunk): boolean)|fun(x: integer, z: integer, save?: boolean): boolean
+---@field unloadChunkRequest fun(x: integer, z: integer): boolean
+---@field regenerateChunk fun(x: integer, z: integer): boolean
+---@field refreshChunk fun(x: integer, z: integer): boolean
+---@field getPlayersSeeingChunk (fun(chunk: bukkit.Chunk): java.Collection<bukkit.entity.Player>)|fun(x: integer, z: integer): java.Collection<bukkit.entity.Player>
+---@field isChunkForceLoaded fun(x: integer, z: integer): boolean
+---@field setChunkForceLoaded fun(x: integer, z: integer, flag: boolean)
+---@field getForceLoadedChunks fun(): java.Collection<bukkit.Chunk>
+---@field addPluginChunkTicket fun(x: integer, z: integer, plugin: java.Object): boolean -- TODO
+---@field removePluginChunkTicket (fun(x: integer, z: integer, plugin: java.Object): boolean)|fun(plugin: java.Object): boolean -- TODO
+---@field getPluginChunkTickets fun(x: integer, z: integer): java.Collection<java.Object> -- TODO
+---@field getPluginChunkTickets fun(): java.Map<java.Object, java.Collection<bukkit.Chunk>>
+---@field getIntersectingChunks fun(box: java.Object): java.Collection<bukkit.Chunk> -- TODO
+---@field dropItem function -- TODO
+---@field dropItemNaturally function -- TODO
+---@field spawnArrow function -- TODO
+---@field generateTree fun(location: bukkit.Location, type: java.Object) -- TODO
+---@field strikeLightning fun(location: bukkit.Location): bukkit.entity.LightningStrike
+---@field strikeLightningEffect fun(location: bukkit.Location): bukkit.entity.LightningStrike
+---@field getEntities fun(): java.List<bukkit.Entity>
+---@field getLivingEntities fun(): java.List<bukkit.entity.LivingEntity>
+---@field getEntitiesByClass fun(class: java.array<java.Class>): java.Collection<bukkit.Entity>
+---@field getEntitiesByClasses fun(classes: java.array<java.Class>): java.Collection<bukkit.Entity>
+---@field getPlayers fun(): java.List<bukkit.entity.Player>
+---@field getNearbyEntities fun(location: bukkit.Location, x: number, y: number, z: number): java.Collection<bukkit.Entity> -- TODO
+---@field rayTraceEntities function -- TODO
+---@field rayTraceBlocks function -- TODO
+---@field rayTrace function -- TODO
+---@field getSpawnLocation fun(): bukkit.Location
+---@field setSpawnLocation (fun(location: bukkit.Location): boolean)|fun(x: integer, y: integer, z: integer, angle?: java.float): boolean
+---@field getTime fun(): java.long
+---@field setTime fun(time: java.long)
+---@field getFullTime fun(): java.long
+---@field setFullTime fun(time: java.long)
+---@field getGameTime fun(): java.long
+---@field hasStorm fun(): boolean
+---@field setStorm fun(flag: boolean)
+---@field getWeatherDuration fun(): integer
+---@field setWeatherDuration fun(duration: integer)
+---@field isThundering fun(): boolean
+---@field setThundering fun(flag: boolean)
+---@field getThunderDuration fun(): integer
+---@field setThunderDuration fun(duration: integer)
+---@field isClearWeather fun(): boolean
+---@field getClearWeatherDuration fun(): integer
+---@field setClearWeatherDuration fun(duration: integer)
+---@field createExplosion function -- TODO
+---@field getPVP fun(): boolean
+---@field setPVP fun(flag: boolean)
+---@field getGenerator fun(): java.Object -- TODO
+---@field getBiomeProvider fun(): java.Object -- TODO
+---@field save fun()
+---@field getPopulators fun(): java.List<java.Object> -- TODO
+---@field spawn function -- TODO
+---@field spawnFallingBlock function -- TODO
+---@field playEffect function -- TODO
+---@field getEmptyChunkSnapshot fun(x: integer, z: integer, includeBiome: boolean, includeBiomeTemp: boolean): java.Object -- TODO
+---@field setSpawnFlags fun(allowMonsters: boolean, allowAnimals: boolean)
+---@field getAllowAnimals fun(): boolean
+---@field getAllowMonsters fun(): boolean
+---@field getTemperature fun(x: integer, y: integer, z: integer): number
+---@field getHumidity fun(x: integer, y: integer, z: integer): number
+---@field getLogicalHeight fun(): integer
+---@field isNatural fun(): boolean
+---@field isBedWorks fun(): boolean
+---@field hasSkyLight fun(): boolean
+---@field hasCeiling fun(): boolean
+---@field isPiglinSafe fun(): boolean
+---@field isRespawnAnchorWorks fun(): boolean
+---@field hasRaids fun(): boolean
+---@field isUltraWarm fun(): boolean
+---@field getSeaLevel fun(): integer
+---@field isAutoSave fun(): boolean
+---@field setAutoSave fun(flag: boolean)
+---@field getDifficulty fun(): java.Object
+---@field setDifficulty fun(difficulty: java.Object) -- TODO
+---@field getViewDistance fun(): integer
+---@field getSimulationDistance fun(): integer
+---@field getWorldFolder fun(): java.Object
+---@field canGenerateStructures fun(): boolean
+---@field isHardcore fun(): boolean
+---@field setHardcore fun(flag: boolean)
+---@field getTicksPerSpawns function -- TODO
+---@field setTicksPerSpawns function -- TODO
+---@field getSpawnLimit function -- TODO
+---@field setSpawnLimit function -- TODO
+---@field playNote function -- TODO
+---@field playSound function -- TODO
+---@field getGameRules fun(): java.array<string>
+---@field isGameRule fun(name: string): boolean
+---@field getGameRuleValue fun(gameRule: bukkit.GameRule): boolean|integer
+---@field getGameRuleDefault fun(gameRule: bukkit.GameRule): boolean|integer
+---@field setGameRule fun(gameRule: bukkit.GameRule, value: boolean|integer): boolean
+---@field getWorldBorder fun(): java.Object -- TODO
+---@field spawnParticle function -- TODO
+---@field locateNearestStructure function -- TODO
+---@field locateNearestBiome function -- TODO
+---@field locateNearestRaid function -- TODO
+---@field getRaids function -- TODO
+---@field getEnderDragonBattle function -- TODO
+---@field getFeatureFlags function -- TODO
+---@field getStructures function -- TODO
+
+---@alias bukkit.GameRule* string
+---| "announceAdvancements" Boolean
+---| "commandBlockOutput" Boolean
+---| "disablePlayerMovementCheck" Boolean
+---| "disableElytraMovementCheck" Boolean
+---| "doDaylightCycle" Boolean
+---| "doEntityDrops" Boolean
+---| "doFireTick" Boolean
+---| "doLimitedCrafting" Boolean
+---| "doMobLoot" Boolean
+---| "projectilesCanBreakBlocks" Boolean
+---| "doMobSpawning" Boolean
+---| "doTileDrops" Boolean
+---| "doWeatherCycle" Boolean
+---| "keepInventory" Boolean
+---| "logAdminCommands" Boolean
+---| "mobGriefing" Boolean
+---| "naturalRegeneration" Boolean
+---| "reducedDebugInfo" Boolean
+---| "sendCommandFeedback" Boolean
+---| "showDeathMessages" Boolean
+---| "spectatorsGenerateChunks" Boolean
+---| "disableRaids" Boolean
+---| "doInsomnia" Boolean
+---| "doImmediateRespawn" Boolean
+---| "drowningDamage" Boolean
+---| "fallDamage" Boolean
+---| "fireDamage" Boolean
+---| "freezeDamage" Boolean
+---| "doPatrolSpawning" Boolean
+---| "doTraderSpawning" Boolean
+---| "doWardenSpawning" Boolean
+---| "forgiveDeadPlayers" Boolean
+---| "universalAnger" Boolean
+---| "blockExplosionDropDecay" Boolean
+---| "mobExplosionDropDecay" Boolean
+---| "tntExplosionDropDecay" Boolean
+---| "waterSourceConversion" Boolean
+---| "lavaSourceConversion" Boolean
+---| "globalSoundEvents" Boolean
+---| "doVinesSpread" Boolean
+---| "enderPearlsVanishOnDeath" Boolean
+---| "allowFireTicksAwayFromPlayer" Boolean
+---| "tntExplodes" Boolean
+---| "randomTickSpeed" Integer
+---| "spawnRadius" Integer
+---| "maxEntityCramming" Integer
+---| "maxCommandChainLength" Integer
+---| "maxCommandForkCount" Integer
+---| "commandModificationBlockLimit" Integer
+---| "playersSleepingPercentage" Integer
+---| "snowAccumulationHeight" Integer
+---| "playersNetherPortalDefaultDelay" Integer
+---| "playersNetherPortalCreativeDelay" Integer
+---| "minecartMaxSpeed" Integer
+---| "spawnChunkRadius" Integer
+---| "locatorBar" Boolean
+
+---@class bukkit.GameRule : bukkit.Translatable
+---@field getName fun(): string
+---@field getType fun(): java.Class
+---@field translationKey fun(): string

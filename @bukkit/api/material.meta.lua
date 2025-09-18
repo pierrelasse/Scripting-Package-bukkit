@@ -1,0 +1,26 @@
+---@alias bukkit.Material* bukkit.MaterialItem*|bukkit.MaterialBlock*
+
+---@class bukkit.Material : java.Enum, bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware
+---@field getId fun(): integer
+---@field isLegacy fun(): boolean
+---@field getMaxStackSize fun(): integer
+---@field getMaxDurability fun(): java.short
+---@field isBlock fun(): boolean
+---@field isEdible fun(): boolean
+---@field isRecord fun(): boolean
+---@field isSolid fun(): boolean
+---@field isAir fun(): boolean
+---@field isTransparent fun(): boolean
+---@field isFlammable fun(): boolean
+---@field isBurnable fun(): boolean
+---@field isFuel fun(): boolean
+---@field isOccluding fun(): boolean
+---@field hasGravity fun(): boolean
+---@field isItem fun(): boolean
+---@field isInteractable fun(): boolean
+---@field getHardness fun(): java.float
+---@field getBlastResistance fun(): java.float
+---@field getSlipperiness fun(): java.float
+---@field getCraftingRemainingItem fun(): java.float
+---@field getEquipmentSlot fun(): java.Object -- TODO
+-- TODO: getData, other

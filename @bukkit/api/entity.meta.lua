@@ -1,0 +1,70 @@
+---@class bukkit.Entity : bukkit.metadata.Metadatable, bukkit.Nameable, bukkit.persistence.DataHolder
+---@field getLocation fun(location?: bukkit.Location): bukkit.Location
+---@field setVelocity fun(velocity: bukkit.Vector)
+---@field getVelocity fun(): bukkit.Vector
+---@field getHeight fun(): number
+---@field getWidth fun(): number
+---@field getBoundingBox fun(): java.Object -- TODO
+---@field isOnGround fun(): boolean
+---@field isInWater fun(): boolean
+---@field getWorld fun(): bukkit.World
+---@field setRotation fun(yaw: java.float, pitch: number)
+---@field teleport fun(location: bukkit.Location | bukkit.Entity, teleportCause?: java.Object) -- TODO
+---@field getNearbyEntities fun(x: number, y: number, z: number): java.List<bukkit.Entity>
+---@field getEntityId fun(): integer
+---@field getFireTicks fun(): integer
+---@field getMaxFireTicks fun(): integer
+---@field setFireTicks fun(ticks: integer)
+---@field setVisualFire fun(fire: boolean)
+---@field isVisualFire fun(): boolean
+---@field getFreezeTicks fun(): integer
+---@field getMaxFreezeTicks fun(): integer
+---@field setFreezeTicks fun(ticks: integer)
+---@field isFrozen fun(): boolean
+---@field remove fun()
+---@field isDead fun(): boolean
+---@field isValid fun(): boolean
+---@field getServer fun(): java.Object -- TODO
+---@field isPersistent fun(): boolean
+---@field setPersistent fun(persistent: boolean)
+---@field getPassengers fun(): java.List<bukkit.Entity>
+---@field addPassenger fun(passenger: bukkit.Entity)
+---@field removePassenger fun(passenger: bukkit.Entity)
+---@field isEmpty fun(): boolean
+---@field eject fun(): boolean
+---@field getFallDistance fun(): java.float
+---@field setFallDistance fun(distance: java.float)
+---@field getLastDamageCause fun(): java.Object? -- TODO
+---@field getUniqueId fun(): java.Object -- TODO
+---@field getTicksLived fun(): integer
+---@field setTicksLived fun(ticks: integer)
+---@field playEffect fun(type: java.Object) -- TODO
+---@field getType fun(): bukkit.EntityType
+---@field getSwimSound fun(): java.Object -- TODO
+---@field getSwimSplashSound fun(): java.Object -- TODO
+---@field getSwimHighSpeedSplashSound fun(): java.Object -- TODO
+---@field isInsideVehicle fun(): boolean
+---@field leaveVehicle fun(): boolean
+---@field getVehicle fun(): bukkit.Entity?
+---@field setCustomNameVisible fun(visible: boolean)
+---@field setVisibleByDefault fun(visible: boolean)
+---@field isVisibleByDefault fun(): boolean
+---@field getTrackedBy fun(): java.Set<bukkit.entity.Player>
+---@field setGlowing fun(v: boolean)
+---@field isGlowing fun(): boolean
+---@field setInvulnerable fun(v: boolean)
+---@field isInvulnerable fun(): boolean
+---@field isSilent fun(): boolean
+---@field setSilent fun(v: boolean)
+---@field hasGravity fun(): boolean
+---@field setGravity fun(gravity: boolean)
+---@field getPortalCooldown fun(): integer
+---@field setPortalCooldown fun(cooldown: integer)
+---@field getScoreboardTags fun(): java.Set<string>
+---@field addScoreboardTag fun(tag: string)
+---@field removeScoreboardTag fun(tag: string)
+---@field getPistonMoveReaction fun(): bukkit.block.PistonMoveReaction
+---@field getFacing fun(): bukkit.block.BlockFace
+---@field getPose fun(): bukkit.entity.Pose
+---@field getSpawnCategory fun(): bukkit.entity.SpawnCategory
+---@field isInWorld fun(): boolean

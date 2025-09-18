@@ -1,0 +1,104 @@
+---@alias bukkit.bukkit.block.BlockFace* string
+---| "NORTH"
+---| "EAST"
+---| "SOUTH"
+---| "WEST"
+---| "UP"
+---| "DOWN"
+---| "NORTH_EAST"
+---| "NORTH_WEST"
+---| "SOUTH_EAST"
+---| "SOUTH_WEST"
+---| "WEST_NORTH_WEST"
+---| "NORTH_NORTH_WEST"
+---| "NORTH_NORTH_EAST"
+---| "EAST_NORTH_EAST"
+---| "EAST_SOUTH_EAST"
+---| "SOUTH_SOUTH_EAST"
+---| "SOUTH_SOUTH_WEST"
+---| "WEST_SOUTH_WEST"
+---| "SELF"
+
+---@class bukkit.block.BlockFace : java.Enum
+---@field getModX fun(): integer
+---@field getModY fun(): integer
+---@field getModZ fun(): integer
+---@field getDirection fun(): bukkit.Vector
+---@field isCartesian fun(): boolean
+---@field getOppositeFace fun(): bukkit.block.BlockFace
+
+---@class bukkit.block.PistonMoveReaction : java.Object
+-- TODO
+
+---@class bukkit.block.Block : bukkit.metadata.Metadatable, bukkit.Translatable
+---@field getData fun(): java.byte
+---@field getBlockData fun(): bukkit.block.data.BlockData
+---@field getRelative fun(x: integer, y: integer, z: integer): bukkit.block.Block
+---@field getType fun(): bukkit.Material
+---@field getLightLevel fun(): java.byte
+---@field getLightFromSky fun(): java.byte
+---@field getLightFromBlocks fun(): java.byte
+---@field getWorld fun(): bukkit.World
+---@field getX fun(): integer
+---@field getY fun(): integer
+---@field getZ fun(): integer
+---@field getLocation fun(loc?: bukkit.Location): bukkit.Location
+---@field getChunk fun(): bukkit.Chunk
+---@field setBlockData fun(data: bukkit.block.data.BlockData, applyPhysics?: boolean)
+---@field setType fun(type: bukkit.Material, applyPhysics?: boolean)
+---@field getFace fun(block: bukkit.block.Block): bukkit.block.BlockFace
+---@field getState fun(useSnapshot?: boolean): bukkit.block.BlockState -- useSnapshot: Paper
+---@field getBiome fun(): bukkit.block.Biome
+---@field getComputedBiome fun(): bukkit.block.Biome -- Paper
+---@field setBiome fun(biome: bukkit.block.Biome)
+---@field isBlockPowered fun(): boolean
+---@field isBlockIndirectlyPowered fun(): boolean
+---@field isBlockFacePowered fun(blockFace: bukkit.block.BlockFace)
+---@field isBlockFaceIndirectlyPowered fun(blockFace: bukkit.block.BlockFace)
+---@field getBlockPower fun(blockFace?: bukkit.block.BlockFace): integer
+---@field isEmpty fun(): boolean
+---@field isLiquid fun(): boolean
+---@field isBuildable fun(): boolean -- Paper
+---@field isBurnable fun(): boolean -- Paper
+---@field isReplaceable fun(): boolean -- Paper
+---@field isSolid fun(): boolean -- Paper
+---@field isCollidable fun(): boolean -- Paper
+---@field getTemperature fun(): number
+---@field getHumidity fun(): number
+---@field getPistonMoveReaction fun(): bukkit.block.PistonMoveReaction
+---@field breakNaturally (fun(tool?: bukkit.ItemStack): boolean)|(fun(triggerEffect: boolean, dropExperience?: boolean): boolean)|(fun(tool: bukkit.ItemStack, dropExperience?: boolean): boolean)|(fun(tool: bukkit.ItemStack, triggerEffect: boolean, dropExperience?: boolean): boolean) -- some Paper
+---@field tick fun() -- Paper
+---@field fluidTick fun() -- Paper
+---@field randomTick fun() -- Paper
+---@field applyBoneMeal fun(blockFace: bukkit.block.BlockFace)
+---@field getDrops fun(tool?: bukkit.ItemStack, entity?: bukkit.Entity): java.Collection<bukkit.ItemStack>
+---@field isPreferredTool fun(tool: bukkit.ItemStack): boolean
+---@field getBreakSpeed fun(player: bukkit.entity.Player): java.float
+---@field isPassable fun(): boolean
+---@field rayTrace function -- TODO
+---@field getBoundingBox fun(): java.Object -- TODO
+---@field getCollisionShape fun(): java.Object -- TODO
+---@field canPlace fun(blockData: bukkit.block.data.BlockData): boolean
+---@field getBlockSoundGroup function -- Paper
+---@field getDestroySpeed function -- Paper
+---@field isSuffocating fun(): boolean
+
+---@class bukkit.block.BlockState : bukkit.metadata.Metadatable
+---@field getBlock fun(): bukkit.block.Block
+---@field getBlockData fun(): bukkit.block.data.BlockData
+---@field setBlockData fun(data: bukkit.block.data.BlockData)
+---@field getType fun(): bukkit.Material
+---@field setType fun(v: bukkit.Material)
+---@field copy fun(location?: bukkit.Location): bukkit.block.BlockState
+---@field getLightLevel fun(): java.byte
+---@field getWorld fun(): bukkit.World
+---@field getX fun(): integer
+---@field getY fun(): integer
+---@field getZ fun(): integer
+---@field getLocation fun(location?: bukkit.Location): bukkit.Location
+---@field getChunk fun(): bukkit.Chunk
+---@field update fun(force?: boolean, applyPhysics?: boolean): boolean
+---@field isPlaced fun(): boolean
+---@field isCollidable fun(): boolean
+---@field isSuffocating fun(): boolean
+---@field getDrops fun(tool?: bukkit.ItemStack, entity?: bukkit.Entity): java.Collection<bukkit.ItemStack>

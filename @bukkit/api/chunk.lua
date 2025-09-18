@@ -1,0 +1,31 @@
+---@class bukkit.ChunkSnapshot : java.Object
+-- TODO
+
+---@class bukkit.Chunk.LoadLevel : java.Object
+-- TODO
+
+---@class bukkit.Chunk : bukkit.persistence.DataHolder
+---@field getX fun(): integer
+---@field getZ fun(): integer
+---@field getWorld fun(): bukkit.World
+---@field getBlock fun(x: integer, y: integer, z: integer): bukkit.block.Block
+---@field getChunkSnapshot fun(includeMaxblocky: boolean, includeBiome: boolean, includeBiomeTempRain: boolean): bukkit.ChunkSnapshot
+---@field isEntitiesLoaded fun(): boolean
+---@field getEntities fun(): java.array<bukkit.Entity>
+---@field getTitleEntities fun(): java.array<bukkit.block.structure.Mirror>
+---@field isGenerated fun(): boolean
+---@field isLoaded fun(): boolean
+---@field load fun(generate?: boolean): boolean
+---@field unload fun(save: boolean): boolean
+---@field isSlimeChunk fun(): boolean
+---@field isForceLoaded fun(): boolean
+---@field setForceLoaded fun(forced: boolean)
+---@field addPluginChunkTicket fun(plugin: java.Object): boolean
+---@field removePluginChunkTicket fun(plugin: java.Object): boolean
+---@field getPluginChunkTickets fun(): java.List<java.Object>
+---@field getInhabitedTime fun(): java.long
+---@field setInhabitedTime fun(ticks: java.long)
+---@field contains fun(id: bukkit.block.data.BlockData|bukkit.block.Biome): boolean
+---@field getLoadLevel fun(): bukkit.Chunk.LoadLevel
+---@field getStructures fun(structure?: java.Object): java.List<java.Object> -- TODO
+---@field getPlayersSeeingChunk fun(): java.List<bukkit.entity.Player>

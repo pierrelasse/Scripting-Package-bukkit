@@ -1,0 +1,63 @@
+---@alias bukkit.attribute.Attribute* string
+---| "MAX_HEALTH"
+---| "FOLLOW_RANGE"
+---| "KNOCKBACK_RESISTANCE"
+---| "MOVEMENT_SPEED"
+---| "FLYING_SPEED"
+---| "ATTACK_DAMAGE"
+---| "ATTACK_KNOCKBACK"
+---| "ATTACK_SPEED"
+---| "ARMOR"
+---| "ARMOR_TOUGHNESS"
+---| "FALL_DAMAGE_MULTIPLIER"
+---| "LUCK"
+---| "MAX_ABSORPTION"
+---| "SAFE_FALL_DISTANCE"
+---| "SCALE"
+---| "STEP_HEIGHT"
+---| "GRAVITY"
+---| "JUMP_STRENGTH"
+---| "BURNING_TIME"
+---| "EXPLOSION_KNOCKBACK_RESISTANCE"
+---| "MOVEMENT_EFFICIENCY"
+---| "OXYGEN_BONUS"
+---| "WATER_MOVEMENT_EFFICIENCY"
+---| "TEMPT_RANGE"
+---| "BLOCK_INTERACTION_RANGE"
+---| "ENTITY_INTERACTION_RANGE"
+---| "BLOCK_BREAK_SPEED"
+---| "MINING_EFFICIENCY"
+---| "SNEAKING_SPEED"
+---| "SUBMERGED_MINING_SPEED"
+---| "SWEEPING_DAMAGE_RATIO"
+---| "SPAWN_REINFORCEMENTS"
+
+---@class bukkit.attribute.Attribute : bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware
+
+---@class bukkit.attribute.Attributable : java.Object
+---@field getAttribute fun(attribute: bukkit.attribute.Attribute): bukkit.attribute.AttributeInstance?
+
+---@alias bukkit.attribute.AttributeModifierOperation* string
+---| "ADD_NUMBER
+---| "ADD_SCALAR"
+---| "MULTIPLY_SCALAR_1"
+
+---@class bukkit.attribute.AttributeModifierOperation : java.Object
+
+-- TODO
+---@class bukkit.attribute.AttributeModifier : bukkit.Keyed
+---@field getName fun(): string
+---@field getAmount fun(): number
+---@field getOperation fun(): bukkit.attribute.AttributeModifierOperation
+---@field getSlot fun(): bukkit.inventory.EquipmentSlot
+---@field getSlotGroup fun(): bukkit.inventory.EquipmentSlotGroup
+
+---@class bukkit.attribute.AttributeInstance : java.Object
+---@field getAttribute fun(): bukkit.attribute.Attribute
+---@field getBaseValue fun(): number
+---@field setBaseValue fun(value: number)
+---@field getModifiers fun(): java.Collection<bukkit.attribute.AttributeModifier>
+---@field addModifier fun(modifier: bukkit.attribute.AttributeModifier)
+---@field removeModifier fun(modifier: bukkit.attribute.AttributeModifier)
+---@field getValue fun(): number
+---@field getDefaultValue fun(): number

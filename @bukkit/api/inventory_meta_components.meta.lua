@@ -1,0 +1,63 @@
+---@class bukkit.inventory.meta.components.CustomModelDataComponent : java.Object
+---@field getFloats fun(): java.List<java.float>
+---@field setFloats fun(v: java.List<java.float>)
+---@field getFlags fun(): java.List<boolean>
+---@field setFlags fun(v: java.List<boolean>)
+---@field getStrings fun(): java.List<string>
+---@field setStrings fun(v: java.List<string>)
+---@field getColors fun(): java.List<bukkit.Color>
+---@field setColors fun(v: java.List<bukkit.Color>)
+
+---@class bukkit.inventory.meta.components.EquippableComponent : java.Object
+---@field getSlot fun(): bukkit.inventory.EquipmentSlot
+---@field setSlot fun(v: bukkit.inventory.EquipmentSlot)
+---@field getEquipSound fun(): java.Object ---#Paper -- TODO
+---@field setEquipSound fun(v: java.Object) -- TODO
+---@field getModel fun(): bukkit.NamespacedKey?
+---@field getCameraOverlay fun(): bukkit.NamespacedKey?
+---@field setCameraOverlay fun(v: bukkit.NamespacedKey?)
+---@field getAllowedEntities fun(): java.Collection<bukkit.EntityType>?
+---@field setAllowedEntities fun(v: nil|bukkit.EntityType|java.Collection<bukkit.EntityType>|java.Object) -- TODO
+---@field isDispensable fun(): boolean
+---@field setDispensable fun(v: boolean)
+---@field isSwappable fun(): boolean
+---@field setSwappable fun(v: boolean)
+---@field isDamageOnHurt fun(): boolean
+---@field setDamageOnHurt fun(v: boolean)
+---@field isEquipOnInteract fun(): boolean
+---@field setEquipOnInteract fun(v: boolean)
+
+---@class bukkit.inventory.meta.components.FoodComponent : java.Object
+---@field getNutrition fun(): integer
+---@field setNutrition fun(v: integer)
+---@field getSaturation fun(): number
+---@field setSaturation fun(v: number)
+---@field canAlwaysEat fun(): boolean
+---@field setCanAlwaysEat fun(v: boolean)
+
+-- TODO
+---@class bukkit.inventory.meta.components.JukeboxPlayableComponent : java.Object
+
+---@class bukkit.inventory.meta.components.ToolComponent.ToolRule : java.Object
+---@field getBlocks fun(): java.Collection<bukkit.Material>
+---@field setBlocks fun(v: bukkit.Material|java.Collection<bukkit.Material>|java.Object) -- TODO
+---@field getSpeed fun(): java.float?
+---@field setSpeed fun(v: java.float?)
+---@field isCorrectForDrops fun(): boolean?
+---@field setCorrectForDrops fun(v: boolean?)
+
+---@class bukkit.inventory.meta.components.ToolComponent : java.Object
+---@field getDefaultMiningSpeed fun(): number
+---@field setDefaultMiningSpeed fun(v: number)
+---@field getDamagePerBlock fun(): integer
+---@field setDamagePerBlock fun(v: integer)
+---@field getRules fun(): java.List<bukkit.inventory.meta.components.ToolComponent.ToolRule>
+---@field setRules fun(v: java.List<bukkit.inventory.meta.components.ToolComponent.ToolRule>)
+---@field addRule (fun(block: bukkit.Material, speed: number?, correctForDrops: boolean?): bukkit.inventory.meta.components.ToolComponent.ToolRule)|(fun(blocks: java.Collection<bukkit.Material>, speed: number?, correctForDrops: boolean?): bukkit.inventory.meta.components.ToolComponent.ToolRule)|(fun(tag: java.Object, speed: number?, correctForDrops: boolean?): bukkit.inventory.meta.components.ToolComponent.ToolRule) -- TODO
+---@field removeRule fun(rule: bukkit.inventory.meta.components.ToolComponent.ToolRule): boolean
+
+---@class bukkit.inventory.meta.components.UseCooldownComponent : java.Object
+---@field getCooldownSeconds fun(): number
+---@field setCooldownSeconds fun(v: number)
+---@field getCooldownGroup fun(): bukkit.NamespacedKey?
+---@field setCooldownGroup fun(v: bukkit.NamespacedKey?)
