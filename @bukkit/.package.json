@@ -1,0 +1,16 @@
+[
+	{
+		"name": "bukkit/index",
+		"load": "@bukkit/index"
+	},
+	{
+		"name": "bukkit/Storage",
+		"load": "@bukkit/Storage",
+		"deps": ["bukkit/index"]
+	},
+	{
+		"name": "bukkit/version",
+		"load": "@bukkit/version",
+		"deps": ["bukkit/index"]
+	}
+]
