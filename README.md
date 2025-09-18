@@ -7,3 +7,4 @@ API & libraries for Bukkit, Spigot, Paper, and Folia.
 -   [bukkit/guimaker](./@bukkit/guimaker/) Library for creating GUIs
 -   [bukkit/scoreboard/controller](./@bukkit/scoreboard/controller.lua)
 -   [bukkit/scoreboard/Sidebar](./@bukkit/scoreboard/Sidebar.lua) Library for easily creating Sidebars
+-   [bukkit/worldmanager](./@bukkit/worldmanager/) Library for managing worlds (& easily creating void worlds)
