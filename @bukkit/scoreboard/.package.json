@@ -1,0 +1,12 @@
+[
+    {
+        "name": "bukkit/scoreboard/controller",
+        "load": "@bukkit/scoreboard/controller",
+        "deps": ["bukkit/api"]
+    },
+    {
+        "name": "bukkit/scoreboard/Sidebar",
+        "load": "@bukkit/scoreboard/Sidebar",
+        "deps": ["bukkit/api", "bukkit/scoreboard/controller"]
+    }
+]
