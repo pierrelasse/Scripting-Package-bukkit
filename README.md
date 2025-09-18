@@ -5,3 +5,4 @@ API & libraries for Bukkit, Spigot, Paper, and Folia.
 -   [bukkit/api](./@bukkit/api/)
 -   [bukkit/components](./@bukkit/components/) Somewhat outdated
 -   [bukkit/guimaker](./@bukkit/guimaker/) Library for creating GUIs
+-   [bukkit/scoreboard/controller](./@bukkit/scoreboard/controller.lua)
