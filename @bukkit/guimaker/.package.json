@@ -1,0 +1,5 @@
+{
+    "name": "bukkit/guimaker",
+    "load": "@bukkit/guimaker/",
+    "deps": ["bukkit/api"]
+}
