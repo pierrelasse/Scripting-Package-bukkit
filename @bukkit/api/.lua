@@ -23,7 +23,7 @@ function bukkit.uuid(target)
     return tostring(target.getUniqueId())
 end
 
----@param o string
+---@param o string?
 ---@return java.Object? uuid
 function bukkit.uuidFromString(o)
     if type(o) ~= "string" then return o end

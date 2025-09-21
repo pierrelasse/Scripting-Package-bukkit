@@ -95,7 +95,7 @@ function bukkit.playerByUUIDObj(uuid)
     end
 end
 
----@param uuid string
+---@param uuid string?
 ---@return bukkit.entity.Player?
 function bukkit.playerByUUID(uuid)
     local uuidObj = bukkit.uuidFromString(uuid)

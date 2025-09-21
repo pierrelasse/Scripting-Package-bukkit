@@ -166,7 +166,7 @@ end
 ---@param power? number=`4` The power of explosion, where 4 is TNT
 ---@param fire? boolean=`false` Whether or not to set blocks on fire
 ---@param breakBlocks? boolean=`true`
----@param source? java.Object the source entity, used for tracking damage
+---@param source? bukkit.Entity the source entity, used for tracking damage
 ---@return boolean # if the explosion was cancelled
 function bukkit.spawnExplosion(location, power, fire, breakBlocks, source)
     if power == nil then power = 4 end
