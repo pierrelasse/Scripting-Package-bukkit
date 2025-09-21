@@ -40,3 +40,19 @@ end
 function bukkit.locationU(world, data)
     return Location(world, table.unpack(data, 1, #data == 5 and 5 or 3))
 end
+
+---@param a bukkit.Location
+---@param b bukkit.Location
+function bukkit.distance(a, b)
+    if a == nil or b == nil then return math.huge end
+    if a.getWorld() ~= b.getWorld() then return math.huge end
+    return a.distance(b)
+end
+
+---@param a bukkit.Location
+---@param b bukkit.Location
+function bukkit.distanceSquared(a, b)
+    if a == nil or b == nil then return math.huge end
+    if a.getWorld() ~= b.getWorld() then return math.huge end
+    return a.distanceSquared(b)
+end
