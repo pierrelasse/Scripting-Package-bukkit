@@ -119,10 +119,8 @@ end
 function this:fill(item, from, to)
     if from == nil then from = 1 end
     if to == nil then to = self:slotAmount() end
-    from = from - 1
-    to = to - 1
     for slot = from, to do
-        self:set(slot, item)
+        self:set1(slot, item)
     end
 end
 

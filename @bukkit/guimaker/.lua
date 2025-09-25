@@ -50,7 +50,7 @@ local this = {
 ---    |"OUTSIDE"
 ---    |"FUEL"
 ---@field slot integer
----@field itemStack java.Object
+---@field itemStack bukkit.ItemStack
 
 ---@class bukkit.guimaker.DragEvent
 ---@field event java.Object
