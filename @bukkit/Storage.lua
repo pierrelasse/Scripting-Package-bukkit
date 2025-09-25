@@ -1,3 +1,4 @@
+local ConfigurationSection = import("org.bukkit.configuration.ConfigurationSection")
 local YamlConfiguration = import("org.bukkit.configuration.file.YamlConfiguration")
 
 local fs = require("@base/fs")
@@ -131,6 +132,25 @@ function this:clearIfEmpty(path)
     local keys = self:getKeys(path)
     if keys ~= nil and keys.size() == 0 then
         self:set(path, nil)
+    end
+end
+
+---@param path string
+function this:getSection(path)
+    local section = self.config.get(path)
+    if section == nil then
+        section = self.config.createSection(path)
+    elseif not instanceof(section, ConfigurationSection) then
+        error("'"..path.."' is not a ConfigurationSection")
+    end
+    return section
+end
+
+---@param path string
+function this:getSectionOrNil(path)
+    local section = self.config.get(path)
+    if instanceof(section, ConfigurationSection) then
+        return section
     end
 end
 
