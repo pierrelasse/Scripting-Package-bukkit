@@ -137,7 +137,9 @@ end
 ---@param v nil|string|adventure.text.Component
 ---@return self
 function this:name(v)
-    self:displayName(comp.text("§r").append(comp.from(v)))
+    self.meta.setDisplayName(comp.legacySerialize(
+        comp.text("§r").append(comp.from(v))
+    ))
 
     return self
 end
