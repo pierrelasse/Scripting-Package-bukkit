@@ -159,4 +159,25 @@ function this:button(slot, item, cb)
     self:click(slot, cb)
 end
 
+---Might be unstable.
+---@param title string
+function this:rename(title)
+    local prev = self.inv
+
+    local new = bukkit.guimaker.GUIHolder(self, title, prev.getSize())
+        .getInventory()
+    new.setContents(prev.getContents())
+
+    self.inv = new
+
+    local prevOnClose = self.onClose
+    self.onClose = nil
+
+    for viewer in forEach(prev.getViewers().clone()) do
+        viewer.openInventory(new)
+    end
+
+    self.onClose = prevOnClose
+end
+
 bukkit.guimaker.Screen = this
