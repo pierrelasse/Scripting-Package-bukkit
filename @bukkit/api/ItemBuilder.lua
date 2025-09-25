@@ -145,7 +145,7 @@ function this:name(v)
 end
 
 ---Sets the lore/description of the item.
----@param v nil|string|string[]|adventure.text.Component|java.List<string>
+---@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>
 ---@return self
 function this:lore(v)
     if v == nil then
@@ -153,14 +153,23 @@ function this:lore(v)
     elseif type(v) == "string" then
         self:lore(v:split("\n"))
     elseif type(v) == "table" then
-        ---@cast v string[]
-        local list = java.list(#v) ---@type java.List<string>
+        ---@cast v (string|adventure.text.Component)[]
+        local list = java.list(#v) ---@type java.List<string|adventure.text.Component>
         for line in table.valuesLoop(v) do
-            list.add(bukkit.hex(line))
+            if type(line) == "string" then
+                line = bukkit.hex(line)
+            elseif comp ~= nil and comp.is(line) then
+                line = comp.legacySerialize(line)
+            end
+            list.add(line)
         end
         self:lore(list)
     elseif comp ~= nil and comp.is(v) then
-        self.meta.lore(v)
+        local list = java.list() ---@type java.List<string>
+        for line in forEach(comp.legacySerialize(v):split("\n")) do
+            list.add(line)
+        end
+        self.meta.setLore(list)
     else
         self.meta.setLore(v)
     end
@@ -188,7 +197,7 @@ function this:customModelData(v)
 end
 
 ---Sets the enchantable. Higher values allow higher enchantments.
----@param v integer?
+---@param v? integer
 ---@return self
 function this:enchantable(v)
     self.meta.setEnchantable(v)
@@ -215,7 +224,7 @@ function this:removeEnchantments()
     return self
 end
 
----@param v? boolean
+---@param v? boolean=`true`
 ---@return self
 function this:enchantmentGlintOverride(v)
     if v == nil then v = true end
