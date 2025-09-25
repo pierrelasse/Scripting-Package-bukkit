@@ -12,7 +12,7 @@ local this = {}
 ---@type java.Map<string, java.Object>?
 this.recipes = nil
 
----@private
+---@package
 function this.init()
     this.recipes = java.map()
 
