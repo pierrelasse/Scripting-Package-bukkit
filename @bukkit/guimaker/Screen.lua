@@ -162,22 +162,22 @@ end
 ---Might be unstable.
 ---@param title string
 function this:rename(title)
+    if title == self.inv.getTitle() then return end
+
+    for viewer in forEach(self.inv.getViewers()) do
+        viewer.getOpenInventory().getView().setTitle(title)
+        return
+    end
+
     local prev = self.inv
+
+    if prev.getTitle() == title then return end
 
     local new = bukkit.guimaker.GUIHolder(self, title, prev.getSize())
         .getInventory()
     new.setContents(prev.getContents())
 
     self.inv = new
-
-    local prevOnClose = self.onClose
-    self.onClose = nil
-
-    for viewer in forEach(prev.getViewers().clone()) do
-        viewer.openInventory(new)
-    end
-
-    self.onClose = prevOnClose
 end
 
 bukkit.guimaker.Screen = this
