@@ -14,6 +14,7 @@ local Registry = import("org.bukkit.Registry")
 
 -- TODO
 ---@type {
+--- [string]: bukkit.Registry<unknown>;
 --- ART: bukkit.Registry<bukkit.Art>;
 --- ATTRIBUTE: bukkit.Registry<bukkit.attribute.Attribute>;
 --- BANNER_PATTERN: bukkit.Registry<bukkit.block.banner.Pattern>;

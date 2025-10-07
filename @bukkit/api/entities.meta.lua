@@ -231,52 +231,52 @@
 ---@class bukkit.entity.Fireball : bukkit.entity.Projectile
 
 ---org.bukkit.entity.Firework
----@class bukkit.entity.Firework
+---@class bukkit.entity.Firework : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Fish
----@class bukkit.entity.Fish
+---@class bukkit.entity.Fish : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.FishHook
----@class bukkit.entity.FishHook
+---@class bukkit.entity.FishHook : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Flying
----@class bukkit.entity.Flying
+---@class bukkit.entity.Flying : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Fox
----@class bukkit.entity.Fox
+---@class bukkit.entity.Fox : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Frog
----@class bukkit.entity.Frog
+---@class bukkit.entity.Frog : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Ghast
----@class bukkit.entity.Ghast
+---@class bukkit.entity.Ghast : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Giant
----@class bukkit.entity.Giant
+---@class bukkit.entity.Giant : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.GlowItemFrame
----@class bukkit.entity.GlowItemFrame
+---@class bukkit.entity.GlowItemFrame : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.GlowSquid
----@class bukkit.entity.GlowSquid
+---@class bukkit.entity.GlowSquid : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Goat
----@class bukkit.entity.Goat
+---@class bukkit.entity.Goat : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Golem
----@class bukkit.entity.Golem
+---@class bukkit.entity.Golem : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Guardian
----@class bukkit.entity.Guardian
+---@class bukkit.entity.Guardian : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Hanging
----@class bukkit.entity.Hanging
+---@class bukkit.entity.Hanging : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Hoglin
----@class bukkit.entity.Hoglin
+---@class bukkit.entity.Hoglin : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Horse
----@class bukkit.entity.Horse
+---@class bukkit.entity.Horse : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.HumanEntity
 ---@class bukkit.entity.HumanEntity : bukkit.entity.LivingEntity, bukkit.entity.AnimalTamer, bukkit.inventory.InventoryHolder
@@ -652,10 +652,10 @@
 ---@field isAllowingServerListing fun(): boolean
 
 ---org.bukkit.entity.PolarBear
----@class bukkit.entity.PolarBear
+---@class bukkit.entity.PolarBear : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Pose
----@class bukkit.entity.Pose
+---@class bukkit.entity.Pose -- TODO
 
 ---org.bukkit.entity.Projectile
 ---@class bukkit.entity.Projectile: bukkit.Entity
@@ -663,94 +663,94 @@
 ---@field setShooter fun(shooter: bukkit.projectiles.ProjectileSource)
 
 ---org.bukkit.entity.PufferFish
----@class bukkit.entity.PufferFish
+---@class bukkit.entity.PufferFish : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Rabbit
----@class bukkit.entity.Rabbit
+---@class bukkit.entity.Rabbit : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Raider
----@class bukkit.entity.Raider
+---@class bukkit.entity.Raider : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Ravager
----@class bukkit.entity.Ravager
+---@class bukkit.entity.Ravager : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Salmon
----@class bukkit.entity.Salmon
+---@class bukkit.entity.Salmon : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Shearable
----@class bukkit.entity.Shearable
+---@class bukkit.entity.Shearable : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Sheep
----@class bukkit.entity.Sheep
+---@class bukkit.entity.Sheep : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Shulker
----@class bukkit.entity.Shulker
+---@class bukkit.entity.Shulker : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.ShulkerBullet
----@class bukkit.entity.ShulkerBullet
+---@class bukkit.entity.ShulkerBullet : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Silverfish
----@class bukkit.entity.Silverfish
+---@class bukkit.entity.Silverfish : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Sittable
----@class bukkit.entity.Sittable
+---@class bukkit.entity.Sittable : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SizedFireball
----@class bukkit.entity.SizedFireball
+---@class bukkit.entity.SizedFireball : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Skeleton
----@class bukkit.entity.Skeleton
+---@class bukkit.entity.Skeleton : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SkeletonHorse
----@class bukkit.entity.SkeletonHorse
+---@class bukkit.entity.SkeletonHorse : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Slime
----@class bukkit.entity.Slime
+---@class bukkit.entity.Slime : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SmallFireball
----@class bukkit.entity.SmallFireball
+---@class bukkit.entity.SmallFireball : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Sniffer
----@class bukkit.entity.Sniffer
+---@class bukkit.entity.Sniffer : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Snowball
 ---@class bukkit.entity.Snowball : bukkit.entity.ThrowableProjectile
 
 ---org.bukkit.entity.Snowman
----@class bukkit.entity.Snowman
+---@class bukkit.entity.Snowman : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SpawnCategory
----@class bukkit.entity.SpawnCategory
+---@class bukkit.entity.SpawnCategory : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SpectralArrow
----@class bukkit.entity.SpectralArrow
+---@class bukkit.entity.SpectralArrow : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Spellcaster
----@class bukkit.entity.Spellcaster
+---@class bukkit.entity.Spellcaster : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Spider
----@class bukkit.entity.Spider
+---@class bukkit.entity.Spider : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SplashPotion
----@class bukkit.entity.SplashPotion
+---@class bukkit.entity.SplashPotion : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Squid
----@class bukkit.entity.Squid
+---@class bukkit.entity.Squid : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Steerable
----@class bukkit.entity.Steerable
+---@class bukkit.entity.Steerable : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Stray
----@class bukkit.entity.Stray
+---@class bukkit.entity.Stray : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Strider
----@class bukkit.entity.Strider
+---@class bukkit.entity.Strider : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Tadpole
----@class bukkit.entity.Tadpole
+---@class bukkit.entity.Tadpole : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Tameable
----@class bukkit.entity.Tameable
+---@class bukkit.entity.Tameable : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.TextDisplay
 ---@class bukkit.entity.TextDisplay : bukkit.entity.Display
@@ -779,28 +779,28 @@
 ---@field setItem fun(item: bukkit.ItemStack)
 
 ---org.bukkit.entity.ThrownExpBottle
----@class bukkit.entity.ThrownExpBottle
+---@class bukkit.entity.ThrownExpBottle : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.ThrownPotion
----@class bukkit.entity.ThrownPotion
+---@class bukkit.entity.ThrownPotion : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.TippedArrow
----@class bukkit.entity.TippedArrow
+---@class bukkit.entity.TippedArrow : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.TNTPrimed
----@class bukkit.entity.TNTPrimed
+---@class bukkit.entity.TNTPrimed : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.TraderLlama
----@class bukkit.entity.TraderLlama
+---@class bukkit.entity.TraderLlama : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Trident
----@class bukkit.entity.Trident
+---@class bukkit.entity.Trident : bukkit.entity.Projectile -- TODO
 
 ---org.bukkit.entity.TropicalFish
----@class bukkit.entity.TropicalFish
+---@class bukkit.entity.TropicalFish : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Turtle
----@class bukkit.entity.Turtle
+---@class bukkit.entity.Turtle : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Vehicle
 ---@class bukkit.entity.Vehicle : bukkit.Entity
@@ -808,49 +808,49 @@
 ---@field setVelocity fun(value: bukkit.Vector)
 
 ---org.bukkit.entity.Vex
----@class bukkit.entity.Vex
+---@class bukkit.entity.Vex : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Villager
----@class bukkit.entity.Villager
+---@class bukkit.entity.Villager : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Vindicator
----@class bukkit.entity.Vindicator
+---@class bukkit.entity.Vindicator : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.WanderingTrader
----@class bukkit.entity.WanderingTrader
+---@class bukkit.entity.WanderingTrader : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Warden
----@class bukkit.entity.Warden
+---@class bukkit.entity.Warden : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.WaterMob
----@class bukkit.entity.WaterMob
+---@class bukkit.entity.WaterMob : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.WindCharge
----@class bukkit.entity.WindCharge
+---@class bukkit.entity.WindCharge : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Witch
----@class bukkit.entity.Witch
+---@class bukkit.entity.Witch : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Wither
----@class bukkit.entity.Wither
+---@class bukkit.entity.Wither : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.WitherSkeleton
----@class bukkit.entity.WitherSkeleton
+---@class bukkit.entity.WitherSkeleton : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.WitherSkull
----@class bukkit.entity.WitherSkull
+---@class bukkit.entity.WitherSkull : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Wolf
----@class bukkit.entity.Wolf
+---@class bukkit.entity.Wolf : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Zoglin
----@class bukkit.entity.Zoglin
+---@class bukkit.entity.Zoglin : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Zombie
----@class bukkit.entity.Zombie
+---@class bukkit.entity.Zombie : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.ZombieHorse
----@class bukkit.entity.ZombieHorse
+---@class bukkit.entity.ZombieHorse : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.ZombieVillager
----@class bukkit.entity.ZombieVillager
+---@class bukkit.entity.ZombieVillager : bukkit.Entity -- TODO

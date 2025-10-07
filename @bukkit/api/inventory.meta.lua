@@ -4,8 +4,6 @@
 ---@field setType fun(type: bukkit.Material)
 ---@field getAmount fun(): integer
 ---@field setAmount fun(amount: integer)
----@field getData fun(): java.Object? -- TODO
----@field setData fun(data: java.Object?) -- TODO
 ---@field getMaxStackSize fun(): integer
 ---@field isSimilar fun(itemStack: bukkit.ItemStack): boolean
 ---@field clone fun(): bukkit.ItemStack
