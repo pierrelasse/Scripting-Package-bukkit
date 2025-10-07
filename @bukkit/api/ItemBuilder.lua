@@ -89,6 +89,155 @@ end
 
 --#endregion
 
+--#region Components
+
+---@alias bukkit.api.ItemBuilder.DataComponentTypes* string
+---| "max_stack_size" -- Valued<@IntRange(from = 1, to = 99) Integer>
+---| "max_damage" -- Valued<@Positive Integer>
+---| "damage" -- Valued<@NonNegative Integer>
+---| "unbreakable" -- NonValued
+---| "custom_name" -- Valued<Component>
+---| "item_name" -- Valued<Component>
+---| "item_model" -- Valued<Key>
+---| "lore" -- Valued<ItemLore>
+---| "rarity" -- Valued<ItemRarity>
+---| "enchantments" -- Valued<ItemEnchantments>
+---| "can_place_on" -- Valued<ItemAdventurePredicate>
+---| "can_break" -- Valued<ItemAdventurePredicate>
+---| "attribute_modifiers" -- Valued<ItemAttributeModifiers>
+---| "custom_model_data" -- Valued<CustomModelData>
+---| "tooltip_display" -- Valued<TooltipDisplay>
+---| "repair_cost" -- Valued<@NonNegative Integer>
+---| "enchantment_glint_override" -- Valued<Boolean>
+---| "intangible_projectile" -- NonValued
+---| "food" -- Valued<FoodProperties>
+---| "consumable" -- Valued<Consumable>
+---| "use_remainder" -- Valued<UseRemainder>
+---| "use_cooldown" -- Valued<UseCooldown>
+---| "damage_resistant" -- Valued<DamageResistant>
+---| "tool" -- Valued<Tool>
+---| "weapon" -- Valued<Weapon>
+---| "enchantable" -- Valued<Enchantable>
+---| "equippable" -- Valued<Equippable>
+---| "repairable" -- Valued<Repairable>
+---| "glider" -- NonValued
+---| "tooltip_style" -- Valued<Key>
+---| "death_protection" -- Valued<DeathProtection>
+---| "blocks_attacks" -- Valued<BlocksAttacks>
+---| "stored_enchantments" -- Valued<ItemEnchantments>
+---| "dyed_color" -- Valued<DyedItemColor>
+---| "map_color" -- Valued<MapItemColor>
+---| "map_id" -- Valued<MapId>
+---| "map_decorations" -- Valued<MapDecorations>
+---| "map_post_processing" -- Valued<MapPostProcessing>
+---| "charged_projectiles" -- Valued<ChargedProjectiles>
+---| "bundle_contents" -- Valued<BundleContents>
+---| "potion_contents" -- Valued<PotionContents>
+---| "potion_duration_scale" -- Valued<Float>
+---| "suspicious_stew_effects" -- Valued<SuspiciousStewEffects>
+---| "writable_book_content" -- Valued<WritableBookContent>
+---| "written_book_content" -- Valued<WrittenBookContent>
+---| "trim" -- Valued<ItemArmorTrim>
+---| "instrument" -- Valued<MusicInstrument>
+---| "provides_trim_material" -- Valued<TrimMaterial>
+---| "ominous_bottle_amplifier" -- Valued<OminousBottleAmplifier>
+---| "jukebox_playable" -- Valued<JukeboxPlayable>
+---| "provides_banner_patterns" -- Valued<TagKey<PatternType>>
+---| "recipes" -- Valued<List<Key>>
+---| "lodestone_tracker" -- Valued<LodestoneTracker>
+---| "firework_explosion" -- Valued<FireworkEffect>
+---| "fireworks" -- Valued<Fireworks>
+---| "profile" -- Valued<ResolvableProfile>
+---| "note_block_sound" -- Valued<Key>
+---| "banner_patterns" -- Valued<BannerPatternLayers>
+---| "base_color" -- Valued<DyeColor>
+---| "pot_decorations" -- Valued<PotDecorations>
+---| "container" -- Valued<ItemContainerContents>
+---| "block_state" -- Valued<BlockItemDataProperties>
+---| "container_loot" -- Valued<SeededContainerLoot>
+---| "break_sound" -- Valued<Key>
+---| "villager/variant" -- Valued<Villager.Type>
+---| "wolf/variant" -- Valued<Wolf.Variant>
+---| "wolf/sound_variant" -- Valued<Wolf.SoundVariant>
+---| "wolf/collar" -- Valued<DyeColor>
+---| "fox/variant" -- Valued<Fox.Type>
+---| "salmon/size" -- Valued<Salmon.Variant>
+---| "parrot/variant" -- Valued<Parrot.Variant>
+---| "tropical_fish/pattern" -- Valued<TropicalFish.Pattern>
+---| "tropical_fish/base_color" -- Valued<DyeColor>
+---| "tropical_fish/pattern_color" -- Valued<DyeColor>
+---| "mooshroom/variant" -- Valued<MushroomCow.Variant>
+---| "rabbit/variant" -- Valued<Rabbit.Type>
+---| "pig/variant" -- Valued<Pig.Variant>
+---| "cow/variant" -- Valued<Cow.Variant>
+---| "chicken/variant" -- Valued<Chicken.Variant>
+---| "frog/variant" -- Valued<Frog.Variant>
+---| "horse/variant" -- Valued<Horse.Color>
+---| "painting/variant" -- Valued<Art>
+---| "llama/variant" -- Valued<Llama.Color>
+---| "axolotl/variant" -- Valued<Axolotl.Variant>
+---| "cat/variant" -- Valued<Cat.Type>
+---| "cat/collar" -- Valued<DyeColor>
+---| "sheep/color" -- Valued<DyeColor>
+---| "shulker/color" -- Valued<DyeColor>
+
+do
+    local DataComponentTypes = importOrNil("io.papermc.paper.datacomponent.DataComponentTypes")
+    if DataComponentTypes ~= nil then
+        ---@param id bukkit.api.ItemBuilder.DataComponentTypes*
+        ---@return java.Object?
+        local function dct(id)
+            return bukkit.registry.DATA_COMPONENT_TYPE.get(bukkit.namespacedKey(id, "minecraft"))
+        end
+        this.DataCompT = dct
+
+        ---WIP!
+        ---@param type bukkit.api.ItemBuilder.DataComponentTypes*
+        ---@param value unknown
+        ---@return self
+        function this:dataCompValued(type, value)
+            self.itemStack.setItemMeta(self.meta)
+
+            local t = dct(type)
+            self.itemStack.setData(t, value)
+
+            self.meta = self.itemStack.getItemMeta() or self.meta
+
+            return self
+        end
+
+        ---WIP!
+        ---@param type bukkit.api.ItemBuilder.DataComponentTypes*
+        ---@return self
+        function this:dataCompNonValued(type)
+            self.itemStack.setItemMeta(self.meta)
+
+            local t = dct(type)
+            self.itemStack.setData(t)
+
+            self.meta = self.itemStack.getItemMeta() or self.meta
+
+            return self
+        end
+
+        ---WIP!
+        ---@param type bukkit.api.ItemBuilder.DataComponentTypes*
+        ---@return self
+        function this:dataCompUnset(type)
+            self.itemStack.setItemMeta(self.meta)
+
+            local t = dct(type)
+            self.itemStack.unsetData(t)
+
+            self.meta = self.itemStack.getItemMeta() or self.meta
+
+            return self
+        end
+    end
+end
+
+--#endregion
+
 --#region Base
 
 ---#Paper
@@ -145,7 +294,7 @@ function this:name(v)
 end
 
 ---Sets the lore/description of the item.
----@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>
+---@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>|java.array<string>
 ---@return self
 function this:lore(v)
     if v == nil then
@@ -166,10 +315,12 @@ function this:lore(v)
         self:lore(list)
     elseif comp ~= nil and comp.is(v) then
         local list = java.list() ---@type java.List<string>
-        for line in forEach(comp.legacySerialize(v):split("\n")) do
+        for line in forEach(comp.legacySerialize(v):split("\n")) do -- TODO: fix new line coloring
             list.add(line)
         end
         self.meta.setLore(list)
+    elseif arrays.is(v) then
+        self.meta.setLore(arrays.toList(v))
     else
         self.meta.setLore(v)
     end
