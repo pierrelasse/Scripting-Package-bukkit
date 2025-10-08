@@ -1,4 +1,6 @@
----@class bukkit.RegionAccessor : java.Object
+---TODO
+---@class bukkit.RegionAccessor : bukkit.Keyed
+---@field getHighestBlockYAt (fun(x: integer, z: integer, heightMap?: java.Object): integer)|(fun(location: bukkit.Location, heightMap?: java.Object): integer)
 
 ---@class bukkit.generator.WorldInfo : java.Object
 ---@field getName fun(): string
@@ -10,6 +12,11 @@
 
 ---org.bukkit.World
 ---@class bukkit.World : bukkit.RegionAccessor, bukkit.generator.WorldInfo, bukkit.metadata.Metadatable, bukkit.persistence.DataHolder, bukkit.Keyed
+---@field getEntityCount fun(): integer -- Paper
+---@field getTileEntityCount fun(): integer -- Paper
+---@field getTickableTileEntityCount fun(): integer -- Paper
+---@field getChunkCount fun(): integer -- Paper
+---@field getPlayerCount fun(): integer -- Paper
 ---@field getBlockAt (fun(x: integer, y: integer, z: integer): bukkit.block.Block)|(fun(location: bukkit.Location): bukkit.block.Block)
 ---@field getHighestBlockAt (fun(x: integer, z: integer): bukkit.block.Block)|(fun(location: bukkit.Location): bukkit.block.Block)|(fun(x: integer, z: integer, heightMap: java.Object): bukkit.block.Block)|(fun(location: bukkit.Location, heightMap: java.Object): bukkit.block.Block) -- TODO
 ---@field getChunkAt (fun(x: integer, z: integer, generate: boolean): bukkit.Chunk)|(fun(location: bukkit.Location): bukkit.Chunk)|fun(block: bukkit.block.Block): bukkit.Chunk
