@@ -41,8 +41,6 @@ function bukkit.isInCreativeOrSpec(target)
     return g == "CREATIVE" or g == "SPECTATOR"
 end
 
-require("@bukkit/api/craft")
-
 require("@bukkit/api/advancement")
 require("@bukkit/api/art")
 require("@bukkit/api/attribute")
