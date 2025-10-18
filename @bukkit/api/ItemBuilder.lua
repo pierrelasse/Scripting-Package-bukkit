@@ -361,7 +361,7 @@ end
 ---@param safe? boolean=`false`
 ---@return self
 function this:enchant(enchantment, level, safe)
-    self.meta.addEnchant(bukkit.enchantment(enchantment), level, safe == true)
+    self.meta.addEnchant(bukkit.enchantment(enchantment), level, safe ~= true)
 
     return self
 end
