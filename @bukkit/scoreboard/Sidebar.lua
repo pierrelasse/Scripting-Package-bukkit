@@ -19,7 +19,7 @@ function this.get(player)
         self.objective = self.board.registerNewObjective(
             "sidebar",
             bukkit.scoreboard.criteria("DUMMY"),
-            ""
+            " "
         )
         self.objective.setDisplaySlot(
             bukkit.scoreboard.displaySlot("SIDEBAR")
