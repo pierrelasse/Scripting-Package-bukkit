@@ -1,13 +1,14 @@
 local Player = import("org.bukkit.entity.Player")
 
+--#region Deprecated
 
----@deprecated Use `bukkit.players()`
+---@deprecated
 function bukkit.onlinePlayers()
     scripting.warningDeprecated("bukkit.onlinePlayers")
     return bukkit.players()
 end
 
----@deprecated Use `bukkit.playersLoop()`
+---@deprecated
 function bukkit.onlinePlayersLoop()
     scripting.warningDeprecated("bukkit.onlinePlayersLoop")
     return bukkit.playersLoop()
@@ -22,7 +23,7 @@ end
 ---@deprecated
 function bukkit.getPlayerByUUIDObj(...)
     scripting.warningDeprecated("bukkit.getPlayerByUUIDObj")
-    return bukkit.playerByUUIDObj(...)
+    return bukkit.playerByUUIDObj(...) ---@diagnostic disable-line: deprecated
 end
 
 ---@deprecated
@@ -42,6 +43,15 @@ function bukkit.getOfflinePlayerByUUID(...)
     scripting.warningDeprecated("bukkit.offlinePlayerByUUID")
     return bukkit.offlinePlayerByUUID(...)
 end
+
+---@deprecated
+function bukkit.playerByUUIDObj(uuid)
+    scripting.warningDeprecated("bukkit.playerByUUIDObj")
+    if not java.isUUID(uuid) then return end
+    return bukkit.Bukkit.getPlayer(uuid)
+end
+
+--#endregion
 
 ---@param o any|bukkit.entity.Player
 function bukkit.isPlayer(o)
@@ -81,6 +91,7 @@ function bukkit.player(name)
     return bukkit.Bukkit.getPlayerExact(name)
 end
 
+-- TODO: deprecate
 bukkit.getPlayer = bukkit.player
 
 ---@param name string
@@ -89,17 +100,12 @@ function bukkit.playerClosest(name)
     return bukkit.Bukkit.getPlayer(name)
 end
 
-function bukkit.playerByUUIDObj(uuid)
-    if java.isUUID(uuid) then
-        return bukkit.Bukkit.getPlayer(uuid)
-    end
-end
-
----@param uuid string?
+---@param uuid nil|string|java.Object
 ---@return bukkit.entity.Player?
 function bukkit.playerByUUID(uuid)
-    local uuidObj = bukkit.uuidFromString(uuid)
-    return bukkit.playerByUUIDObj(uuidObj)
+    if type(uuid) == "string" then uuid = java.uuidFromString(uuid) end
+    if not java.isUUID(uuid) then return end
+    return bukkit.Bukkit.getPlayer(uuid)
 end
 
 ---@param name string
@@ -108,9 +114,10 @@ function bukkit.offlinePlayer(name)
     return bukkit.Bukkit.getOfflinePlayer(name)
 end
 
----@param uuid java.Object?
+---@param uuid nil|string|java.Object
 ---@return bukkit.OfflinePlayer?
 function bukkit.offlinePlayerByUUID(uuid)
-    if uuid == nil then return end
+    if type(uuid) == "string" then uuid = java.uuidFromString(uuid) end
+    if not java.isUUID(uuid) then return end
     return bukkit.Bukkit.getOfflinePlayer(uuid)
 end

@@ -151,8 +151,47 @@
 ---@field setMaxHealth fun(health: number)
 ---@field resetMaxHealth fun()
 
+---@aliases bukkit.entity.Display.Billboard* string
+---| "FIXED" -- No rotation (default).
+---| "VERTICAL" -- Can pivot around vertical axis.
+---| "HORIZONTAL" -- Can pivot around horizontal axis.
+---| "CENTER" -- Can pivot around center point.
+
+---org.bukkit.entity.Display$Billboard
+---@class bukkit.entity.Display.Billboard : java.Enum
+
+---org.bukkit.entity.Display$Brightness
+---@class bukkit.entity.Display.Brightness : java.Object
+---@field getBlockLight fun(): integer
+---@field getSkyLight fun(): integer
+
 ---org.bukkit.entity.Display
 ---@class bukkit.entity.Display : bukkit.Entity
+---@field getTransformation fun(): bukkit.Transformation
+---@field setTransformation fun(v: bukkit.Transformation)
+---@field setTransformationMatrix fun(v: java.Object)
+---@field getInterpolationDelay fun(): integer
+---@field setInterpolationDelay fun(v: integer)
+---@field getInterpolationDuration fun(): integer
+---@field setInterpolationDuration fun(v: integer)
+---@field getTeleportDuration fun(): integer
+---@field setTeleportDuration fun(v: integer)
+---@field getViewRange fun(): integer
+---@field setViewRange fun(v: integer)
+---@field getShadowRadius fun(): java.float
+---@field setShadowRadius fun(v: java.float)
+---@field getShadowStrength fun(): java.float
+---@field setShadowStrength fun(v: java.float)
+---@field getDisplayWidth fun(): java.float
+---@field setDisplayWidth fun(v: java.float)
+---@field getDisplayHeight fun(): java.float
+---@field setDisplayHeight fun(v: java.float)
+---@field getBillboard fun(): bukkit.entity.Display.Billboard
+---@field setBillboard fun(v: bukkit.entity.Display.Billboard)
+---@field getGlowColorOverride fun(): bukkit.Color?
+---@field setGlowColorOverride fun(v: bukkit.Color?)
+---@field getBrightness fun(): bukkit.entity.Display.Brightness?
+---@field setBrightness fun(v: bukkit.entity.Display.Brightness?)
 
 ---org.bukkit.entity.Dolphin
 ---@class bukkit.entity.Dolphin : bukkit.entity.Ageable, bukkit.entity.WaterMob
@@ -367,6 +406,10 @@
 
 ---org.bukkit.entity.ItemDisplay
 ---@class bukkit.entity.ItemDisplay : bukkit.entity.Display
+---@field getItemStack fun(): bukkit.ItemStack? -- Paper
+---@field setItemStack fun(v: bukkit.ItemStack?)
+---@field getItemDisplayTransform fun(): java.Object -- TODO
+---@field setItemDisplayTransform fun(v: java.Object) -- TODO
 
 ---org.bukkit.entity.ItemFrame
 ---@class bukkit.entity.ItemFrame
@@ -654,8 +697,28 @@
 ---org.bukkit.entity.PolarBear
 ---@class bukkit.entity.PolarBear : bukkit.Entity -- TODO
 
+---@alias bukkit.entity.Pose* string
+---| "STANDING"
+---| "FALL_FLYING"
+---| "SLEEPING"
+---| "SWIMMING"
+---| "SPIN_ATTACK"
+---| "SNEAKING"
+---| "LONG_JUMPING"
+---| "DYING"
+---| "CROAKING"
+---| "USING_TONGUE"
+---| "SITTING"
+---| "ROARING"
+---| "SNIFFING"
+---| "EMERGING"
+---| "DIGGING"
+---| "SLIDING"
+---| "SHOOTING"
+---| "INHALING"
+
 ---org.bukkit.entity.Pose
----@class bukkit.entity.Pose -- TODO
+---@class bukkit.entity.Pose : java.Enum
 
 ---org.bukkit.entity.Projectile
 ---@class bukkit.entity.Projectile: bukkit.Entity

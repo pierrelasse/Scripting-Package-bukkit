@@ -1,7 +1,7 @@
 local ChatColor = import("org.bukkit.ChatColor")
 
 
----@alias bukkit.ChatColor string
+---@alias bukkit.ChatColor* string
 ---| "BLACK"
 ---| "DARK_BLUE"
 ---| "DARK_GREEN"
@@ -25,8 +25,8 @@ local ChatColor = import("org.bukkit.ChatColor")
 ---| "ITALIC"
 ---|>"RESET"
 
----@param name bukkit.ChatColor|java.Object
----@return java.Object chatColor org.bukkit.ChatColor
+---@param name bukkit.ChatColor*|java.Object
+---@return java.Object
 function bukkit.chatColor(name)
     if type(name) ~= "string" then return name end
     return ChatColor[name]

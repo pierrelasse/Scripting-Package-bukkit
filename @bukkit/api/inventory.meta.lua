@@ -115,3 +115,40 @@
 
 ---@class bukkit.inventory.EquipmentSlotGroup : java.Predicate<bukkit.inventory.EquipmentSlot>
 ---@field test fun(slot: bukkit.inventory.EquipmentSlot): boolean
+
+---@alias bukkit.inventory.InventoryType* string
+---| "CHEST" # 27, "Chest", MenuType.GENERIC_9X3 -- A chest inventory, with 0, 9, 18, 27, 36, 45, or 54 slots of type CONTAINER.
+---| "DISPENSER" # 9, "Dispenser", MenuType.GENERIC_3X3 -- A dispenser inventory, with 9 slots of type CONTAINER.
+---| "DROPPER" # 9, "Dropper", MenuType.GENERIC_3X3 -- A dropper inventory, with 9 slots of type CONTAINER.
+---| "FURNACE" # 3, "Furnace", MenuType.FURNACE -- A furnace inventory, with a RESULT slot, a CRAFTING slot, and a FUEL slot.
+---| "WORKBENCH" # 10, "Crafting", MenuType.CRAFTING -- A workbench inventory, with 9 CRAFTING slots and a RESULT slot.
+---| "CRAFTING" # 5, "Crafting", null, false -- A player''s crafting inventory, with 4 CRAFTING slots and a RESULT slot. Also implies that the 4 ARMOR slots are accessible.
+---| "ENCHANTING" # 2, "Enchanting", MenuType.ENCHANTMENT -- An enchantment table inventory, with two CRAFTING slots and three enchanting buttons.
+---| "BREWING" # 5, "Brewing", MenuType.BREWING_STAND -- A brewing stand inventory, with one FUEL slot and four CRAFTING slots.
+---| "PLAYER" # 43, "Player", MenuType.GENERIC_9X4 -- A player''s inventory, with 9 QUICKBAR slots, 27 CONTAINER slots, 4 ARMOR slots, 1 offhand slot, 1 body slot and 1 saddle slot. <p> The ARMOR and offhand slots are conditionally visible to the player, while body and saddle slot are never visible.
+---| "CREATIVE" # 9, "Creative", null, false -- The creative mode inventory, with only 9 QUICKBAR slots and nothing else. (The actual creative interface with the items is client-side and cannot be altered by the server.)
+---| "MERCHANT" # 3, "Villager", MenuType.MERCHANT, false -- The merchant inventory, with 2 CRAFTING slots, and 1 RESULT slot.
+---| "ENDER_CHEST" # 27, "Ender Chest", MenuType.GENERIC_9X3 -- The ender chest inventory, with 27 slots.
+---| "ANVIL" # 3, "Repairing", MenuType.ANVIL -- An anvil inventory, with 2 CRAFTING slots and 1 RESULT slot
+---| "SMITHING" # 4, "Upgrade Gear", MenuType.SMITHING -- A smithing inventory, with 3 CRAFTING slots and 1 RESULT slot.
+---| "BEACON" # 1, "container.beacon", MenuType.BEACON -- A beacon inventory, with 1 CRAFTING slot
+---| "HOPPER" # 5, "Item Hopper", MenuType.HOPPER -- A hopper inventory, with 5 slots of type CONTAINER.
+---| "SHULKER_BOX" # 27, "Shulker Box", MenuType.SHULKER_BOX -- A shulker box inventory, with 27 slots of type CONTAINER.
+---| "BARREL" # 27, "Barrel", MenuType.GENERIC_9X3 -- A barrel box inventory, with 27 slots of type CONTAINER.
+---| "BLAST_FURNACE" # 3, "Blast Furnace", MenuType.BLAST_FURNACE -- A blast furnace inventory, with a RESULT slot, a CRAFTING slot, and a FUEL slot.
+---| "LECTERN" # 1, "Lectern", MenuType.LECTERN -- A lectern inventory, with 1 BOOK slot.
+---| "SMOKER" # 3, "Smoker", MenuType.SMOKER -- A smoker inventory, with a RESULT slot, a CRAFTING slot, and a FUEL slot.
+---| "LOOM" # 4, "Loom", MenuType.LOOM -- Loom inventory, with 3 CRAFTING slots, and 1 RESULT slot.
+---| "CARTOGRAPHY" # 3, "Cartography Table", MenuType.CARTOGRAPHY_TABLE -- Cartography inventory with 2 CRAFTING slots, and 1 RESULT slot.
+---| "GRINDSTONE" # 3, "Repair & Disenchant", MenuType.GRINDSTONE -- Grindstone inventory with 2 CRAFTING slots, and 1 RESULT slot.
+---| "STONECUTTER" # 2, "Stonecutter", MenuType.STONECUTTER -- Stonecutter inventory with 1 CRAFTING slot, and 1 RESULT slot.
+---| "COMPOSTER" # 1, "Composter", null, false -- Pseudo composter inventory with 0 or 1 slots of undefined type.
+---| "CHISELED_BOOKSHELF" # 6, "Chiseled Bookshelf", null, false -- Pseudo chiseled bookshelf inventory, with 6 slots of undefined type.
+---| "JUKEBOX" # 1, "Jukebox", null, false -- Pseudo jukebox inventory with 1 slot of undefined type.
+---| "DECORATED_POT" # 1, "Decorated Pot", null, false -- Pseudo decorated pot with 1 slot of undefined type.
+---| "CRAFTER" # 9, "Crafter", MenuType.CRAFTER_3X3 -- A crafter inventory, with 9 CRAFTING slots.
+
+---@class bukkit.inventory.InventoryType : java.Enum
+---@field getDefaultSize fun(): integer
+---@field getMenuType fun(): java.Object?
+---@field isCreatable fun(): boolean

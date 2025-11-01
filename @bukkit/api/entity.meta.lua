@@ -35,7 +35,7 @@
 ---@field getFallDistance fun(): java.float
 ---@field setFallDistance fun(distance: java.float)
 ---@field getLastDamageCause fun(): java.Object? -- TODO
----@field getUniqueId fun(): java.Object -- TODO
+---@field getUniqueId fun(): java.UUID
 ---@field getTicksLived fun(): integer
 ---@field setTicksLived fun(ticks: integer)
 ---@field playEffect fun(type: java.Object) -- TODO

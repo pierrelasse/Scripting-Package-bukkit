@@ -151,4 +151,16 @@ function this.getNew()
     return this.manager.getNewScoreboard()
 end
 
+---@param scoreboard bukkit.scoreboard.Scoreboard
+---@param name string
+---@param registerCb? fun(team: bukkit.scoreboard.Team)
+function this.getOrCreateTeam(scoreboard, name, registerCb)
+    local team = scoreboard.getTeam(name)
+    if team == nil then
+        team = scoreboard.registerNewTeam(name)
+        if registerCb then registerCb(team) end
+    end
+    return team
+end
+
 bukkit.scoreboard = this
