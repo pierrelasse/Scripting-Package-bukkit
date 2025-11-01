@@ -1,64 +1,86 @@
+---@diagnostic disable: deprecated
+
+---@class bukkit.guimaker.Screen.SlotListener
+---@field click? fun(event: bukkit.guimaker.ClickEvent)
+---@field drag? fun(event: bukkit.guimaker.DragEvent)
+---@field take? fun(event: bukkit.guimaker.TakeEvent)
+---@field put? fun(event: bukkit.guimaker.PutEvent)
+
 ---@class bukkit.guimaker.Screen
----@field inv bukkit.inventory.Inventory
----@field clickCb? table<integer, fun(event: bukkit.guimaker.ClickEvent)>
+---@field package inv bukkit.inventory.Inventory
+---@field package closeListeners? java.List<core.Closeable>
+---@field package slotListeners? java.Map<integer, bukkit.guimaker.Screen.SlotListener>
 ---
----@field onOpen? fun(viewer: bukkit.entity.Player)
----@field onClose? fun(viewer: bukkit.entity.Player)
----@field onClick? fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.ClickEvent)
----@field onClickOther? fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.ClickEvent)
----@field onDrag? fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.DragEvent)
----@field onMove? fun(viewer: bukkit.entity.Player, event: java.Object)
-local this = {}
+---@field onDrag? fun(event: bukkit.guimaker.DragEvent)
+---@field onTake? fun(event: bukkit.guimaker.TakeEvent)
+---@field onPut? fun(event: bukkit.guimaker.PutEvent)
+local this = {
+    ---@deprecated
+    ---@type nil|fun(viewer: bukkit.entity.Player)
+    onOpen = nil,
+    ---@deprecated
+    ---@type nil|fun(viewer: bukkit.entity.Player)
+    onClose = nil,
+    ---@deprecated
+    ---@type nil|fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.ClickEvent)
+    onClick = nil,
+    ---@deprecated
+    ---@type nil|fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.ClickEvent)
+    onClickOther = nil
+}
 this.__index = this
 
----@param title string
----@param rows integer
-function this.new(title, rows)
-    if rows == nil then rows = 6 end -- TODO
+---@param title string|adventure.text.Component
+---@param rowsOrType integer|bukkit.inventory.InventoryType|bukkit.inventory.InventoryType*=`6`
+function this.new(title, rowsOrType)
+    if rowsOrType == nil or type(rowsOrType) == "number" then
+        rowsOrType = 9 * (rowsOrType or 6)
+    end
 
     local self = setmetatable({}, this)
 
-    self.inv = bukkit.guimaker.GUIHolder(self, title, 9 * rows)
-        .getInventory()
+    local holder = bukkit.guimaker.GUIHolder(self)
+    local inv = title == nil
+        and bukkit.Bukkit.createInventory(holder, rowsOrType)
+        or bukkit.Bukkit.createInventory(holder, rowsOrType, title)
+    holder.setInventory(inv)
+    self.inv = inv
 
-    self.onClick = function(viewer, event)
-        event.cancelled = true
+    self.slotListeners = java.map()
 
-        if self.clickCb == nil then return end
-        local cb = self.clickCb[event.slot]
-        if cb == nil then return end
-
-        local success, result = pcall(cb, event)
-        if not success then
-            print("§cError (screen) of §4"..viewer.getName().."§c: "..result)
-            viewer.closeInventory()
-            bukkit.send(viewer, "§cAn error occured while interacting with the screen")
-        end
-    end
-
-    self.onClickOther = function(viewer, event)
-        if event.action == "MOVE_TO_OTHER_INVENTORY" then
-            event.cancelled = true -- TODO: use click event
-        elseif event.action == "COLLECT_TO_CURSOR" then
-            event.cancelled = true -- TODO: check if item is from upper inv
-        end
-    end
-
-    self.onDrag = function(viewer, event)
-        local view = event.event.getView() ---@type bukkit.inventory.InventoryView
-        local rawSlots = event.event.getRawSlots() ---@type java.Set<integer>
-
-        for rawSlot in forEach(rawSlots) do
-            local slot = view.convertSlot(rawSlot)
-            if slot == rawSlot then
-                event.event.setCancelled(true)
-                break
+    self.onClose = function(viewer)
+        if self.closeListeners ~= nil then
+            for c in forEach(self.closeListeners) do
+                ((type(c) == "table") and c.close or c)()
             end
         end
     end
 
-    self.onMove = function(viewer, event)
-        event.setCancelled(true)
+    self.onClick = function(viewer, event)
+        event.cancelled = true
+        local listener = self.slotListeners.get(event.slot + 1)
+        if listener and listener.click then listener.click(event) end
+    end
+
+    self.onClickOther = function(viewer, event)
+    end
+
+    self.onDrag = function(event)
+        event.cancelled = true
+        local listener = self.slotListeners.get(event.slot)
+        if listener and listener.drag then listener.drag(event) end
+    end
+
+    self.onTake = function(event)
+        event.cancelled = true
+        local listener = self.slotListeners.get(event.slot)
+        if listener and listener.take then listener.take(event) end
+    end
+
+    self.onPut = function(event)
+        event.cancelled = true
+        local listener = self.slotListeners.get(event.slot)
+        if listener and listener.put then listener.put(event) end
     end
 
     return self
@@ -77,6 +99,63 @@ function this:slotAmount()
     return self.inv.getSize()
 end
 
+---@param c core.Closeable
+function this:closeable(c)
+    if self.closeListeners == nil then self.closeListeners = java.list() end
+    self.closeListeners.add(c)
+end
+
+--#region Viewer
+
+---@param viewer bukkit.entity.Player
+function this:hasOpen(viewer)
+    return this.getGUI(viewer
+            .getOpenInventory()
+            .getTopInventory())
+        == self
+end
+
+---@param viewer bukkit.entity.Player
+function this:open(viewer)
+    return viewer.openInventory(self.inv)
+end
+
+---@param viewer bukkit.entity.Player
+function this:close(viewer)
+    if self:hasOpen(viewer) then
+        viewer.closeInventory()
+    end
+end
+
+--#endregion
+
+---@deprecated
+---@param slot integer 0-based
+function this:get(slot)
+    return self.inv.getItem(slot)
+end
+
+---@param slot integer
+function this:get1(slot)
+    return self:get(slot - 1)
+end
+
+---@deprecated
+---@param slot integer 0-based
+---@param item bukkit.ItemStack?
+function this:set(slot, item)
+    self.inv.setItem(slot, item)
+end
+
+---@param slot integer
+---@param item bukkit.ItemStack?
+function this:set1(slot, item)
+    return self:set(slot - 1, item)
+end
+
+--#region Util
+
+---@deprecated
 ---@param row integer
 ---@param column integer
 function this:slot(row, column)
@@ -91,28 +170,6 @@ function this:slot1(row, column)
     return self:slot(row, column) + 1
 end
 
----@param slot integer 0-based
-function this:get(slot)
-    return self.inv.getItem(slot)
-end
-
----@param slot integer
-function this:get1(slot)
-    return self:get(slot - 1)
-end
-
----@param slot integer 0-based
----@param item bukkit.ItemStack?
-function this:set(slot, item)
-    self.inv.setItem(slot, item)
-end
-
----@param slot integer
----@param item bukkit.ItemStack?
-function this:set1(slot, item)
-    return self:set(slot - 1, item)
-end
-
 ---@param item bukkit.ItemStack?
 ---@param from? integer
 ---@param to? integer
@@ -124,33 +181,24 @@ function this:fill(item, from, to)
     end
 end
 
----@param viewer bukkit.entity.Player
-function this:hasOpen(viewer)
-    return this.getGUI(viewer
-            .getOpenInventory()
-            .getTopInventory())
-        == self
-end
+--#endregion
 
----@param viewer bukkit.entity.Player
-function this:open(viewer)
-    viewer.openInventory(self.inv)
-end
+--#region Listeners
 
----@param viewer bukkit.entity.Player
-function this:close(viewer)
-    if self:hasOpen(viewer) then
-        viewer.closeInventory()
-    end
-end
-
+---@deprecated
 ---@param slot integer
 ---@param cb (fun(event: bukkit.guimaker.ClickEvent))?
 function this:click(slot, cb)
-    if self.clickCb == nil then self.clickCb = {} end
-    self.clickCb[slot] = cb
+    self:listen(slot + 1, { click = cb })
 end
 
+---@param slot integer
+---@param cb nil|fun(event: bukkit.guimaker.ClickEvent)
+function this:click1(slot, cb)
+    self:listen(slot, { click = cb })
+end
+
+---@deprecated
 ---@param slot integer
 ---@param item bukkit.ItemStack
 ---@param cb? fun()|fun(event: bukkit.guimaker.ClickEvent)
@@ -159,25 +207,32 @@ function this:button(slot, item, cb)
     self:click(slot, cb)
 end
 
----Might be unstable.
----@param title string
-function this:rename(title)
-    if title == self.inv.getTitle() then return end
+---@param slot integer
+---@param item bukkit.ItemStack
+---@param cb? fun()|fun(event: bukkit.guimaker.ClickEvent)
+function this:button1(slot, item, cb)
+    self:click1(slot, cb)
+    self:set1(slot, item)
+end
 
-    for viewer in forEach(self.inv.getViewers()) do
-        viewer.getOpenInventory().getView().setTitle(title)
-        return
+---@param slot integer
+---@param listener nil|bukkit.guimaker.Screen.SlotListener
+function this:listen(slot, listener)
+    if listener == nil then
+        self.slotListeners.remove(slot)
+    else
+        self.slotListeners.put(slot, listener)
     end
+end
 
-    local prev = self.inv
+--#endregion
 
-    if prev.getTitle() == title then return end
-
-    local new = bukkit.guimaker.GUIHolder(self, title, prev.getSize())
-        .getInventory()
-    new.setContents(prev.getContents())
-
-    self.inv = new
+---Experimental.
+---@param title string
+---@param view bukkit.inventory.InventoryView
+function this:rename(title, view)
+    if view.getTitle() == title then return end
+    view.setTitle(title)
 end
 
 bukkit.guimaker.Screen = this

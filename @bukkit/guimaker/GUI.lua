@@ -1,3 +1,4 @@
+---@deprecated
 ---@class bukkit.guimaker.GUI
 ---@field inv bukkit.inventory.Inventory
 ---@field data any?
@@ -6,8 +7,6 @@
 ---@field onClose? fun(viewer: bukkit.entity.Player)
 ---@field onClick? fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.ClickEvent)
 ---@field onClickOther? fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.ClickEvent)
----@field onDrag? fun(viewer: bukkit.entity.Player, event: bukkit.guimaker.DragEvent)
----@field onMove? fun(viewer: bukkit.entity.Player, event: java.Object)
 local this = {}
 this.__index = this
 
