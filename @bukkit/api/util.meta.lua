@@ -1,6 +1,3 @@
-local Vector = import("org.bukkit.util.Vector")
-
-
 ---@class bukkit.Vector : java.Object, {
 --- add: fun(vec: bukkit.Vector): bukkit.Vector;
 --- subtract: fun(vec: bukkit.Vector): bukkit.Vector;
@@ -14,7 +11,7 @@ local Vector = import("org.bukkit.util.Vector")
 --- angle: fun(other: bukkit.Vector): number;
 --- midpoint: fun(other: bukkit.Vector): bukkit.Vector;
 --- getMidpoint: fun(other: bukkit.Vector): bukkit.Vector;
---- dot: fun(other: bukkit.Vector): bukkit.Vector;
+--- dot: fun(other: bukkit.Vector): number;
 --- crossProduct: fun(o: bukkit.Vector): bukkit.Vector;
 --- getCrossProduct: fun(o: bukkit.Vector): bukkit.Vector;
 --- normalize: fun(): bukkit.Vector;
@@ -42,20 +39,8 @@ local Vector = import("org.bukkit.util.Vector")
 --- toVector3d: fun(): java.Object;
 ---}
 
----@param x number
----@param y number
----@param z number
----@return bukkit.Vector
-function bukkit.vector(x, y, z)
-    return Vector(x, y, z)
-end
-
----@param location bukkit.Location
----@param vector bukkit.Vector
----@return bukkit.Location
-function bukkit.addVec(location, vector)
-    return location
-        .toVector()
-        .add(vector)
-        .toLocation(location.getWorld())
-end
+---@class bukkit.util.RayTraceResult : java.Object
+---@field getHitPosition fun(): bukkit.Vector?
+---@field getHitBlock fun(): bukkit.block.Block?
+---@field getHitBlockFace fun(): bukkit.block.BlockFace?
+---@field getHitEntity fun(): bukkit.Entity?

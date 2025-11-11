@@ -68,7 +68,7 @@ function bukkit.spawnItem(location, itemStack, naturally)
 end
 
 ---@param location bukkit.Location
----@param direction java.Object org.bukkit.util.Vector
+---@param direction bukkit.Vector
 ---@param speed number speed of the arrow. A recommend speed is 0.6
 ---@param spread number spread of the arrow. A recommend spread is 12
 ---@param clazz? java.class the Entity class for the arrow `org.bukkit.entity.SpectralArrow`, `org.bukkit.entity.TippedArrow`
@@ -203,7 +203,7 @@ function bukkit.playEffect(location, effect, data, radius)
         )
 end
 
----@param target java.Object org.bukkit.Location|org.bukkit.entity.Entity
+---@param target bukkit.Location|bukkit.Entity
 ---@param sound string|java.Object
 ---@param volume number?=`1`
 ---@param pitch number?=`1`
@@ -231,7 +231,7 @@ function bukkit.playSound(target, sound, volume, pitch, category, seed)
     else
         func = target.getWorld().playSound
     end
-
+    ---@cast func function
     func(table.unpack(args))
 end
 
