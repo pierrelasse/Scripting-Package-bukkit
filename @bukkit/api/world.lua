@@ -54,16 +54,16 @@ function bukkit.spawn(location, clazz, randomizeData)
 end
 
 ---@param location bukkit.Location
----@param item java.Object org.bukkit.inventory.ItemStack
----@param naturally? boolean
+---@param itemStack bukkit.ItemStack
+---@param naturally? boolean=`false`
 ---@return bukkit.entity.Item
-function bukkit.spawnItem(location, item, naturally)
+function bukkit.spawnItem(location, itemStack, naturally)
     if naturally == true then
         return location.getWorld()
-            .dropItemNaturally(location, item)
+            .dropItemNaturally(location, itemStack)
     else
         return location.getWorld()
-            .dropItem(location, item)
+            .dropItem(location, itemStack)
     end
 end
 

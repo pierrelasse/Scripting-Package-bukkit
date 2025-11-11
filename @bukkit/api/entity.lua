@@ -4,24 +4,18 @@ local Mob = import("org.bukkit.entity.Mob")
 
 
 ---@param v any|bukkit.Entity
-function bukkit.isEntity(v)
-    return instanceof(v, Entity)
-end
+function bukkit.isEntity(v) return instanceof(v, Entity) end
 
 ---@param v any|bukkit.entity.LivingEntity
-function bukkit.isLivingEntity(v)
-    return instanceof(v, LivingEntity)
-end
+function bukkit.isLivingEntity(v) return instanceof(v, LivingEntity) end
 
 ---@param v any|bukkit.entity.Mob
-function bukkit.isMob(v)
-    return instanceof(v, Mob)
-end
+function bukkit.isMob(v) return instanceof(v, Mob) end
 
 --TODO
----@param entity bukkit.Entity
+---@param entity bukkit.Entity|any
 function bukkit.deleteEntity(entity)
-    entity.remove()
+    if bukkit.isEntity(entity) then entity.remove() end
 end
 
 --TODO

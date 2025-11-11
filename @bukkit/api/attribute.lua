@@ -9,8 +9,7 @@ function bukkit.attribute(id)
     if type(id) == "string" then
         return Attribute.valueOf(id)
     end
-    if bukkit.isNamespacedKey(id) then
-        ---@cast id bukkit.NamespacedKey
+    if bukkit.isNamespacedKey(id) then ---@cast id bukkit.NamespacedKey
         return bukkit.registry.ATTRIBUTE.getOrThrow(id)
     end
     ---@cast id bukkit.attribute.Attribute
