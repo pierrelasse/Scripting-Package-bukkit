@@ -1,0 +1,2 @@
+---@class bukkit.command.CommandSender : adventure.audience.Audience, bukkit.permissions.Permissible
+---@field getName fun(): string

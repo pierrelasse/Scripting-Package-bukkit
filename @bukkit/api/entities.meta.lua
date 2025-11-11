@@ -3,6 +3,19 @@
 
 ---org.bukkit.entity.AbstractHorse
 ---@class bukkit.entity.AbstractHorse : bukkit.entity.Vehicle, bukkit.inventory.InventoryHolder, bukkit.entity.Tameable
+---@field getDomestication fun(): integer
+---@field setDomestication fun(v: integer)
+---@field getMaxDomestication fun(): integer
+---@field setMaxDomestication fun(v: integer)
+---@field getJumpStrength fun(): integer
+---@field setJumpStrength fun(v: integer)
+---@field getInventory fun(): java.Object -- TODO
+---@field isEatingGrass fun(): boolean -- Paper
+---@field setEatingGrass fun(v: boolean) -- Paper
+---@field isRearing fun(): boolean -- Paper
+---@field setRearing fun(v: boolean) -- Paper
+---@field isEating fun(): boolean -- Paper
+---@field setEating fun(v: boolean) -- Paper
 
 ---org.bukkit.entity.AbstractSkeleton
 ---@class bukkit.entity.AbstractSkeleton : bukkit.entity.Monster
@@ -15,6 +28,11 @@
 
 ---org.bukkit.entity.Ageable
 ---@class bukkit.entity.Ageable : bukkit.entity.Creature
+---@field getAge fun(): integer
+---@field setAge fun(v: integer)
+---@field setBaby fun()
+---@field isAdult fun(): boolean
+---@field setAdult fun()
 
 ---org.bukkit.entity.Allay
 ---@class bukkit.entity.Allay : bukkit.entity.Creature, bukkit.inventory.InventoryHolder
@@ -94,6 +112,10 @@
 
 ---org.bukkit.entity.Breedable
 ---@class bukkit.entity.Breedable : bukkit.entity.Ageable
+---@field getAgeLock fun(): boolean
+---@field setAgeLock fun(v: boolean)
+---@field canBreed fun(): boolean
+---@field setBreed fun(v: boolean)
 
 ---org.bukkit.entity.Breeze
 ---@class bukkit.entity.Breeze : bukkit.entity.Monster
@@ -315,7 +337,16 @@
 ---@class bukkit.entity.Hoglin : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Horse
----@class bukkit.entity.Horse : bukkit.Entity -- TODO
+---@class bukkit.entity.Horse : bukkit.entity.AbstractHorse
+---@field getColor fun(): bukkit.entity.Horse.Color
+---@field setColor fun(v: bukkit.entity.Horse.Color)
+---@field getStyle fun(): bukkit.entity.Horse.Style
+---@field setStyle fun(v: bukkit.entity.Horse.Style)
+---@field getInventory fun(): bukkit.inventory.HorseInventory
+
+---@class bukkit.entity.Horse.Color : java.Enum
+
+---@class bukkit.entity.Horse.Style : java.Enum
 
 ---org.bukkit.entity.HumanEntity
 ---@class bukkit.entity.HumanEntity : bukkit.entity.LivingEntity, bukkit.entity.AnimalTamer, bukkit.inventory.InventoryHolder
@@ -467,30 +498,30 @@
 ---@field removePotionEffect fun(type: bukkit.PotionEffectType)
 ---@field getActivePotionEffects fun(): java.Collection<bukkit.PotionEffect>
 ---@field hasLineOfSight fun(entity: bukkit.Entity): boolean
----@field getRemovedWhenFarAway fun(): boolean
----@field setRemovedWhenFarAway fun(flag: boolean)
+---@field getRemoveWhenFarAway fun(): boolean
+---@field setRemoveWhenFarAway fun(v: boolean)
 ---@field getEquipment fun(): java.Object -- TODO
 ---@field getCanPickupItems fun(): boolean
----@field setCanPickupItems fun(flag: boolean)
+---@field setCanPickupItems fun(v: boolean)
 ---@field isLeashed fun(): boolean
 ---@field getLeashHolder fun(): bukkit.Entity?
 ---@field setLeashHolder fun(entity: bukkit.Entity): boolean
 ---@field isGliding fun(): boolean
----@field setGliding fun(flag: boolean)
+---@field setGliding fun(v: boolean)
 ---@field isSwimming fun(): boolean
----@field setSwimming fun(flag: boolean)
+---@field setSwimming fun(v: boolean)
 ---@field isRiptiding fun(): boolean
----@field setRiptiding fun(flag: boolean)
+---@field setRiptiding fun(v: boolean)
 ---@field isSleeping fun(): boolean
 ---@field isClimbing fun(): boolean
----@field setAI fun(flag: boolean)
 ---@field hasAI fun(): boolean
+---@field setAI fun(v: boolean)
 ---@field attack fun(target: bukkit.Entity)
 ---@field swingMainHand fun()
 ---@field swingOffHand fun()
 ---@field playHurtAnimation fun(yaw: java.float)
----@field setCollidable fun(flag: boolean)
 ---@field isCollidable fun(): boolean
+---@field setCollidable fun(v: boolean)
 ---@field getColidableExemptions java.Set<java.Object> -- TODO
 ---@field getMemory fun(key: java.Object): unknown -- TODO
 ---@field setMemory fun(key: java.Object, value: unknown) -- TODO
@@ -502,7 +533,7 @@
 ---@field getDrinkingSound fun(): java.Object -- TODO
 ---@field getEatingSound fun(): java.Object -- TODO
 ---@field canBreathUnderwater fun(): boolean
----@field setInvisible fun(flag: boolean)
+---@field setInvisible fun(v: boolean)
 ---@field isInvisible fun(): boolean
 
 ---org.bukkit.entity.Llama
@@ -572,7 +603,8 @@
 ---@class bukkit.entity.Pillager
 
 ---org.bukkit.entity.Player
----@class bukkit.entity.Player : bukkit.entity.HumanEntity, bukkit.OfflinePlayer
+---@class bukkit.entity.Player : bukkit.entity.HumanEntity, bukkit.OfflinePlayer, adventure.identity.Identified, adventure.bossBar.BossBarViewer
+---@field getHandle fun(): java.Object
 ---@field getName fun(): string
 ---@field getDisplayName fun(): string
 ---@field setDisplayName fun(name: string)
@@ -600,12 +632,12 @@
 ---@field performCommand fun(command: string): boolean
 ---@field isOnGround fun(): boolean
 ---@field isSneaking fun(): boolean
----@field setSneaking fun(flag: boolean)
+---@field setSneaking fun(v: boolean)
 ---@field isSprinting fun(): boolean
----@field setSprinting fun(flag: boolean)
+---@field setSprinting fun(v: boolean)
 ---@field saveData fun()
 ---@field loadData fun()
----@field setSleepingIgnored fun(flag: boolean)
+---@field setSleepingIgnored fun(v: boolean)
 ---@field isSleepingIgnored fun(): boolean
 ---@field getRespawnLocation fun(): bukkit.Location?
 ---@field setRespawnLocation fun(location: bukkit.Location)
@@ -619,7 +651,7 @@
 ---@field breakBlock fun(block: bukkit.block.Block): boolean
 ---@field sendBlockChange fun(location: bukkit.Location, data: bukkit.block.data.BlockData)
 ---@field sendBlockChanges fun(blocks: java.Collection<bukkit.block.BlockState>)
----@field sendBlockDamage fun(location: bukkit.Location, progress: java.float, source?: bukkit.Entity | integer)
+---@field sendBlockDamage fun(location: bukkit.Location, progress: java.float, source?: bukkit.Entity|integer)
 ---@field sendEquipmentChange fun(entity: bukkit.entity.LivingEntity, slot: bukkit.inventory.EquipmentSlot, item: bukkit.ItemStack) -- TODO
 ---@field sendEquipmentChanges function -- TODO
 ---@field sendSignChange fun(location: bukkit.Location, lines: java.array<string>) -- TODO
@@ -653,7 +685,7 @@
 ---@field setTotalExperience fun(exp: integer)
 ---@field sendExperienceChange fun(exp: number, level?: integer)
 ---@field getAllowFlight fun(): boolean
----@field setAllowFlight fun(flag: boolean)
+---@field setAllowFlight fun(v: boolean)
 ---@field hidePlayer fun(plugin: java.Object, player: bukkit.entity.Player) -- TODO
 ---@field showPlayer fun(plugin: java.Object, player: bukkit.entity.Player) -- TODO
 ---@field canSee fun(player: bukkit.Entity): boolean
@@ -661,7 +693,7 @@
 ---@field showEntity fun(plugin: java.Object, entity: bukkit.Entity) -- TODO
 ---@field canSee fun(entity: bukkit.Entity): boolean
 ---@field isFlying fun(): boolean
----@field setFlying fun(flag: boolean)
+---@field setFlying fun(v: boolean)
 ---@field getFlySpeed fun(): java.float
 ---@field setFlySpeed fun(speed: java.float)
 ---@field getWalkSpeed fun(): java.float
@@ -676,7 +708,7 @@
 ---@field setWorldBorder fun(border: java.Object) -- TODO
 ---@field sendHealthUpdate fun()|fun(health: number, foodLevel: integer, saturation: number)
 ---@field isHealthScaled fun(): boolean
----@field setHealthScaled fun(flag: boolean)
+---@field setHealthScaled fun(v: boolean)
 ---@field setHealthScale fun(scale: number)
 ---@field getHealthScale fun(): number
 ---@field getSpectatorTarget fun(): bukkit.Entity?
@@ -768,7 +800,11 @@
 ---@class bukkit.entity.SkeletonHorse : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Slime
----@class bukkit.entity.Slime : bukkit.Entity -- TODO
+---@class bukkit.entity.Slime : bukkit.entity.Mob, bukkit.entity.Enemy
+---@field getSize fun(): integer
+---@field setSize fun(v: integer)
+---@field canWander fun(): boolean
+---@field setWander fun(v: boolean)
 
 ---org.bukkit.entity.SmallFireball
 ---@class bukkit.entity.SmallFireball : bukkit.Entity -- TODO
@@ -813,7 +849,12 @@
 ---@class bukkit.entity.Tadpole : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Tameable
----@class bukkit.entity.Tameable : bukkit.Entity -- TODO
+---@class bukkit.entity.Tameable : bukkit.entity.Animals -- TODO
+---@field isTamed fun(): boolean
+---@field setTamed fun(v: boolean)
+---@field getOwnerUniqueId fun(): java.UUID? -- Paper
+---@field getOwner fun(): bukkit.entity.AnimalTamer?
+---@field setOwner fun(v: bukkit.entity.AnimalTamer?)
 
 ---org.bukkit.entity.TextDisplay
 ---@class bukkit.entity.TextDisplay : bukkit.entity.Display
@@ -826,11 +867,11 @@
 ---@field getTextOpacity fun(): java.byte
 ---@field setTextOpacity fun(opacity: java.byte)
 ---@field isShadowed fun(): boolean
----@field setShadowed fun(flag: boolean)
+---@field setShadowed fun(v: boolean)
 ---@field isSeeThrough fun(): boolean
----@field setSeeThrough fun(flag: boolean)
+---@field setSeeThrough fun(v: boolean)
 ---@field isDefaultBackground fun(): boolean
----@field setDefaultBackground fun(flag: boolean)
+---@field setDefaultBackground fun(v: boolean)
 ---@field getAlignment fun(): bukkit.entity.TextDisplay.TextAlignment
 ---@field setAlignment fun(alignment: bukkit.entity.TextDisplay.TextAlignment)
 

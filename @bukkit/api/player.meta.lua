@@ -1,17 +1,20 @@
----@class bukkit.OfflinePlayer : java.Object -- TODO
+---@class bukkit.OfflinePlayer : bukkit.permissions.ServerOperator, bukkit.entity.AnimalTamer
 ---@field isOnline fun(): boolean
+---@field isConnected fun(): boolean Paper
 ---@field getName fun(): string
----@field getUniqueId fun(): java.Object -- TODO
----@field getPlayerProfile fun(): java.Object -- TODO
+---@field getUniqueId fun(): java.UUID
+---@field getPlayerProfile fun(): java.Object Paper
 ---@field isBanned fun(): boolean
 ---@field ban function -- TODO
 ---@field isWhitelisted fun(): boolean
----@field setWhitelisted fun(flag: boolean)
+---@field setWhitelisted fun(v: boolean)
 ---@field getPlayer fun(): bukkit.entity.Player?
 ---@field getFirstPlayed fun(): java.long
 ---@field getLastPlayed fun(): java.long
 ---@field hasPlayedBefore fun(): boolean
----@field getRespawnLocation fun(): bukkit.Location?
+---@field getLastLogin fun(): java.long
+---@field getSeenLogin fun(): java.long
+---@field getRespawnLocation fun(loadLocationAndValidate?: boolean): bukkit.Location?
 ---@field incrementStatistic function -- TODO
 ---@field decrementStatistic function -- TODO
 ---@field setStatistic function -- TODO

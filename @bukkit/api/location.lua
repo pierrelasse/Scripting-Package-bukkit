@@ -36,7 +36,7 @@ function bukkit.location6(world, x, y, z, yaw, pitch)
 end
 
 ---@param world bukkit.World?
----@param data number[] { x, y, z, yaw?, pitch? }
+---@param data { [1]: number; [2]: number; [3]: number; [4]?: number; [5]?: number; } { x, y, z, yaw?, pitch? }
 function bukkit.locationU(world, data)
     return Location(world, table.unpack(data, 1, #data == 5 and 5 or 3))
 end

@@ -1,4 +1,4 @@
----@class bukkit.Entity : bukkit.metadata.Metadatable, bukkit.Nameable, bukkit.persistence.DataHolder
+---@class bukkit.Entity : bukkit.metadata.Metadatable, bukkit.command.CommandSender, bukkit.Nameable, bukkit.persistence.DataHolder, adventure.text.event.HoverEventSource, adventure.sound.Sound.Emitter
 ---@field getLocation fun(location?: bukkit.Location): bukkit.Location
 ---@field setVelocity fun(velocity: bukkit.Vector)
 ---@field getVelocity fun(): bukkit.Vector
@@ -15,8 +15,8 @@
 ---@field getFireTicks fun(): integer
 ---@field getMaxFireTicks fun(): integer
 ---@field setFireTicks fun(ticks: integer)
----@field setVisualFire fun(fire: boolean)
 ---@field isVisualFire fun(): boolean
+---@field setVisualFire fun(v: boolean)
 ---@field getFreezeTicks fun(): integer
 ---@field getMaxFreezeTicks fun(): integer
 ---@field setFreezeTicks fun(ticks: integer)
@@ -26,7 +26,7 @@
 ---@field isValid fun(): boolean
 ---@field getServer fun(): java.Object -- TODO
 ---@field isPersistent fun(): boolean
----@field setPersistent fun(persistent: boolean)
+---@field setPersistent fun(v: boolean)
 ---@field getPassengers fun(): java.List<bukkit.Entity>
 ---@field addPassenger fun(passenger: bukkit.Entity)
 ---@field removePassenger fun(passenger: bukkit.Entity)

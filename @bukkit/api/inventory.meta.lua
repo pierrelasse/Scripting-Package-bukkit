@@ -12,6 +12,30 @@
 ---@field setItemMeta fun(meta: java.Object?) -- TODO
 ---@field getTranslationKey fun(): string
 
+--#region Inventories
+
+---@class bukkit.inventory.AbstractHorseInventory : bukkit.inventory.Inventory
+---@field getSaddle fun(): bukkit.ItemStack?
+---@field setSaddle fun(v: bukkit.ItemStack?)
+
+---@class bukkit.inventory.AnvilInventory : bukkit.inventory.Inventory -- TODO
+
+---@class bukkit.inventory.ArmoredHorseInventory : bukkit.inventory.AbstractHorseInventory
+---@field getArmor fun(): bukkit.ItemStack?
+---@field setArmor fun(v: bukkit.ItemStack?)
+
+---@class bukkit.inventory.BeaconInventory : bukkit.inventory.Inventory
+---@field getItem fun(): bukkit.ItemStack?
+---@field setItem fun(v: bukkit.ItemStack)
+
+---@class bukkit.inventory.CraftingInventory : bukkit.inventory.Inventory
+---@field getMatrix fun(): java.array<bukkit.ItemStack>?
+---@field setMatrix fun(v: java.array<bukkit.ItemStack>?)
+---@field getResult fun(): bukkit.ItemStack?
+---@field setResult fun(v: bukkit.ItemStack?)
+
+---@class bukkit.inventory.HorseInventory : bukkit.inventory.AbstractHorseInventory, bukkit.inventory.ArmoredHorseInventory
+
 ---@class bukkit.inventory.Inventory : java.Iterable<bukkit.ItemStack>
 ---@field getSize fun(): integer
 ---@field getMaxStackSize fun(): integer
@@ -40,6 +64,37 @@
 ---@field iterator fun(i?: integer): java.Iterator<bukkit.ItemStack> -- TODO
 ---@field getLocation fun(): bukkit.Location?
 
+
+---@class bukkit.inventory.HoseInventory : java.Object
+
+---org.bukkit.inventory.PlayerInventory
+---@class bukkit.inventory.PlayerInventory : bukkit.inventory.Inventory
+---@field getItem fun(slot: integer|bukkit.inventory.EquipmentSlot): bukkit.ItemStack?
+---@field setItem fun(slot: integer|bukkit.inventory.EquipmentSlot, itemStack: bukkit.ItemStack?)
+---@field getArmorContents fun(): java.array<bukkit.ItemStack>
+---@field setArmorContents fun(items: java.array<bukkit.ItemStack>?)
+---@field getExtraContents fun(): java.array<bukkit.ItemStack>
+---@field setExtraContents fun(items: java.array<bukkit.ItemStack>?)
+---@field getHelmet fun(): bukkit.ItemStack?
+---@field setHelmet fun(itemStack: bukkit.ItemStack?)
+---@field getChestplate fun(): bukkit.ItemStack?
+---@field setChestplate fun(itemStack: bukkit.ItemStack?)
+---@field getLeggings fun(): bukkit.ItemStack?
+---@field setLeggings fun(itemStack: bukkit.ItemStack?)
+---@field getBoots fun(): bukkit.ItemStack?
+---@field setBoots fun(itemStack: bukkit.ItemStack?)
+---@field getItemInMainHand fun(): bukkit.ItemStack
+---@field setItemInMainHand fun(itemStack: bukkit.ItemStack?)
+---@field getItemInOffHand fun(): bukkit.ItemStack
+---@field setItemInOffHand fun(itemStack: bukkit.ItemStack?)
+---@field getHeldItemSlot fun(): integer
+---@field setHeltItemSlot fun(slot: integer)
+---@field getHolder fun(): bukkit.entity.HumanEntity
+
+---@class bukkit.inventory.Merchant : java.Object
+
+--#endegion
+
 ---@class bukkit.inventory.InventoryHolder : java.Object
 ---@field getInventory fun(): bukkit.inventory.Inventory
 
@@ -63,32 +118,6 @@
 ---@field getTitle fun(): string
 ---@field setTitle fun(title: string) -- Should not be used
 ---@field getMenuType fun(): java.Object? -- TODO
-
----@class bukkit.inventory.Merchant : java.Object
-
----org.bukkit.inventory.PlayerInventory
----@class bukkit.inventory.PlayerInventory : bukkit.inventory.Inventory
----@field getArmorContents fun(): java.array<bukkit.ItemStack>
----@field setArmorContents fun(items: java.array<bukkit.ItemStack>?)
----@field getExtraContents fun(): java.array<bukkit.ItemStack>
----@field setExtraContents fun(items: java.array<bukkit.ItemStack>?)
----@field getHelmet fun(): bukkit.ItemStack?
----@field setHelmet fun(itemStack: bukkit.ItemStack)
----@field getChestplate fun(): bukkit.ItemStack?
----@field setChestplate fun(itemStack: bukkit.ItemStack)
----@field getLeggings fun(): bukkit.ItemStack?
----@field setLeggings fun(itemStack: bukkit.ItemStack)
----@field getBoots fun(): bukkit.ItemStack?
----@field setBoots fun(itemStack: bukkit.ItemStack)
----@field getItem fun(slot: integer|bukkit.inventory.EquipmentSlot): bukkit.ItemStack?
----@field setItem fun(slot: integer|bukkit.inventory.EquipmentSlot, itemStack: bukkit.ItemStack)
----@field getItemInMainHand fun(): bukkit.ItemStack
----@field setItemInMainHand fun(itemStack: bukkit.ItemStack?)
----@field getItemInOffHand fun(): bukkit.ItemStack
----@field setItemInOffHand fun(itemStack: bukkit.ItemStack?)
----@field getHeldItemSlot fun(): integer
----@field setHeltItemSlot fun(slot: integer)
----@field getHolder fun(): bukkit.entity.HumanEntity
 
 ---@alias bukkit.inventory.EquipmentSlot* string
 ---| "HAND"
