@@ -6,11 +6,11 @@ local VoidWorldGenerator
 
 ---@class bukkit.worldmanager.Creator
 ---@field worldCreator java.Object
-local Creator = {}
-Creator.__index = Creator
+local this = {}
+this.__index = this
 
 ---@class worldmanager.Creator.Environment
-Creator.Environment = {
+this.Environment = {
     NORMAL = 0,
     NETHER = -1,
     THE_END = 1,
@@ -18,112 +18,112 @@ Creator.Environment = {
 }
 
 ---@class worldmanager.Creator.Type
-Creator.Type = {
+this.Type = {
     NORMAL = "DEFAULT",
     FLAT = "FLAT",
     LARGE_BIOMES = "LARGEBIOMES",
     AMPLIFIED = "AMPLIFIED"
 }
 
-function Creator.new(name)
-    local self = setmetatable({}, Creator)
+function this.new(name)
+    local self = setmetatable({}, this)
     self.worldCreator = WorldCreator(name)
     return self
 end
 
 ---@return number seed
-function Creator:getSeed()
+function this:getSeed()
     return self.worldCreator.seed()
 end
 
 ---@param seed number
-function Creator:setSeed(seed)
+function this:setSeed(seed)
     self.worldCreator.seed(seed)
 end
 
 ---@return number environment
-function Creator:getEnvironment()
+function this:getEnvironment()
     return self.worldCreator.environment()
 end
 
 ---@param environment number
-function Creator:setEnvironment(environment)
+function this:setEnvironment(environment)
     self.worldCreator.environment(World_Environment.getEnvironment(environment))
 end
 
 ---@return string type
-function Creator:getType()
+function this:getType()
     return self.worldCreator.type()
 end
 
 ---@param type string
-function Creator:setType(type)
+function this:setType(type)
     self.worldCreator.type(WorldType.getByName(type))
 end
 
 ---@return java.Object|nil generator
-function Creator:getGenerator()
+function this:getGenerator()
     return self.worldCreator.generator()
 end
 
 ---@param generator java.Object|nil org.bukkit.generator.ChunkGenerator
-function Creator:setGenerator(generator)
+function this:setGenerator(generator)
     self.worldCreator.generator(generator)
 end
 
 ---@return java.Object|nil biomeProvider org.bukkit.generator.BiomeProvider
-function Creator:getBiomeProvider()
+function this:getBiomeProvider()
     return self.worldCreator.biomeProvider()
 end
 
 ---@param biomeProvider java.Object|nil org.bukkit.generator.BiomeProvider
-function Creator:setBiomeProvider(biomeProvider)
+function this:setBiomeProvider(biomeProvider)
     self.worldCreator.biomeProvider(biomeProvider)
 end
 
 ---@return string
-function Creator:getGeneratorSettings()
+function this:getGeneratorSettings()
     return self.worldCreator.generatorSettings()
 end
 
 ---@param generatorSettings string
-function Creator:setGeneratorSettings(generatorSettings)
+function this:setGeneratorSettings(generatorSettings)
     self.worldCreator.generatorSettings(generatorSettings)
 end
 
 ---@return boolean
-function Creator:getGenerateStructures()
+function this:getGenerateStructures()
     return self.worldCreator.generateStructures()
 end
 
 ---@param generate boolean
-function Creator:setGenerateStructures(generate)
+function this:setGenerateStructures(generate)
     self.worldCreator.generateStructures(generate)
 end
 
 ---@return boolean
-function Creator:getHardcore()
+function this:getHardcore()
     return self.worldCreator.hardcore()
 end
 
 ---@param hardcore boolean
-function Creator:setHardcore(hardcore)
+function this:setHardcore(hardcore)
     self.worldCreator.hardcore(hardcore)
 end
 
 ---@return boolean
-function Creator:getKeepSpawnInMemory()
+function this:getKeepSpawnInMemory()
     return self.worldCreator.keepSpawnInMemory()
 end
 
 ---@param keepSpawnInMemory boolean
-function Creator:setKeepSpawnInMemory(keepSpawnInMemory)
+function this:setKeepSpawnInMemory(keepSpawnInMemory)
     self.worldCreator.keepSpawnInMemory(keepSpawnInMemory)
 end
 
 ---Makes the world a void world
 ---@return { biome: java.Object }
-function Creator:setupVoid()
+function this:setupVoid()
     if VoidWorldGenerator == nil then
         classloader.addClassFile("@bukkit/worldmanager", "bukkit_worldmanager_VoidWorldGenerator")
         classloader.addClassFile("@bukkit/worldmanager", "bukkit_worldmanager_VoidWorldGenerator$1")
@@ -137,8 +137,8 @@ function Creator:setupVoid()
 end
 
 ---@return bukkit.World
-function Creator:create()
+function this:create()
     return self.worldCreator.createWorld()
 end
 
-return Creator
+return this
