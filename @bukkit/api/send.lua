@@ -1,23 +1,12 @@
 local ChatMessageType = import("net.md_5.bungee.api.ChatMessageType")
 
 
--- TODO
+--#region Deprecated
 
 ---@deprecated
 function bukkit.sendComponent(player, component)
     scripting.warningDeprecated("bukkit.sendComponent")
     player.spigot().sendMessage(component)
-end
-
----@param player java.Object|bukkit.entity.Player
----@param v string|java.array<string>|adventure.text.Component
-function bukkit.send(player, v)
-    if type(v) == "string" then
-        ---@diagnostic disable-next-line: deprecated
-        bukkit.sendComponent(player, bukkit.components.parse(v))
-        return
-    end
-    player.sendMessage(v)
 end
 
 ---@deprecated
@@ -26,19 +15,38 @@ function bukkit.sendActionBarComponent(player, component)
     player.spigot().sendMessage(ChatMessageType.ACTION_BAR, component)
 end
 
+--#endregion
+
+---@param player java.Object|adventure.audience.Audience
+---@param v string|java.array<string>|adventure.text.Component
+function bukkit.send(player, v)
+    if adventure ~= nil then
+        adventure.send.message(player, comp.from(v))
+        return
+    end
+
+    if type(v) == "string" then
+        player.spigot().sendMessage(bukkit.components.parse(v))
+        return
+    end
+
+    scripting.warning("bukkit.send: couldn't handle")
+end
+
 ---@param player bukkit.entity.Player
 ---@param v string|java.Object|adventure.text.Component
 function bukkit.sendActionBar(player, v)
-    if type(v) == "string" then
-        if comp == nil then
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, bukkit.components.parse(v))
-            return
-        else
-            v = comp.legacyDeserialize(comp.hex(v))
-        end
+    if adventure ~= nil then
+        adventure.send.actionBar(player, comp.from(v))
+        return
     end
 
-    player.sendActionBar(v)
+    if type(v) == "string" then
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, bukkit.components.parse(v))
+        return
+    end
+
+    scripting.warning("bukkit.sendActionBar: couldn't handle")
 end
 
 ---@param player bukkit.entity.Player
@@ -48,9 +56,20 @@ end
 ---@param stay? integer
 ---@param fadeOut? integer
 function bukkit.sendTitle(player, title, subtitle, fadeIn, stay, fadeOut)
+    if adventure ~= nil then
+        adventure.send.title(
+            player,
+            title ~= nil and comp.from(title) or nil,
+            subtitle ~= nil and comp.from(subtitle) or nil,
+            (fadeIn ~= nil and stay ~= nil and fadeOut ~= nil)
+            and adventure.titleTimes(fadeIn, stay, fadeOut)
+            or nil
+        )
+        return
+    end
+
     if title ~= nil then title = bukkit.components.convertHex(title) end
     if subtitle ~= nil then subtitle = bukkit.components.convertHex(subtitle) end
-
     if fadeIn == nil then
         player.sendTitle(title, subtitle)
     else
