@@ -14,6 +14,16 @@ function bukkit.defaultWorld()
     return bukkit.baseWorld
 end
 
+---@return java.Collection<bukkit.World>
+function bukkit.worlds()
+    return bukkit.Bukkit.getWorlds()
+end
+
+function bukkit.worldsLoop()
+    return forEach(bukkit.worlds())
+end
+
+
 ---@param name string|bukkit.World Name/id of the world
 ---@return bukkit.World?
 function bukkit.world(name)
