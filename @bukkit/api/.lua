@@ -78,7 +78,7 @@ require("@bukkit/api/scoreboard_team")
 require("@bukkit/api/send")
 require("@bukkit/api/sound")
 require("@bukkit/api/transformation")
-require("@bukkit/api/vector")
+require("@bukkit/api/util")
 require("@bukkit/api/world")
 
 require("@bukkit/api/ItemBuilder")

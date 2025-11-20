@@ -362,8 +362,8 @@
 ---@field getItemOnCursor fun(): bukkit.ItemStack
 ---@field setItemOnCursor fun(itemStack: bukkit.ItemStack?)
 ---@field hasCooldown fun(material: bukkit.Material|bukkit.ItemStack): boolean
----@field getCooldown fun(material: bukkit.Material|bukkit.ItemStack): integer
----@field setCooldown fun(material: bukkit.Material|bukkit.ItemStack, ticks: integer)
+---@field getCooldown fun(material: adventure.key.Key|bukkit.Material|bukkit.ItemStack): integer
+---@field setCooldown fun(material: adventure.key.Key|bukkit.Material|bukkit.ItemStack, ticks: integer)
 ---@field getSleepTicks fun(): integer
 ---@field sleep fun(location: bukkit.Location, force: boolean)
 ---@field wakeup fun(setSpawnLocation: boolean)
