@@ -44,6 +44,12 @@ function this:setTitle(title)
     self.objective.setDisplayName(bukkit.hex(title))
 end
 
+---Sets the displayed title of the sidebar.
+---@param v adventure.text.Component
+function this:title(v)
+    self.objective.setDisplayName(comp.legacySerialize(v))
+end
+
 ---@param score string
 ---@param value number
 function this:setRaw(score, value)
@@ -84,7 +90,7 @@ function this:set(text, value, id)
     local team = self.board.getTeam(teamName)
         or self.board.registerNewTeam(teamName)
     team.addEntry(score)
-    team.setSuffix(bukkit.hex(text))
+    team.setSuffix(text)
 end
 
 ---@param lines string[]|java.array<string>
@@ -100,7 +106,25 @@ function this:setLines(lines)
                 self:remove("§"..string.format("%x", i).."§r")
             end
         else
-            self:set(line, 0, i)
+            self:set(bukkit.hex(line), 0, i)
+        end
+    end
+end
+
+---@param v java.List<adventure.text.Component>
+function this:lines(v)
+    if self.objective == nil then return end
+
+    local vSize = v.size()
+    for i = 1, 15 do
+        if i > vSize then
+            local team = self.board.getTeam("s"..i)
+            if team ~= nil then
+                team.unregister()
+                self:remove("§"..string.format("%x", i).."§r")
+            end
+        else
+            self:set(comp.legacySerialize(v.get(i - 1)), 0, i)
         end
     end
 end
@@ -108,7 +132,7 @@ end
 ---@deprecated
 function this:setScore(key, value)
     scripting.warningDeprecated("bukkit/scoreboard/Sidebar#setScore")
-    self:set(key, value)
+    self:set(bukkit.hex(key), value)
 end
 
 ---@deprecated
