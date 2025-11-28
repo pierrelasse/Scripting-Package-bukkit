@@ -89,7 +89,7 @@ end
 
 --#endregion
 
---#region Components
+--#region Data Component
 
 ---@alias bukkit.api.ItemBuilder.DataComponentTypes* string
 ---| "max_stack_size" -- Valued<@IntRange(from = 1, to = 99) Integer>
@@ -242,6 +242,7 @@ end
 
 ---#Paper
 ---Sets the custom name.
+---@see bukkit.ItemBuilder.name
 ---@param v adventure.text.Component?
 ---@return self
 function this:customName(v)
@@ -251,6 +252,7 @@ function this:customName(v)
 end
 
 ---Sets the display name of the item.
+---@see bukkit.ItemBuilder.name
 ---@param v nil|string|adventure.text.Component
 ---@return self
 function this:displayName(v)
@@ -268,6 +270,7 @@ end
 ---Sets the item name.<br>
 ---Item name differs from display name in that it is cannot be edited by an anvil, is not styled with<br>
 ---italics, and does not show labels.
+---@see bukkit.ItemBuilder.name
 ---@param v nil|string|adventure.text.Component
 ---@return self
 function this:itemName(v)
@@ -801,8 +804,11 @@ end
 ---@param key string|bukkit.NamespacedKey
 ---@param dataType bukkit.persistence.DataType*
 function this:getData(key, dataType)
+    if self.meta == nil then return end
+
     ---@type bukkit.persistence.DataContainer
     local persistentDataContainer = self.meta.getPersistentDataContainer()
+
     return persistentDataContainer.get(
         bukkit.namespacedKey(key),
         bukkit.persistentDataType(dataType)

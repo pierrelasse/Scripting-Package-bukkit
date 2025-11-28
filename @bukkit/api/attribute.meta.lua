@@ -38,7 +38,7 @@
 ---@field getAttribute fun(attribute: bukkit.attribute.Attribute): bukkit.attribute.AttributeInstance?
 
 ---@alias bukkit.attribute.AttributeModifierOperation* string
----| "ADD_NUMBER
+---| "ADD_NUMBER"
 ---| "ADD_SCALAR"
 ---| "MULTIPLY_SCALAR_1"
 
