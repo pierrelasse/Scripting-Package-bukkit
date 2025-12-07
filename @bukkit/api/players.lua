@@ -1,98 +1,14 @@
+--#region Player
 local Player = import("org.bukkit.entity.Player")
 
---#region Deprecated
-
----@deprecated
-function bukkit.onlinePlayers()
-    scripting.warningDeprecated("bukkit.onlinePlayers")
-    return bukkit.players()
-end
-
----@deprecated
-function bukkit.onlinePlayersLoop()
-    scripting.warningDeprecated("bukkit.onlinePlayersLoop")
-    return bukkit.playersLoop()
-end
-
----@deprecated
-function bukkit.getPlayerClosest(...)
-    scripting.warningDeprecated("bukkit.getPlayerClosest")
-    return bukkit.playerClosest(...)
-end
-
----@deprecated
-function bukkit.getPlayerByUUIDObj(...)
-    scripting.warningDeprecated("bukkit.getPlayerByUUIDObj")
-    return bukkit.playerByUUIDObj(...) ---@diagnostic disable-line: deprecated
-end
-
----@deprecated
-function bukkit.getPlayerByUUID(...)
-    scripting.warningDeprecated("bukkit/api/players#playerByUUID")
-    return bukkit.playerByUUID(...)
-end
-
----@deprecated
-function bukkit.getOfflinePlayer(...)
-    scripting.warningDeprecated("bukkit.offlinePlayer")
-    return bukkit.offlinePlayer(...)
-end
-
----@deprecated
-function bukkit.getOfflinePlayerByUUID(...)
-    scripting.warningDeprecated("bukkit.offlinePlayerByUUID")
-    return bukkit.offlinePlayerByUUID(...)
-end
-
----@deprecated
-function bukkit.playerByUUIDObj(uuid)
-    scripting.warningDeprecated("bukkit.playerByUUIDObj")
-    if not java.isUUID(uuid) then return end
-    return bukkit.Bukkit.getPlayer(uuid)
-end
-
---#endregion
-
 ---@param o any|bukkit.entity.Player
-function bukkit.isPlayer(o)
-    return instanceof(o, Player)
-end
-
----@return java.List<bukkit.entity.Player>
-function bukkit.players()
-    return bukkit.Bukkit.getOnlinePlayers()
-end
-
----**Example:**
----```lua
----for player in bukkit.playersLoop() do
----  bukkit.send(player, "Foo!")
----end
----```
----
----@return fun(): bukkit.entity.Player
-function bukkit.playersLoop()
-    return forEach(bukkit.players())
-end
-
----@return java.List<bukkit.OfflinePlayer>
-function bukkit.offlinePlayers()
-    return bukkit.Bukkit.getOfflinePlayers()
-end
-
----@return fun(): bukkit.OfflinePlayer
-function bukkit.offlinePlayersLoop()
-    return forEach(bukkit.offlinePlayers())
-end
+function bukkit.isPlayer(o) return instanceof(o, Player) end
 
 ---@param name string
 ---@return bukkit.entity.Player?
 function bukkit.player(name)
     return bukkit.Bukkit.getPlayerExact(name)
 end
-
--- TODO: deprecate
-bukkit.getPlayer = bukkit.player
 
 ---@param name string
 ---@return bukkit.entity.Player?
@@ -108,6 +24,34 @@ function bukkit.playerByUUID(uuid)
     return bukkit.Bukkit.getPlayer(uuid)
 end
 
+---@return java.List<bukkit.entity.Player>
+function bukkit.players()
+    return bukkit.Bukkit.getOnlinePlayers()
+end
+
+---**Example:**
+---```lua
+---for player in bukkit.playersLoop() do
+---  bukkit.send(player, "Foo!")
+---end
+---```
+---
+---@param fn? fun(p: bukkit.entity.Player)
+---@return fun(): bukkit.entity.Player
+function bukkit.playersLoop(fn)
+    if fn == nil then return forEach(bukkit.players()) end
+
+    for p in forEach(bukkit.players()) do
+        fn(p)
+    end
+
+    return nil ---@diagnostic disable-line: return-type-mismatch
+end
+
+--#endregion
+
+--#region Offline Player
+
 ---@param name string
 ---@return bukkit.OfflinePlayer?
 function bukkit.offlinePlayer(name)
@@ -121,3 +65,15 @@ function bukkit.offlinePlayerByUUID(uuid)
     if not java.isUUID(uuid) then return end
     return bukkit.Bukkit.getOfflinePlayer(uuid)
 end
+
+---@return java.List<bukkit.OfflinePlayer>
+function bukkit.offlinePlayers()
+    return bukkit.Bukkit.getOfflinePlayers()
+end
+
+---@return fun(): bukkit.OfflinePlayer
+function bukkit.offlinePlayersLoop()
+    return forEach(bukkit.offlinePlayers())
+end
+
+--#endregion

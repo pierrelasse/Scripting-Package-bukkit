@@ -2,26 +2,6 @@ local World = import("org.bukkit.World")
 local GameRule = import("org.bukkit.GameRule")
 
 
----@deprecated
-function bukkit.strikeLightning(...)
-    scripting.warningDeprecated("bukkit.strikeLightning")
-    return bukkit.spawnLightning(...)
-end
-
----@deprecated
-function bukkit.createExplosion(...)
-    scripting.warningDeprecated("bukkit.createExplosion")
-    return bukkit.spawnExplosion(...)
-end
-
----@deprecated
-function bukkit.playSoundAt(locationOrPlayer, sound, volume, pitch)
-    scripting.warningDeprecated("bukkit.playSoundAt")
-    if bukkit.isPlayer(locationOrPlayer) then locationOrPlayer = locationOrPlayer.getLocation() end
-    locationOrPlayer.getWorld()
-        .playSound(locationOrPlayer, sound, volume or 1, pitch or 1)
-end
-
 function bukkit.isWorld(o)
     return instanceof(o, World)
 end

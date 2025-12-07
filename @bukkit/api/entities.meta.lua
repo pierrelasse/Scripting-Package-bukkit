@@ -100,6 +100,8 @@
 
 ---org.bukkit.entity.BlockDisplay
 ---@class bukkit.entity.BlockDisplay : bukkit.entity.Display
+---@field getBlock fun(): bukkit.block.data.BlockData
+---@field setBlock fun(v: bukkit.block.data.BlockData)
 
 ---org.bukkit.entity.Boat
 ---@class bukkit.entity.Boat : bukkit.entity.Vehicle

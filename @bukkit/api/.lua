@@ -9,12 +9,6 @@ bukkit.platform = Scripting.getPlatform()
 bukkit.isFolia = false
 pcall(function() bukkit.isFolia = bukkit.platform.isFolia == true end) -- TODO
 
----@deprecated
-function bukkit.getPlatform()
-    scripting.warningDeprecated("bukkit.getPlatform")
-    return bukkit.platform
-end
-
 bukkit.hex = bukkit.components.convertHex
 
 ---@param target java.Object|{ getUniqueId: fun(): any }
@@ -81,3 +75,6 @@ require("@bukkit/api/util")
 require("@bukkit/api/world")
 
 require("@bukkit/api/ItemBuilder")
+
+require("@bukkit/api/deprecated/")
+require("@bukkit/api/deprecated/chatColor")

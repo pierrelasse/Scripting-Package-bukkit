@@ -1,22 +1,6 @@
 local ChatMessageType = import("net.md_5.bungee.api.ChatMessageType")
 
 
---#region Deprecated
-
----@deprecated
-function bukkit.sendComponent(player, component)
-    scripting.warningDeprecated("bukkit.sendComponent")
-    player.spigot().sendMessage(component)
-end
-
----@deprecated
-function bukkit.sendActionBarComponent(player, component)
-    scripting.warningDeprecated("bukkit.sendActionBarComponent")
-    player.spigot().sendMessage(ChatMessageType.ACTION_BAR, component)
-end
-
---#endregion
-
 ---@param player java.Object|adventure.audience.Audience
 ---@param v string|java.array<string>|adventure.text.Component
 function bukkit.send(player, v)

@@ -31,19 +31,6 @@ function bukkit.addItem(entity, ...)
     entity.getInventory().addItem(bukkit.itemArray(...))
 end
 
----Checks if an inventory has an empty slot.
----@deprecated
----@param inventory bukkit.inventory.Inventory
-function bukkit.hasInventoryASlotFree(inventory)
-    local contents = inventory.getContents()
-    for i = 1, math.min(36, #contents) do
-        if contents[i] == nil then
-            return true
-        end
-    end
-    return false
-end
-
 ---@param inventory bukkit.inventory.Inventory
 ---@param itemStack bukkit.ItemStack
 function bukkit.hasInventorySpace(inventory, itemStack)
