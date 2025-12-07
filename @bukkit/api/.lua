@@ -1,80 +1,65 @@
-local UUID = import("java.util.UUID")
 local Scripting = import("net.bluept.scripting.Scripting")
 
 
 ---Instance of the plugin.
----@type java.Object
-bukkit.platform = Scripting.getPlatform()
+bukkit.platform = Scripting.getPlatform() ---@type java.Object
 
+bukkit.isPaper = false
 bukkit.isFolia = false
-pcall(function() bukkit.isFolia = bukkit.platform.isFolia == true end) -- TODO
-
-bukkit.hex = bukkit.components.convertHex
-
----@param target java.Object|{ getUniqueId: fun(): any }
----@return string
-function bukkit.uuid(target)
-    return tostring(target.getUniqueId())
-end
-
----@param o string?
----@return java.Object? uuid
-function bukkit.uuidFromString(o)
-    if type(o) ~= "string" then return o end
-    local uuid
-    pcall(function()
-        uuid = UUID.fromString(o)
-    end)
-    return uuid
-end
-
--- TODO
----@param target bukkit.entity.HumanEntity
-function bukkit.isInCreativeOrSpec(target)
-    local g = tostring(target.getGameMode())
-    return g == "CREATIVE" or g == "SPECTATOR"
-end
-
-require("@bukkit/api/advancement")
-require("@bukkit/api/art")
-require("@bukkit/api/attribute")
-require("@bukkit/api/block")
-require("@bukkit/api/block_banner")
-require("@bukkit/api/block_data")
-require("@bukkit/api/block_structure")
-require("@bukkit/api/chatColor")
-require("@bukkit/api/chunk")
-require("@bukkit/api/color")
-require("@bukkit/api/console")
-require("@bukkit/api/damage")
-require("@bukkit/api/dyeColor")
-require("@bukkit/api/effect")
-require("@bukkit/api/enchantments")
-require("@bukkit/api/entity")
-require("@bukkit/api/entityType")
-require("@bukkit/api/gameMode")
-require("@bukkit/api/inventory")
-require("@bukkit/api/itemFlag")
-require("@bukkit/api/location")
-require("@bukkit/api/material")
-require("@bukkit/api/metadata")
-require("@bukkit/api/namespacedKey")
-require("@bukkit/api/particle")
-require("@bukkit/api/persistence")
-require("@bukkit/api/players")
-require("@bukkit/api/potion")
-require("@bukkit/api/potionEffect")
-require("@bukkit/api/recipes")
-require("@bukkit/api/registry")
-require("@bukkit/api/scoreboard")
-require("@bukkit/api/scoreboard_team")
-require("@bukkit/api/send")
-require("@bukkit/api/sound")
-require("@bukkit/api/transformation")
-require("@bukkit/api/util")
-require("@bukkit/api/world")
-
-require("@bukkit/api/ItemBuilder")
+-- TODO: Compatability with older plugin versions
+pcall(function() bukkit.isPaper = bukkit.platform.isPaper end)
+pcall(function() bukkit.isFolia = bukkit.platform.isFolia end)
 
 require("@bukkit/api/deprecated/")
 require("@bukkit/api/deprecated/chatColor")
+
+require("@bukkit/api/attribute/")
+
+require("@bukkit/api/block/")
+require("@bukkit/api/block/banner")
+require("@bukkit/api/block/biome")
+require("@bukkit/api/block/data")
+require("@bukkit/api/block/structure")
+
+require("@bukkit/api/entity/")
+require("@bukkit/api/entity/entityType")
+require("@bukkit/api/entity/player/")
+
+require("@bukkit/api/inventory/")
+require("@bukkit/api/inventory/art")
+require("@bukkit/api/inventory/dyeColor")
+require("@bukkit/api/inventory/enchantments")
+require("@bukkit/api/inventory/itemFlag")
+require("@bukkit/api/ItemBuilder")
+
+require("@bukkit/api/potion/")
+require("@bukkit/api/potion/potionEffect")
+
+require("@bukkit/api/scoreboard/")
+require("@bukkit/api/scoreboard/team")
+
+require("@bukkit/api/sys/console")
+require("@bukkit/api/sys/namespacedKey")
+require("@bukkit/api/sys/registry")
+
+require("@bukkit/api/util/")
+require("@bukkit/api/util/transformation")
+
+require("@bukkit/api/world/")
+require("@bukkit/api/world/chunk")
+require("@bukkit/api/world/effect")
+require("@bukkit/api/world/gameRule")
+require("@bukkit/api/world/location")
+require("@bukkit/api/world/particle")
+require("@bukkit/api/world/sound")
+require("@bukkit/api/world/spawnAndPlay")
+require("@bukkit/api/world/util")
+
+require("@bukkit/api/damage")
+require("@bukkit/api/gameMode")
+require("@bukkit/api/material")
+require("@bukkit/api/metadata")
+require("@bukkit/api/offlinePlayer")
+require("@bukkit/api/persistence")
+require("@bukkit/api/recipes")
+require("@bukkit/api/send")

@@ -1,0 +1,62 @@
+---@alias bukkit.GameRule* string
+---| "announceAdvancements" Boolean
+---| "commandBlockOutput" Boolean
+---| "disablePlayerMovementCheck" Boolean
+---| "disableElytraMovementCheck" Boolean
+---| "doDaylightCycle" Boolean
+---| "doEntityDrops" Boolean
+---| "doFireTick" Boolean
+---| "doLimitedCrafting" Boolean
+---| "doMobLoot" Boolean
+---| "projectilesCanBreakBlocks" Boolean
+---| "doMobSpawning" Boolean
+---| "doTileDrops" Boolean
+---| "doWeatherCycle" Boolean
+---| "keepInventory" Boolean
+---| "logAdminCommands" Boolean
+---| "mobGriefing" Boolean
+---| "naturalRegeneration" Boolean
+---| "reducedDebugInfo" Boolean
+---| "sendCommandFeedback" Boolean
+---| "showDeathMessages" Boolean
+---| "spectatorsGenerateChunks" Boolean
+---| "disableRaids" Boolean
+---| "doInsomnia" Boolean
+---| "doImmediateRespawn" Boolean
+---| "drowningDamage" Boolean
+---| "fallDamage" Boolean
+---| "fireDamage" Boolean
+---| "freezeDamage" Boolean
+---| "doPatrolSpawning" Boolean
+---| "doTraderSpawning" Boolean
+---| "doWardenSpawning" Boolean
+---| "forgiveDeadPlayers" Boolean
+---| "universalAnger" Boolean
+---| "blockExplosionDropDecay" Boolean
+---| "mobExplosionDropDecay" Boolean
+---| "tntExplosionDropDecay" Boolean
+---| "waterSourceConversion" Boolean
+---| "lavaSourceConversion" Boolean
+---| "globalSoundEvents" Boolean
+---| "doVinesSpread" Boolean
+---| "enderPearlsVanishOnDeath" Boolean
+---| "allowFireTicksAwayFromPlayer" Boolean
+---| "tntExplodes" Boolean
+---| "randomTickSpeed" Integer
+---| "spawnRadius" Integer
+---| "maxEntityCramming" Integer
+---| "maxCommandChainLength" Integer
+---| "maxCommandForkCount" Integer
+---| "commandModificationBlockLimit" Integer
+---| "playersSleepingPercentage" Integer
+---| "snowAccumulationHeight" Integer
+---| "playersNetherPortalDefaultDelay" Integer
+---| "playersNetherPortalCreativeDelay" Integer
+---| "minecartMaxSpeed" Integer
+---| "spawnChunkRadius" Integer
+---| "locatorBar" Boolean
+
+---@class bukkit.GameRule : bukkit.Translatable
+---@field getName fun(): string
+---@field getType fun(): java.Class
+---@field translationKey fun(): string

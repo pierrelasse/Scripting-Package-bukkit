@@ -1,11 +1,8 @@
 local NamespacedKey = import("org.bukkit.NamespacedKey")
 
 
----org.bukkit.NamespacedKey
----@class bukkit.NamespacedKey : java.Object
----@field asString fun(): string
----@field getKey fun(): string
----@field getNamespace fun(): string
+---@param o any
+function bukkit.isNamespacedKey(o) return instanceof(o, NamespacedKey) end
 
 ---@param key string|bukkit.NamespacedKey
 ---@param namespace? (string|"minecraft")|java.Object Plugin
@@ -15,7 +12,9 @@ function bukkit.namespacedKey(key, namespace)
     return NamespacedKey(namespace or bukkit.platform, key)
 end
 
----@param o any
-function bukkit.isNamespacedKey(o)
-    return instanceof(o, NamespacedKey)
+---@param key string|bukkit.NamespacedKey
+---@return bukkit.NamespacedKey
+function bukkit.namespacedKeyMinecraft(key)
+    if type(key) ~= "string" then return key end
+    return NamespacedKey("minecraft", key)
 end

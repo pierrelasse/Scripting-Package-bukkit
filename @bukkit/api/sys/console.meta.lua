@@ -1,0 +1,1 @@
+---@class bukkit.ConsoleCommandSender : bukkit.command.CommandSender

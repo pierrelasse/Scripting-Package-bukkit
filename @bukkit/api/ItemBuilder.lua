@@ -1,10 +1,8 @@
-local UUID = import("java.util.UUID")
-local GameProfile = import("com.mojang.authlib.GameProfile")
-local Property = import("com.mojang.authlib.properties.Property")
-local ResolvableProfile = import("net.minecraft.world.item.component.ResolvableProfile")
 local ItemStack = import("org.bukkit.inventory.ItemStack")
 local ItemFlag = import("org.bukkit.inventory.ItemFlag")
 local ItemRarity = import("org.bukkit.inventory.ItemRarity")
+
+local playerHeads = require("@bukkit/api/inventory/playerHeads")
 
 
 ---@class bukkit.ItemBuilder
@@ -187,7 +185,7 @@ do
         ---@param id bukkit.api.ItemBuilder.DataComponentTypes*
         ---@return java.Object?
         local function dct(id)
-            return bukkit.registry.DATA_COMPONENT_TYPE.get(bukkit.namespacedKey(id, "minecraft"))
+            return bukkit.registry.DATA_COMPONENT_TYPE.get(bukkit.namespacedKeyMinecraft(id))
         end
         this.DataCompT = dct
 
@@ -274,18 +272,18 @@ end
 ---@param v nil|string|adventure.text.Component
 ---@return self
 function this:itemName(v)
-    if v == nil then
+    if comp ~= nil and comp.is(v) then
+        self.meta.itemName(v)
+    elseif v == nil then
         self.meta.setItemName(nil)
     elseif type(v) == "string" then
         self.meta.setItemName(bukkit.hex(v))
-    elseif comp ~= nil and comp.is(v) then
-        self.meta.itemName(v)
     end
 
     return self
 end
 
----Set's the item name.
+---Sets the item name.
 ---@param v nil|string|adventure.text.Component
 ---@return self
 function this:name(v)
@@ -297,7 +295,7 @@ function this:name(v)
 end
 
 ---Sets the lore/description of the item.
----@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>|java.array<string>
+---@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>|java.array<string>|fun(list: java.List<string>)
 ---@return self
 function this:lore(v)
     if v == nil then
@@ -316,14 +314,19 @@ function this:lore(v)
             list.add(line)
         end
         self:lore(list)
-    elseif comp ~= nil and comp.is(v) then
+    elseif comp ~= nil and comp.is(v) then ---@cast v adventure.text.Component
         local list = java.list() ---@type java.List<string>
         for line in forEach(comp.legacySerialize(v):split("\n")) do -- TODO: fix new line coloring
             list.add(line)
         end
         self.meta.setLore(list)
-    elseif arrays.is(v) then
+    elseif arrays.is(v) then ---@cast v java.array<string>
         self.meta.setLore(arrays.toList(v))
+    elseif type(v) == "function" then
+        ---@type java.List<string>
+        local list = self.meta.getLore() or java.list()
+        v(list)
+        self.meta.setLore(list)
     else
         self.meta.setLore(v)
     end
@@ -350,6 +353,12 @@ function this:customModelData(v)
     return self
 end
 
+---@see bukkit.ItemBuilder.enchantable
+---@return integer
+function this:getEnchantable()
+    return self.meta.getEnchantable()
+end
+
 ---Sets the enchantable. Higher values allow higher enchantments.
 ---@param v? integer
 ---@return self
@@ -359,7 +368,34 @@ function this:enchantable(v)
     return self
 end
 
----@param enchantment bukkit.enchantments.Enchantment*|bukkit.enchantments.Enchantment
+---@return java.Map<bukkit.enchantments.Enchantment, integer>
+function this:getEnchants()
+    return self.meta.getEnchants()
+end
+
+---@return boolean
+function this:hasEnchants()
+    return self.meta.hasEnchants()
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return boolean
+function this:hasEnchant(enchantment)
+    return self.meta.hasEnchant(bukkit.enchantment(enchantment))
+end
+
+---@param id bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return integer
+function this:getEnchantLevel(id)
+    return self.meta.getEnchantLevel(bukkit.enchantment(id))
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+function this:hasConflictingEnchant(enchantment)
+    return self.meta.hasConflictingEnchant(enchantment)
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
 ---@param level integer
 ---@param safe? boolean=`false`
 ---@return self
@@ -369,10 +405,16 @@ function this:enchant(enchantment, level, safe)
     return self
 end
 
--- TODO: remove enchant
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return self
+function this:removeEnchant(enchantment)
+    self.meta.removeEnchant(enchantment)
+
+    return self
+end
 
 ---@return self
-function this:removeEnchantments()
+function this:clearEnchants()
     self.meta.removeEnchantments()
 
     return self
@@ -601,7 +643,99 @@ end
 
 -- TODO: attribute modifiers
 
+--#endregion
 
+--#region Damageable
+
+---@return boolean
+function this:hasDamage()
+    return self.meta.hasDamage()
+end
+
+---@return integer
+function this:getDamage()
+    return self.meta.getDamage()
+end
+
+---@param v integer?
+---@return self
+function this:damage(v)
+    if v == nil then
+        self.meta.resetDamage() -- Paper
+    else
+        self.meta.setDamage(v)
+    end
+
+    return self
+end
+
+---@return boolean
+function this:hasMaxDamage()
+    return self.meta.hasMaxDamage()
+end
+
+---@return integer
+function this:getMaxDamage()
+    return self.meta.getMaxDamage()
+end
+
+---@param v integer?
+---@return self
+function this:maxDamage(v)
+    self.meta.setMaxDamage(v)
+
+    return self
+end
+
+--#endregion
+
+--#region EnchantmentStorage
+
+---Checks for the existence of a/any stored enchantment(s).
+---@param enchantment? bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return boolean
+function this:enchantmentStorage_has(enchantment)
+    if enchantment == nil then
+        return self.meta.hasStoredEnchants()
+    else
+        return self.meta.hasStoredEnchant(bukkit.enchantment(enchantment))
+    end
+end
+
+---@return java.Map<bukkit.enchantments.Enchantment, integer>
+function this:enchantmentStorage_get()
+    return self.meta.getStoredEnchants()
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return integer
+function this:enchantmentStorage_getLevel(enchantment)
+    return self.meta.getStoredEnchantLevel(bukkit.enchantment(enchantment))
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return boolean
+function this:enchantmentStorage_hasConflicting(enchantment)
+    return self.meta.hasConflictingStoredEnchant(bukkit.enchantment(enchantment))
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@param level integer
+---@param safe? boolean=`false`
+---@return self
+function this:enchantmentStorage_add(enchantment, level, safe)
+    self.meta.addStoredEnchant(bukkit.enchantment(enchantment), level, safe ~= true)
+
+    return self
+end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
+---@return self
+function this:enchantmentStorage_remove(enchantment)
+    self.meta.removeStoredEnchant(bukkit.enchantment(enchantment))
+
+    return self
+end
 
 --#endregion
 
@@ -626,21 +760,8 @@ end
 ---@param texture string base64 string
 ---@return self
 function this:playerHead_texture(texture)
-    local uuid = UUID(0, 0)
-
-    local profile = GameProfile(uuid, "")
-    local property = Property("textures", texture)
-    profile.getProperties().put("textures", property)
-
-    local resolvableProfileFailed =
-        ResolvableProfile ~= nil
-        and not pcall(function()
-            self.meta.profile = ResolvableProfile(profile)
-        end)
-
-    if resolvableProfileFailed then
-        self.meta.profile = profile
-    end
+    local textureId = playerHeads.textureIdFromBase64(texture)
+    playerHeads.skullMeta(self.meta, playerHeads.profileFor(textureId))
 
     return self
 end

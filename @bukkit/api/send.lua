@@ -1,8 +1,5 @@
-local ChatMessageType = import("net.md_5.bungee.api.ChatMessageType")
-
-
----@param player java.Object|adventure.audience.Audience
----@param v string|java.array<string>|adventure.text.Component
+---@param player adventure.audience.Audience|java.Object
+---@param v adventure.text.Component|string|java.array<string>
 function bukkit.send(player, v)
     if adventure ~= nil then
         adventure.send.message(player, comp.from(v))
@@ -26,6 +23,7 @@ function bukkit.sendActionBar(player, v)
     end
 
     if type(v) == "string" then
+        local ChatMessageType = import("net.md_5.bungee.api.ChatMessageType")
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, bukkit.components.parse(v))
         return
     end

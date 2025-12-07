@@ -1,3 +1,14 @@
+---@param target java.Object|{ getUniqueId: fun(): any }
+---@return string
+function bukkit.uuid(target) return tostring(target.getUniqueId()) end
+
+-- TODO
+---@param target bukkit.entity.HumanEntity
+function bukkit.isInCreativeOrSpec(target)
+    local g = tostring(target.getGameMode())
+    return g == "CREATIVE" or g == "SPECTATOR"
+end
+
 --#region Vector
 local Vector = import("org.bukkit.util.Vector")
 

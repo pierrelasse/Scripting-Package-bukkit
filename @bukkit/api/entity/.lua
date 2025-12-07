@@ -22,11 +22,50 @@ end
 ---@generic E : bukkit.Entity
 ---@param entity E
 ---@param location bukkit.Location
----@param callback? fun(entity: E) called after the entity is done teleporting
+---@param callback? fun(entity: E) called after the entity is teleported
+function bukkit.teleportSync(entity, location, callback)
+    ---@cast entity bukkit.Entity
+    entity.teleport(location)
+    if callback ~= nil then callback(entity) end -- TODO
+end
+
+--TODO
+---@generic E : bukkit.Entity
+---@param entity E
+---@param location bukkit.Location
+---@param callback? fun(entity: E) called after the entity is teleported
 function bukkit.teleport(entity, location, callback)
     ---@cast entity bukkit.Entity
     entity.teleport(location)
     if callback ~= nil then callback(entity) end -- TODO
+end
+
+--TODO
+---@generic E : bukkit.Entity
+---@param entities E[]|java.array<E>|java.Collection<E>|java.List<E>|java.Set<E>
+---@param location bukkit.Location
+---@param callback? fun(ent: E) called after the entities are teleported
+function bukkit.teleportMult(entities, location, callback)
+    ---@type fun(): bukkit.Entity
+    local itr = type(entities) == "table"
+        and table.valuesLoop(entities)
+        or forEach(entities)
+
+    local queued = 0
+    for ent in itr do
+        if ent.isValid() then
+            queued = queued + 1
+            bukkit.teleport(ent, location, function()
+                queued = queued - 1
+                if queued == 0 then
+                    if callback then
+                        callback(ent)
+                        callback = nil
+                    end
+                end
+            end)
+        end
+    end
 end
 
 --TODO

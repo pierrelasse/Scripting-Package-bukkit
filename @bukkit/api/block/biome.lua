@@ -72,14 +72,13 @@ local Biome = import("org.bukkit.block.Biome")
 
 
 ---@param id bukkit.block.Biome*|bukkit.NamespacedKey|bukkit.block.Biome
----@return bukkit.block.Biome
+---@return bukkit.block.Biome?
 function bukkit.biome(id)
     if type(id) == "string" then
         return Biome[id]
     end
-    if bukkit.isNamespacedKey(id) then
-        ---@cast id bukkit.NamespacedKey
-        return bukkit.registry.BIOME.getOrThrow(id)
+    if bukkit.isNamespacedKey(id) then ---@cast id bukkit.NamespacedKey
+        return bukkit.registry.BIOME.get(id)
     end
     ---@cast id bukkit.block.Biome
     return id

@@ -1,0 +1,4 @@
+---@class bukkit.NamespacedKey : java.Object
+---@field asString fun(): string
+---@field getKey fun(): string
+---@field getNamespace fun(): string

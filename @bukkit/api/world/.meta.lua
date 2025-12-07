@@ -30,7 +30,7 @@
 ---@field refreshChunk fun(x: integer, z: integer): boolean
 ---@field getPlayersSeeingChunk (fun(chunk: bukkit.Chunk): java.Collection<bukkit.entity.Player>)|fun(x: integer, z: integer): java.Collection<bukkit.entity.Player>
 ---@field isChunkForceLoaded fun(x: integer, z: integer): boolean
----@field setChunkForceLoaded fun(x: integer, z: integer, flag: boolean)
+---@field setChunkForceLoaded fun(x: integer, z: integer, v: boolean)
 ---@field getForceLoadedChunks fun(): java.Collection<bukkit.Chunk>
 ---@field addPluginChunkTicket fun(x: integer, z: integer, plugin: java.Object): boolean -- TODO
 ---@field removePluginChunkTicket (fun(x: integer, z: integer, plugin: java.Object): boolean)|fun(plugin: java.Object): boolean -- TODO
@@ -60,11 +60,11 @@
 ---@field setFullTime fun(time: java.long)
 ---@field getGameTime fun(): java.long
 ---@field hasStorm fun(): boolean
----@field setStorm fun(flag: boolean)
+---@field setStorm fun(v: boolean)
 ---@field getWeatherDuration fun(): integer
 ---@field setWeatherDuration fun(duration: integer)
 ---@field isThundering fun(): boolean
----@field setThundering fun(flag: boolean)
+---@field setThundering fun(v: boolean)
 ---@field getThunderDuration fun(): integer
 ---@field setThunderDuration fun(duration: integer)
 ---@field isClearWeather fun(): boolean
@@ -72,7 +72,7 @@
 ---@field setClearWeatherDuration fun(duration: integer)
 ---@field createExplosion function -- TODO
 ---@field getPVP fun(): boolean
----@field setPVP fun(flag: boolean)
+---@field setPVP fun(v: boolean) ---@deprecated Use 'pvp' game-rule
 ---@field getGenerator fun(): java.Object -- TODO
 ---@field getBiomeProvider fun(): java.Object -- TODO
 ---@field save fun()
@@ -97,7 +97,7 @@
 ---@field isUltraWarm fun(): boolean
 ---@field getSeaLevel fun(): integer
 ---@field isAutoSave fun(): boolean
----@field setAutoSave fun(flag: boolean)
+---@field setAutoSave fun(v: boolean)
 ---@field getDifficulty fun(): java.Object
 ---@field setDifficulty fun(difficulty: java.Object) -- TODO
 ---@field getViewDistance fun(): integer
@@ -105,7 +105,7 @@
 ---@field getWorldFolder fun(): java.Object
 ---@field canGenerateStructures fun(): boolean
 ---@field isHardcore fun(): boolean
----@field setHardcore fun(flag: boolean)
+---@field setHardcore fun(v: boolean)
 ---@field getTicksPerSpawns function -- TODO
 ---@field setTicksPerSpawns function -- TODO
 ---@field getSpawnLimit function -- TODO
@@ -126,66 +126,3 @@
 ---@field getEnderDragonBattle function -- TODO
 ---@field getFeatureFlags function -- TODO
 ---@field getStructures function -- TODO
-
----@alias bukkit.GameRule* string
----| "announceAdvancements" Boolean
----| "commandBlockOutput" Boolean
----| "disablePlayerMovementCheck" Boolean
----| "disableElytraMovementCheck" Boolean
----| "doDaylightCycle" Boolean
----| "doEntityDrops" Boolean
----| "doFireTick" Boolean
----| "doLimitedCrafting" Boolean
----| "doMobLoot" Boolean
----| "projectilesCanBreakBlocks" Boolean
----| "doMobSpawning" Boolean
----| "doTileDrops" Boolean
----| "doWeatherCycle" Boolean
----| "keepInventory" Boolean
----| "logAdminCommands" Boolean
----| "mobGriefing" Boolean
----| "naturalRegeneration" Boolean
----| "reducedDebugInfo" Boolean
----| "sendCommandFeedback" Boolean
----| "showDeathMessages" Boolean
----| "spectatorsGenerateChunks" Boolean
----| "disableRaids" Boolean
----| "doInsomnia" Boolean
----| "doImmediateRespawn" Boolean
----| "drowningDamage" Boolean
----| "fallDamage" Boolean
----| "fireDamage" Boolean
----| "freezeDamage" Boolean
----| "doPatrolSpawning" Boolean
----| "doTraderSpawning" Boolean
----| "doWardenSpawning" Boolean
----| "forgiveDeadPlayers" Boolean
----| "universalAnger" Boolean
----| "blockExplosionDropDecay" Boolean
----| "mobExplosionDropDecay" Boolean
----| "tntExplosionDropDecay" Boolean
----| "waterSourceConversion" Boolean
----| "lavaSourceConversion" Boolean
----| "globalSoundEvents" Boolean
----| "doVinesSpread" Boolean
----| "enderPearlsVanishOnDeath" Boolean
----| "allowFireTicksAwayFromPlayer" Boolean
----| "tntExplodes" Boolean
----| "randomTickSpeed" Integer
----| "spawnRadius" Integer
----| "maxEntityCramming" Integer
----| "maxCommandChainLength" Integer
----| "maxCommandForkCount" Integer
----| "commandModificationBlockLimit" Integer
----| "playersSleepingPercentage" Integer
----| "snowAccumulationHeight" Integer
----| "playersNetherPortalDefaultDelay" Integer
----| "playersNetherPortalCreativeDelay" Integer
----| "minecartMaxSpeed" Integer
----| "spawnChunkRadius" Integer
----| "locatorBar" Boolean
-
----@class bukkit.GameRule : bukkit.Translatable
----@field getName fun(): string
----@field getType fun(): java.Class
----@field translationKey fun(): string

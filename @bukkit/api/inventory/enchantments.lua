@@ -53,14 +53,13 @@ local Enchantment = import("org.bukkit.enchantments.Enchantment")
 ---@field canEnchantItem fun(item: bukkit.ItemStack): boolean
 
 ---@param id bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
----@return bukkit.enchantments.Enchantment
+---@return bukkit.enchantments.Enchantment?
 function bukkit.enchantment(id)
     if type(id) == "string" then
         return Enchantment.getByName(id)
     end
-    if bukkit.isNamespacedKey(id) then
-        ---@cast id bukkit.NamespacedKey
-        return bukkit.registry.ENCHANTMENT.getOrThrow(id)
+    if bukkit.isNamespacedKey(id) then ---@cast id bukkit.NamespacedKey
+        return bukkit.registry.ENCHANTMENT.get(id)
     end
     ---@cast id bukkit.enchantments.Enchantment
     return id
