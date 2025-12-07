@@ -3,18 +3,18 @@
 ---Spawns a entity.
 ---@generic T : bukkit.Entity
 ---@param location bukkit.Location
----@param type bukkit.EntityType*|java.Class<T>
+---@param entityType bukkit.EntityType*|java.Class<T>
 ---@param randomizeData? boolean=`false` whether or not the entity's data should be randomised before spawning. By default entities are randomised before spawning in regards to their equipment, age, attributes, etc. An example of this randomization would be the color of a sheep, random enchantments on the equipment of mobs or even a zombie becoming a chicken jockey. If set to false, the entity will not be randomised before spawning, meaning all their data will remain in their default state and not further modifications to the entity will be made. Notably only entities that extend the org. bukkit. entity. `Mob` interface provide randomisation logic for their spawn. This parameter is hence useless for any other type of entity.
 ---@return T
-function bukkit.spawn(location, type, randomizeData)
-    if type(type) == "string" then
-        type = bukkit.entityType(type).getEntityClass()
+function bukkit.spawn(location, entityType, randomizeData)
+    if type(entityType) == "string" then
+        entityType = bukkit.entityType(entityType).getEntityClass()
     end
     if randomizeData == nil then randomizeData = false end
     return location.getWorld()
         .spawn(
             location,
-            type,
+            entityType,
             randomizeData,
             nil
         )
