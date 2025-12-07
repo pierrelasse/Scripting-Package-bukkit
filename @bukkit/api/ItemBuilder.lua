@@ -256,11 +256,19 @@ end
 function this:displayName(v)
     if v == nil then
         self.meta.setDisplayName(nil)
-    elseif type(v) == "string" then
-        self.meta.setDisplayName(bukkit.hex(v))
-    elseif comp ~= nil and comp.is(v) then
-        self.meta.setDisplayName(comp.legacySerialize(v))
+        return self
     end
+
+    if comp then
+        if comp.is(v) then ---@cast v adventure.text.Component
+            self.meta.setDisplayName(comp.legacySerialize(v))
+        else
+            self.meta.setDisplayName(comp.legacySerialize(comp.from(v)))
+        end
+        return self
+    end
+
+    self.meta.setDisplayName(bukkit.hex(v))
 
     return self
 end
@@ -272,13 +280,18 @@ end
 ---@param v nil|string|adventure.text.Component
 ---@return self
 function this:itemName(v)
-    if comp ~= nil and comp.is(v) then
-        self.meta.itemName(v)
-    elseif v == nil then
+    if v == nil then
         self.meta.setItemName(nil)
-    elseif type(v) == "string" then
-        self.meta.setItemName(bukkit.hex(v))
+        return self
     end
+
+    if comp then
+        if comp.is(v) then
+            self.meta.itemName(v)
+        end
+    end
+
+    self.meta.setItemName(bukkit.hex(v))
 
     return self
 end

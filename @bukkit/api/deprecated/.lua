@@ -1,3 +1,5 @@
+---@diagnostic disable
+
 ---@deprecated
 function bukkit.getPlatform()
     scripting.warningDeprecated("bukkit.getPlatform")
@@ -107,7 +109,7 @@ end
 ---@deprecated
 function bukkit.uuidFromString(o) return java.uuidFromString(o) end
 
----@deprecated
+-- TODO ---@deprecated
 function bukkit.hex(...) return bukkit.components.convertHex(...) end
 
 ---@deprecated
