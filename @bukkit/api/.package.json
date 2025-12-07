@@ -1,5 +1,6 @@
 {
-    "name": "bukkit/api",
-    "load": "@bukkit/api/",
-    "deps": ["core", "bukkit/index", "bukkit/components"]
+	"name": "bukkit/api",
+	"load": "@bukkit/api/",
+	"deps": ["core", "bukkit/index", "bukkit/components"],
+	"depsOptional": ["adventure"]
 }

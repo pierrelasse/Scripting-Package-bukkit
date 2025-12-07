@@ -10,6 +10,10 @@ bukkit.isFolia = false
 pcall(function() bukkit.isPaper = bukkit.platform.isPaper end)
 pcall(function() bukkit.isFolia = bukkit.platform.isFolia end)
 
+if bukkit.isPaper and bukkit._DONT_LOAD_ADVENTURE then
+    require("@base/paman").need("adventure")
+end
+
 require("@bukkit/api/deprecated/")
 require("@bukkit/api/deprecated/chatColor")
 
