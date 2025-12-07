@@ -34,19 +34,6 @@ function bukkit.colorByName(name)
     return Color[name]
 end
 
----@param r integer 0-255
----@param g integer 0-255
----@param b integer 0-255
----@param a? integer 0-255
----@return bukkit.Color
-function bukkit.color(r, g, b, a)
-    if a == nil then
-        return Color.fromRGB(r, g, b)
-    else
-        return Color.fromARGB(a, r, g, b)
-    end
-end
-
 ---Creates a new color object from an integer that contains the<br>
 ---red, green, and blue bytes in the lowest order 24 bits.
 ---@param rgb integer

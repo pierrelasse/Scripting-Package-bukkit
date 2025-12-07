@@ -47,6 +47,7 @@ require("@bukkit/api/sys/namespacedKey")
 require("@bukkit/api/sys/registry")
 
 require("@bukkit/api/util/")
+require("@bukkit/api/util/color")
 require("@bukkit/api/util/transformation")
 
 require("@bukkit/api/world/")
