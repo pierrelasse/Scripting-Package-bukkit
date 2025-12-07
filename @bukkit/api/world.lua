@@ -1,14 +1,35 @@
-local ChunkStatus = import("net.minecraft.world.level.chunk.status.ChunkStatus")
 local World = import("org.bukkit.World")
 local GameRule = import("org.bukkit.GameRule")
 
 
----@type bukkit.World
-bukkit.baseWorld = bukkit.Bukkit.getWorlds().get(0)
+---@deprecated
+function bukkit.strikeLightning(...)
+    scripting.warningDeprecated("bukkit.strikeLightning")
+    return bukkit.spawnLightning(...)
+end
+
+---@deprecated
+function bukkit.createExplosion(...)
+    scripting.warningDeprecated("bukkit.createExplosion")
+    return bukkit.spawnExplosion(...)
+end
+
+---@deprecated
+function bukkit.playSoundAt(locationOrPlayer, sound, volume, pitch)
+    scripting.warningDeprecated("bukkit.playSoundAt")
+    if bukkit.isPlayer(locationOrPlayer) then locationOrPlayer = locationOrPlayer.getLocation() end
+    locationOrPlayer.getWorld()
+        .playSound(locationOrPlayer, sound, volume or 1, pitch or 1)
+end
 
 function bukkit.isWorld(o)
     return instanceof(o, World)
 end
+
+--#region Worlds
+
+---@type bukkit.World
+bukkit.baseWorld = bukkit.Bukkit.getWorlds().get(0)
 
 function bukkit.defaultWorld()
     return bukkit.baseWorld
@@ -23,6 +44,13 @@ function bukkit.worldsLoop()
     return forEach(bukkit.worlds())
 end
 
+--TODO: Might change
+---@param s any|string
+function bukkit.isValidWorldName(s)
+    return type(s) == "string"
+        and s:match("[A-Za-z0-9_\\-/]+")
+        and numbers.between(#s, 3, 32)
+end
 
 ---@param name string|bukkit.World Name/id of the world
 ---@return bukkit.World?
@@ -37,27 +65,36 @@ function bukkit.worldUID(uid)
     return bukkit.Bukkit.getWorld(uid)
 end
 
+--#endregion
+
+--#region Configuration
+
 ---@param name bukkit.GameRule*|bukkit.GameRule
----@return bukkit.GameRule
+---@return bukkit.GameRule?
 function bukkit.gameRule(name)
     if type(name) ~= "string" then return name end
     return GameRule.getByName(name)
 end
 
+--#endregion
+
+--#region Spawn
+
 ---Spawns a entity.
+---@generic T : bukkit.Entity
 ---@param location bukkit.Location
----@param clazz bukkit.EntityType*|java.Object Class<T extends Entity> Type of the spawned entity.
+---@param type bukkit.EntityType*|java.Class<T>
 ---@param randomizeData? boolean=`false` whether or not the entity's data should be randomised before spawning. By default entities are randomised before spawning in regards to their equipment, age, attributes, etc. An example of this randomization would be the color of a sheep, random enchantments on the equipment of mobs or even a zombie becoming a chicken jockey. If set to false, the entity will not be randomised before spawning, meaning all their data will remain in their default state and not further modifications to the entity will be made. Notably only entities that extend the org. bukkit. entity. `Mob` interface provide randomisation logic for their spawn. This parameter is hence useless for any other type of entity.
----@return bukkit.Entity # the spawned entity
-function bukkit.spawn(location, clazz, randomizeData)
-    if type(clazz) == "string" then
-        clazz = bukkit.entityType(clazz).getEntityClass()
+---@return T
+function bukkit.spawn(location, type, randomizeData)
+    if type(type) == "string" then
+        type = bukkit.entityType(type).getEntityClass()
     end
     if randomizeData == nil then randomizeData = false end
     return location.getWorld()
         .spawn(
             location,
-            clazz,
+            type,
             randomizeData,
             nil
         )
@@ -166,12 +203,6 @@ function bukkit.spawnLightning(location, damage)
     end
 end
 
----@deprecated
-function bukkit.strikeLightning(...)
-    scripting.warningDeprecated("bukkit.strikeLightning")
-    return bukkit.spawnLightning(...)
-end
-
 ---@param location bukkit.Location
 ---@param power? number=`4` The power of explosion, where 4 is TNT
 ---@param fire? boolean=`false` Whether or not to set blocks on fire
@@ -191,11 +222,7 @@ function bukkit.spawnExplosion(location, power, fire, breakBlocks, source)
     )
 end
 
----@deprecated
-function bukkit.createExplosion(...)
-    scripting.warningDeprecated("bukkit.createExplosion")
-    return bukkit.spawnExplosion(...)
-end
+--#endregion
 
 ---Plays an effect to all players within a default radius around a given location.
 ---@param location bukkit.Location
@@ -245,38 +272,66 @@ function bukkit.playSound(target, sound, volume, pitch, category, seed)
     func(table.unpack(args))
 end
 
----@deprecated
-function bukkit.playSoundAt(locationOrPlayer, sound, volume, pitch)
-    scripting.warningDeprecated("bukkit.playSoundAt")
-    if bukkit.isPlayer(locationOrPlayer) then locationOrPlayer = locationOrPlayer.getLocation() end
-    locationOrPlayer.getWorld()
-        .playSound(locationOrPlayer, sound, volume or 1, pitch or 1)
+--#region Util
+
+---@param location bukkit.Location|bukkit.Entity
+---@param radius number|bukkit.tVec6
+---@param filter? fun(ent: bukkit.Entity): nil|false|boolean
+---@param fn? fun(ent: bukkit.Entity)
+function bukkit.nearbyEntities(location, radius, filter, fn)
+    if bukkit.isEntity(location) then ---@cast location bukkit.Entity
+        location = location.getLocation() ---@cast location bukkit.Location
+    end
+
+    ---@type number, number, number
+    local radiusX, radiusY, radiusZ
+    if type(radius) == "table" then
+        radiusX = radius[1]
+        radiusY = radius[2]
+        radiusZ = radius[3]
+    else
+        radiusX = radius
+        radiusY = radius
+        radiusZ = radius
+    end
+
+    local predicate ---@type java.Predicate<bukkit.Entity>?
+    if filter ~= nil then
+        predicate = java.predicate(function(t) return filter(t) ~= false end)
+    end
+
+    local entities = location.getWorld()
+        .getNearbyEntities(location, radiusX, radiusY, radiusZ, predicate)
+
+    if fn ~= nil then
+        for ent in forEach(entities) do
+            fn(ent)
+        end
+    else
+        return forEach(entities)
+    end
 end
 
----Updates neighbors at a specified location.
----@param location bukkit.Location
-function bukkit.applyPhysics(location)
-    location
-        .getWorld()
-        .getHandle()
-        .updateNeighborsAt(
-            bukkit.craft.toBlockPosition(location),
-            bukkit.craft.getBlock(location.getBlock().getType())
-        )
+---@param location bukkit.Location|bukkit.Entity
+---@param radius number|bukkit.tVec6
+---@param filter? fun(ent: bukkit.entity.LivingEntity): nil|false|boolean
+---@param fn? fun(ent: bukkit.entity.LivingEntity)
+function bukkit.nearbyLivingEntities(location, radius, filter, fn)
+    return bukkit.nearbyEntities(location, radius, function(ent)
+        if not bukkit.isLivingEntity(ent) then return false end ---@cast ent bukkit.entity.LivingEntity
+        if filter then return filter(ent) end
+    end, fn)
 end
 
----Performs a randomTick at a specified block location.
----@param location bukkit.Location
-function bukkit.doRandomTick(location)
-    local blockPos = bukkit.craft.toBlockPosition(location)
-    local nmsChunk = location.getChunk().getHandle(ChunkStatus.FULL)
-    local nmsBlock = nmsChunk.getBlockState(blockPos)
-    local nmsWorld = location.getWorld().getHandle()
-    if nmsBlock.isRandomlyTicking() then
-        nmsBlock.randomTick(nmsWorld, blockPos, nmsWorld.random)
-    end
-    local fluid = nmsBlock.getFluidState()
-    if fluid.isRandomlyTicking() then
-        fluid.animateTick(nmsWorld, blockPos, nmsWorld.random)
-    end
+---@param location bukkit.Location|bukkit.Entity
+---@param radius number|bukkit.tVec6
+---@param filter? fun(p: bukkit.entity.Player): nil|false|boolean
+---@param fn? fun(p: bukkit.entity.Player)
+function bukkit.nearbyPlayers(location, radius, filter, fn)
+    return bukkit.nearbyEntities(location, radius, function(ent)
+        if not bukkit.isPlayer(ent) then return false end ---@cast ent bukkit.entity.Player
+        if filter then return filter(ent) end
+    end, fn)
 end
+
+--#endregion
