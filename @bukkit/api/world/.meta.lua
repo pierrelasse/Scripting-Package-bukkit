@@ -48,7 +48,7 @@
 ---@field getEntitiesByClass fun(class: java.array<java.Class>): java.Collection<bukkit.Entity>
 ---@field getEntitiesByClasses fun(classes: java.array<java.Class>): java.Collection<bukkit.Entity>
 ---@field getPlayers fun(): java.List<bukkit.entity.Player>
----@field getNearbyEntities fun(location: bukkit.Location, x: number, y: number, z: number, predicate?: java.Predicate<bukkit.Entity>): java.Collection<bukkit.Entity> -- TODO
+---@field getNearbyEntities fun(location: bukkit.Location, x: number, y: number, z: number, predicate?: java.Predicate<bukkit.Entity>): java.List<bukkit.Entity> -- TODO
 ---@field rayTraceEntities function -- TODO
 ---@field rayTraceBlocks function -- TODO
 ---@field rayTrace function -- TODO

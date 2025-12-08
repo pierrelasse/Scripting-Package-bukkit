@@ -25,7 +25,7 @@ function this.modifierOperation(name)
     return AttributeModifier_Operation.valueOf(name)
 end
 
----@param key string|bukkit.NamespacedKey
+---@param key bukkit.NamespacedKeyLike
 ---@param amount number
 ---@param operation bukkit.attribute.AttributeModifierOperation*|bukkit.attribute.AttributeModifierOperation
 ---@param slot? bukkit.inventory.EquipmentSlotGroup*|bukkit.inventory.EquipmentSlotGroup
@@ -33,7 +33,7 @@ end
 function this.modifier(key, amount, operation, slot)
     if slot == nil then slot = "ANY" end
     return AttributeModifier(
-        bukkit.namespacedKey(key),
+        bukkit.nsk(key),
         amount,
         this.modifierOperation(operation),
         bukkit.equipmentSlotGroup(slot)

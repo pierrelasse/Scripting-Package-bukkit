@@ -7,8 +7,12 @@ bukkit.platform = Scripting.getPlatform() ---@type java.Object
 bukkit.isPaper = false
 bukkit.isFolia = false
 -- TODO: Compatability with older plugin versions
-pcall(function() bukkit.isPaper = bukkit.platform.isPaper end)
-pcall(function() bukkit.isFolia = bukkit.platform.isFolia end)
+if not pcall(function() bukkit.isPaper = bukkit.platform.isPaper end) then
+    bukkit.isPaper = importOrNil("io.papermc.paper.configuration.PaperConfigurations") ~= nil
+end
+if not pcall(function() bukkit.isFolia = bukkit.platform.isFolia end) then
+    bukkit.isFolia = importOrNil("io.papermc.paper.threadedregions.RegionizedServer") ~= nil
+end
 
 if bukkit.isPaper and bukkit._DONT_LOAD_ADVENTURE then
     require("@base/paman").need("adventure")

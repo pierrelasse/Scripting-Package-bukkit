@@ -14,9 +14,8 @@ local Registry = import("org.bukkit.Registry")
 --- INSTRUMENT: bukkit.Registry<java.Object>;
 --- MATERIAL: bukkit.Registry<bukkit.Material*>;
 --- MENU: bukkit.Registry<java.Object>;
---- EFFECT: bukkit.Registry<java.Object>;
---- PARTICLE_TYPE: bukkit.Registry<java.Object>;
---- POTION: bukkit.Registry<java.Object>;
+--- PARTICLE_TYPE: bukkit.Registry<bukkit.Particle>;
+--- POTION: bukkit.Registry<bukkit.PotionType>;
 --- STATISTIC: bukkit.Registry<java.Object>;
 --- STRUCTURE: bukkit.Registry<java.Object>;
 --- STRUCTURE_TYPE: bukkit.Registry<java.Object>;
