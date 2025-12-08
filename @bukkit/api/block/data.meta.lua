@@ -1,0 +1,20 @@
+---@class bukkit.block.data.BlockData : java.Object
+---@field getMaterial fun(): bukkit.Material
+---@field getAsString fun(hideUnspecified?: boolean): string
+---@field merge fun(data: bukkit.block.data.BlockData): bukkit.block.data.BlockData
+---@field matches fun(data: bukkit.block.data.BlockData): boolean
+---@field clone fun(): bukkit.block.data.BlockData
+---@field getSoundGroup fun(): bukkit.SoundGroup
+---@field getLightEmission fun(): integer
+---@field isOccluding fun(): boolean
+---@field requiresCorrectToolForDrops fun(): boolean
+---@field isPreferredTool fun(tool: bukkit.ItemStack)
+---@field getPistonMoveReaction fun(): bukkit.block.PistonMoveReaction
+---@field isSupported fun(location: bukkit.Location): boolean
+---@field isFaceSturdy fun(face: bukkit.block.BlockFace)
+---@field getMapColor fun(): bukkit.Color
+---@field getPlacementMaterial fun(): bukkit.Material
+---@field rotate fun(rotation: bukkit.block.structure.StructureRotation)
+---@field mirror fun(mirror: bukkit.block.structure.Mirror)
+---@field copyTo fun(other: bukkit.block.data.BlockData)
+---@field createBlockState fun(): bukkit.block.BlockState

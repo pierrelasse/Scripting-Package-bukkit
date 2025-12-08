@@ -1,7 +1,8 @@
 local Player = import("org.bukkit.entity.Player")
 
----@param o any|bukkit.entity.Player
-function bukkit.isPlayer(o) return instanceof(o, Player) end
+
+---@param v bukkit.entity.Player|any
+function bukkit.isPlayer(v) return instanceof(v, Player) end
 
 ---@param name string
 ---@return bukkit.entity.Player?

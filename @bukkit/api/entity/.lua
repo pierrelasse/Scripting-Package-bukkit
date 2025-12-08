@@ -3,13 +3,13 @@ local LivingEntity = import("org.bukkit.entity.LivingEntity")
 local Mob = import("org.bukkit.entity.Mob")
 
 
----@param v any|bukkit.Entity
+---@param v bukkit.Entity|any
 function bukkit.isEntity(v) return instanceof(v, Entity) end
 
----@param v any|bukkit.entity.LivingEntity
+---@param v bukkit.entity.LivingEntity|any
 function bukkit.isLivingEntity(v) return instanceof(v, LivingEntity) end
 
----@param v any|bukkit.entity.Mob
+---@param v bukkit.entity.Mob|any
 function bukkit.isMob(v) return instanceof(v, Mob) end
 
 --TODO
