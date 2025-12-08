@@ -26,8 +26,9 @@ require("@bukkit/api/block/data")
 require("@bukkit/api/block/structure")
 
 require("@bukkit/api/entity/")
-require("@bukkit/api/entity/entityType")
 require("@bukkit/api/entity/player/")
+require("@bukkit/api/entity/entityType")
+require("@bukkit/api/entity/teleport")
 
 require("@bukkit/api/inventory/")
 require("@bukkit/api/inventory/art")
