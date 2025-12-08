@@ -11,9 +11,11 @@ function bukkit.consoleCommand(command)
     bukkit.Bukkit.dispatchCommand(bukkit.consoleSender(), command)
 end
 
----@deprecated
 ---@param v string
-function bukkit.printConsole(v)
+function bukkit.consoleSend(v)
     ---@diagnostic disable-next-line: param-type-mismatch
     bukkit.consoleSender().sendMessage(v)
 end
+
+---@deprecated
+bukkit.printConsole = bukkit.consoleSend
