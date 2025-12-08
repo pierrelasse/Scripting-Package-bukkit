@@ -38,6 +38,7 @@ require("@bukkit/api/inventory/")
 require("@bukkit/api/inventory/art")
 require("@bukkit/api/inventory/dyeColor")
 require("@bukkit/api/inventory/enchantments")
+require("@bukkit/api/inventory/ItemBuilder")
 require("@bukkit/api/inventory/itemFlag")
 require("@bukkit/api/ItemBuilder")
 
