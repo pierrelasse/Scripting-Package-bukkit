@@ -62,8 +62,8 @@
 ---@field setRadiusOnUse fun(v: java.float)
 ---@field getRadiusPerTick fun(): java.float
 ---@field setRadiusPerTick fun(v: java.float)
----@field getParticle fun(): bukkit.Particle
----@field setParticle fun(v: bukkit.Particle, data?: unknown)
+---@field getParticle fun(): bukkit.Particle*
+---@field setParticle fun(v: bukkit.Particle*, data?: unknown)
 ---@field getBasePotionType fun(): bukkit.PotionType?
 ---@field setBasePotionType fun(type: bukkit.PotionType?)
 ---@field hasCustomEffects fun(): boolean
