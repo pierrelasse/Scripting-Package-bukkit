@@ -29,17 +29,20 @@ function bukkit.nsk(v)
     error()
 end
 
----@param key string|bukkit.NamespacedKey
----@param namespace? (string|"minecraft")|java.Object=`bukkit.platform` Plugin
+---@param value string|bukkit.NamespacedKey
 ---@return bukkit.NamespacedKey
-function bukkit.namespacedKey(key, namespace)
-    if type(key) ~= "string" then return key end
-    return NamespacedKey(namespace or bukkit.platform, key)
+function bukkit.nskM(value)
+    if type(value) ~= "string" then return value end
+    return NamespacedKey.minecraft(value)
 end
 
----@param key string|bukkit.NamespacedKey
+---@deprecated
+bukkit.namespacedKeyMinecraft = bukkit.nskM
+
+---@param value string|bukkit.NamespacedKey
+---@param namespace? (string|"minecraft")|java.Object=`bukkit.platform` Plugin
 ---@return bukkit.NamespacedKey
-function bukkit.namespacedKeyMinecraft(key)
-    if type(key) ~= "string" then return key end
-    return NamespacedKey.minecraft(key)
+function bukkit.namespacedKey(value, namespace)
+    if type(value) ~= "string" then return value end
+    return NamespacedKey(namespace or bukkit.platform, value)
 end
