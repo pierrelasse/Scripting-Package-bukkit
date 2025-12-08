@@ -10,6 +10,9 @@ function bukkit.entityType(id)
     if bukkit.isEntityType(id) then ---@cast id bukkit.EntityType
         return id
     end ---@cast id bukkit.NamespacedKeyLike|bukkit.EntityType*
-    return (type(id) == "string" and EntityType.fromName(id))
-        or bukkit.registry.ENTITY_TYPE.get(bukkit.nsk(id))
+    if type(id) == "string" then
+        local v = EntityType.fromName(id)
+        if v then return v end
+    end
+    return bukkit.registry.ENTITY_TYPE.get(bukkit.nsk(id))
 end
