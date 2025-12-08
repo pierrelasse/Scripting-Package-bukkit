@@ -1,8 +1,8 @@
 ---@param location bukkit.Location|bukkit.Entity
----@param radius number|bukkit.tVec6
+---@param radius number|bukkit.tVec3|{ distance: number }
 ---@param filter? fun(ent: bukkit.Entity): nil|false|boolean
----@param fn? fun(ent: bukkit.Entity)
-function bukkit.nearbyEntities(location, radius, filter, fn)
+---@return java.List<bukkit.Entity>
+function bukkit.nearbyEntitiesL(location, radius, filter)
     if bukkit.isEntity(location) then ---@cast location bukkit.Entity
         location = location.getLocation() ---@cast location bukkit.Location
     end
@@ -10,9 +10,21 @@ function bukkit.nearbyEntities(location, radius, filter, fn)
     ---@type number, number, number
     local radiusX, radiusY, radiusZ
     if type(radius) == "table" then
-        radiusX = radius[1]
-        radiusY = radius[2]
-        radiusZ = radius[3]
+        if radius.distance == nil then
+            radiusX = radius[1]
+            radiusY = radius[2]
+            radiusZ = radius[3]
+        else
+            local dist = radius.distance
+            radiusX = dist
+            radiusY = dist
+            radiusZ = dist
+            local prevFilter = filter
+            filter = function(ent)
+                if location.distance(ent.getLocation()) > dist then return false end -- TODO: perf
+                return prevFilter and prevFilter(ent)
+            end
+        end
     else
         radiusX = radius
         radiusY = radius
@@ -24,9 +36,16 @@ function bukkit.nearbyEntities(location, radius, filter, fn)
         predicate = java.predicate(function(t) return filter(t) ~= false end)
     end
 
-    local entities = location.getWorld()
+    return location.getWorld()
         .getNearbyEntities(location, radiusX, radiusY, radiusZ, predicate)
+end
 
+---@param location bukkit.Location|bukkit.Entity
+---@param radius number|bukkit.tVec3|{ distance: number }
+---@param filter? fun(ent: bukkit.Entity): nil|false|boolean
+---@param fn? fun(ent: bukkit.Entity)
+function bukkit.nearbyEntities(location, radius, filter, fn)
+    local entities = bukkit.nearbyEntitiesL(location, radius, filter)
     if fn ~= nil then
         for ent in forEach(entities) do
             fn(ent)
@@ -37,7 +56,19 @@ function bukkit.nearbyEntities(location, radius, filter, fn)
 end
 
 ---@param location bukkit.Location|bukkit.Entity
----@param radius number|bukkit.tVec6
+---@param radius number|bukkit.tVec3|{ distance: number }
+---@param filter? fun(ent: bukkit.entity.LivingEntity): nil|false|boolean
+---@return java.List<bukkit.entity.LivingEntity>
+function bukkit.nearbyLivingEntitiesL(location, radius, filter)
+    ---@diagnostic disable-next-line: return-type-mismatch
+    return bukkit.nearbyEntitiesL(location, radius, function(ent)
+        if not bukkit.isLivingEntity(ent) then return false end ---@cast ent bukkit.entity.LivingEntity
+        if filter then return filter(ent) end
+    end)
+end
+
+---@param location bukkit.Location|bukkit.Entity
+---@param radius number|bukkit.tVec3|{ distance: number }
 ---@param filter? fun(ent: bukkit.entity.LivingEntity): nil|false|boolean
 ---@param fn? fun(ent: bukkit.entity.LivingEntity)
 function bukkit.nearbyLivingEntities(location, radius, filter, fn)
@@ -48,7 +79,19 @@ function bukkit.nearbyLivingEntities(location, radius, filter, fn)
 end
 
 ---@param location bukkit.Location|bukkit.Entity
----@param radius number|bukkit.tVec6
+---@param radius number|bukkit.tVec3|{ distance: number }
+---@param filter? fun(p: bukkit.entity.Player): nil|false|boolean
+---@return java.List<bukkit.entity.Player>
+function bukkit.nearbyPlayersL(location, radius, filter)
+    ---@diagnostic disable-next-line: return-type-mismatch
+    return bukkit.nearbyEntitiesL(location, radius, function(ent)
+        if not bukkit.isPlayer(ent) then return false end ---@cast ent bukkit.entity.Player
+        if filter then return filter(ent) end
+    end)
+end
+
+---@param location bukkit.Location|bukkit.Entity
+---@param radius number|bukkit.tVec3|{ distance: number }
 ---@param filter? fun(p: bukkit.entity.Player): nil|false|boolean
 ---@param fn? fun(p: bukkit.entity.Player)
 function bukkit.nearbyPlayers(location, radius, filter, fn)
