@@ -1,68 +1,34 @@
+--#region Enchantment
 local Enchantment = import("org.bukkit.enchantments.Enchantment")
 
-
----@alias bukkit.enchantments.Enchantment* string
----| "PROTECTION"
----| "FIRE_PROTECTION"
----| "FEATHER_FALLING"
----| "BLAST_PROTECTION"
----| "PROJECTILE_PROTECTION"
----| "RESPIRATION"
----| "AQUA_AFFINITY"
----| "THORNS"
----| "DEPTH_STRIDER"
----| "FROST_WALKER"
----| "BINDING_CURSE"
----| "SHARPNESS"
----| "SMITE"
----| "BANE_OF_ARTHROPODS"
----| "KNOCKBACK"
----| "FIRE_ASPECT"
----| "LOOTING"
----| "SWEEPING_EDGE"
----| "EFFICIENCY"
----| "SILK_TOUCH"
----| "UNBREAKING"
----| "FORTUNE"
----| "POWER"
----| "PUNCH"
----| "FLAME"
----| "INFINITY"
----| "LUCK_OF_THE_SEA"
----| "LURE"
----| "LOYALTY"
----| "IMPALING"
----| "RIPTIDE"
----| "CHANNELING"
----| "MULTISHOT"
----| "QUICK_CHARGE"
----| "PIERCING"
----| "DENSITY"
----| "BREACH"
----| "WIND_BURST"
----| "MENDING"
----| "VANISHING_CURSE"
----| "SOUL_SPEED"
----| "SWIFT_SNEAK"
-
----org.bukkit.enchantments.Enchantment
----@class bukkit.enchantments.Enchantment : bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware
----@field getMaxLevel fun(): integer
----@field getStartLevel fun(): integer
----@field conflictsWith fun(other: bukkit.enchantments.Enchantment): boolean
----@field canEnchantItem fun(item: bukkit.ItemStack): boolean
+---@param v bukkit.enchantments.Enchantment|any
+function bukkit.isEnchantment(v) return instanceof(v, Enchantment) end
 
 ---@param id bukkit.enchantments.Enchantment*|bukkit.NamespacedKey|bukkit.enchantments.Enchantment
 ---@return bukkit.enchantments.Enchantment?
 function bukkit.enchantment(id)
-    if type(id) == "string" then
-        return Enchantment.getByName(id)
+    if bukkit.isEnchantment(id) then ---@cast id bukkit.enchantments.Enchantment
+        return id
+    end ---@cast id bukkit.enchantments.Enchantment*|bukkit.NamespacedKey
+    if type(id) == "string" and not id:contains(":") then
+        return Enchantment.getByName(id) -- TODO
     end
-    if bukkit.isNamespacedKey(id) then ---@cast id bukkit.NamespacedKey
-        return bukkit.registry.ENCHANTMENT.get(id)
-    end
-    ---@cast id bukkit.enchantments.Enchantment
-    return id
+    return bukkit.registry.ENCHANTMENT.get(bukkit.nsk(id))
 end
 
--- TODO: offer, target
+--#endregion
+
+--#region EnchantmentOffer
+local EnchantmentOffer = import("org.bukkit.enchantments.EnchantmentOffer")
+
+---@param v bukkit.enchantments.EnchantmentOffer|any
+function bukkit.isEnchantmentOffer(v) return instanceof(v, EnchantmentOffer) end
+
+---@param enchantment bukkit.enchantments.Enchantment*|bukkit.enchantments.Enchantment
+---@param level integer
+---@param cost integer
+function bukkit.enchantmentOffer(enchantment, level, cost)
+    return EnchantmentOffer(bukkit.enchantment(enchantment), level, cost)
+end
+
+--#endregion

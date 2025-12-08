@@ -1,0 +1,106 @@
+---#minecraft_version(1.21.8)
+---@alias bukkit.enchantments.Enchantment* string
+---> Provides protection against environmental damage
+---| "minecraft:protection"
+---> Provides protection against fire damage
+---| "minecraft:fire_protection"
+---> Provides protection against fall damage
+---| "minecraft:feather_falling"
+---> Provides protection against explosive damage
+---| "minecraft:blast_protection"
+---> Provides protection against projectile damage
+---| "minecraft:projectile_protection"
+---> Decreases the rate of air loss whilst underwater
+---| "minecraft:respiration"
+---> Increases the speed at which a player may mine underwater
+---| "minecraft:aqua_affinity"
+---> Damages the attacker
+---| "minecraft:thorns"
+---> Increases walking speed while in water
+---| "minecraft:depth_strider"
+---> Freezes any still water adjacent to ice / frost which player is walking on
+---| "minecraft:frost_walker"
+---> Item cannot be removed
+---| "minecraft:binding_curse"
+---> Increases damage against all targets
+---| "minecraft:sharpness"
+---> Increases damage against undead targets
+---| "minecraft:smite"
+---> Increases damage against arthropod targets
+---| "minecraft:bane_of_arthropods"
+---> All damage to other targets will knock them back when hit
+---| "minecraft:knockback"
+---> When attacking a target, has a chance to set them on fire
+---| "minecraft:fire_aspect"
+---> Provides a chance of gaining extra loot when killing monsters
+---| "minecraft:looting"
+---> Increases damage against targets when using a sweep attack
+---| "minecraft:sweeping_edge"
+---> Increases the rate at which you mine/dig
+---| "minecraft:efficiency"
+---> Allows blocks to drop themselves instead of fragments (for example,<br> stone instead of cobblestone)
+---| "minecraft:silk_touch"
+---> Decreases the rate at which a tool looses durability
+---| "minecraft:unbreaking"
+---> Provides a chance of gaining extra loot when destroying blocks
+---| "minecraft:fortune"
+---> Provides extra damage when shooting arrows from bows
+---| "minecraft:power"
+---> Provides a knockback when an entity is hit by an arrow from a bow
+---| "minecraft:punch"
+---> Sets entities on fire when hit by arrows shot from a bow
+---| "minecraft:flame"
+---> Provides infinite arrows when shooting a bow
+---| "minecraft:infinity"
+---> Decreases odds of catching worthless junk
+---| "minecraft:luck_of_the_sea"
+---> Increases rate of fish biting your hook
+---| "minecraft:lure"
+---> Causes a thrown trident to return to the player who threw it
+---| "minecraft:loyalty"
+---> Deals more damage to mobs that live in the ocean
+---| "minecraft:impaling"
+---> When it is rainy, launches the player in the direction their trident is thrown
+---| "minecraft:riptide"
+---> Strikes lightning when a mob is hit with a trident if conditions are<br> stormy
+---| "minecraft:channeling"
+---> Shoot multiple arrows from crossbows
+---| "minecraft:multishot"
+---> Charges crossbows quickly
+---| "minecraft:quick_charge"
+---> Crossbow projectiles pierce entities
+---| "minecraft:piercing"
+---> Increases fall damage of maces
+---| "minecraft:density"
+---> Reduces armor effectiveness against maces
+---| "minecraft:breach"
+---> Emits wind burst upon hitting enemy
+---| "minecraft:wind_burst"
+---> Allows mending the item using experience orbs
+---| "minecraft:mending"
+---> Item disappears instead of dropping
+---| "minecraft:vanishing_curse"
+---> Walk quicker on soul blocks
+---| "minecraft:soul_speed"
+---> Walk quicker while sneaking
+---| "minecraft:swift_sneak"
+
+---@class bukkit.enchantments.Enchantment : bukkit.Keyed, bukkit.Translatable, adventure.translation.Translatable
+---@field getMaxLevel fun(): integer
+---@field getStartLevel fun(): integer
+---@field conflictsWith fun(other: bukkit.enchantments.Enchantment): boolean
+---@field canEnchantItem fun(item: bukkit.ItemStack): boolean
+---@field isCursed fun(): boolean
+---@field isTradeable fun(): boolean
+---@field isDiscoverable fun(): boolean
+---@field getMinModifiedCost fun(level: integer): integer
+---@field getMaxModifiedCost fun(level: integer): integer
+---@field getAnvilCost fun(): integer
+
+---@class bukkit.enchantments.EnchantmentOffer : java.Object
+---@field getEnchantment fun(): bukkit.enchantments.Enchantment
+---@field setEnchantment fun(v: bukkit.enchantments.Enchantment)
+---@field getEnchantmentLevel fun(): integer
+---@field setEnchantmentLevel fun(v: integer)
+---@field getCost fun(): integer
+---@field setCost fun(v: integer)
