@@ -1,0 +1,159 @@
+---#minecraft_version(1.21.8)
+---@alias bukkit.EntityType* string
+---| "UNKNOWN"
+---| "minecraft:acacia_boat" AcaciaBoat
+---| "minecraft:acacia_chest_boat" AcaciaChestBoat
+---| "minecraft:allay" Allay
+---| "minecraft:area_effect_cloud" AreaEffectCloud ID: 3
+---| "minecraft:armadillo" Armadillo
+---| "minecraft:armor_stand" ArmorStand ID: 30
+---| "minecraft:arrow" Arrow ID: 10
+---| "minecraft:axolotl" Axolotl
+---| "minecraft:bamboo_chest_raft" BambooChestRaft
+---| "minecraft:bamboo_raft" BambooRaft
+---| "minecraft:bat" Bat ID: 65
+---| "minecraft:bee" Bee
+---| "minecraft:birch_boat" BirchBoat
+---| "minecraft:birch_chest_boat" BirchChestBoat
+---| "minecraft:blaze" Blaze ID: 61
+---| "minecraft:block_display" BlockDisplay
+---| "minecraft:bogged" Bogged
+---| "minecraft:breeze" Breeze
+---| "minecraft:breeze_wind_charge" BreezeWindCharge
+---| "minecraft:camel" Camel
+---| "minecraft:cat" Cat
+---| "minecraft:cave_spider" CaveSpider ID: 59
+---| "minecraft:cherry_boat" CherryBoat
+---| "minecraft:cherry_chest_boat" CherryChestBoat
+---| "minecraft:chest_minecart" StorageMinecart ID: 43
+---| "minecraft:chicken" Chicken ID: 93
+---| "minecraft:cod" Cod
+---| "minecraft:command_block_minecart" CommandMinecart ID: 40
+---| "minecraft:cow" Cow ID: 92
+---| "minecraft:creaking" Creaking
+---| "minecraft:creeper" Creeper ID: 50
+---| "minecraft:dark_oak_boat" DarkOakBoat
+---| "minecraft:dark_oak_chest_boat" DarkOakChestBoat
+---| "minecraft:dolphin" Dolphin
+---| "minecraft:donkey" Donkey ID: 31
+---| "minecraft:dragon_fireball" DragonFireball ID: 26
+---| "minecraft:drowned" Drowned
+---| "minecraft:egg" Egg ID: 7
+---| "minecraft:elder_guardian" ElderGuardian ID: 4
+---| "minecraft:end_crystal" EnderCrystal ID: 200
+---| "minecraft:ender_dragon" EnderDragon ID: 63
+---| "minecraft:ender_pearl" EnderPearl ID: 14
+---| "minecraft:enderman" Enderman ID: 58
+---| "minecraft:endermite" Endermite ID: 67
+---| "minecraft:evoker" Evoker ID: 34
+---| "minecraft:evoker_fangs" EvokerFangs ID: 33
+---| "minecraft:experience_bottle" ThrownExpBottle ID: 17
+---| "minecraft:experience_orb" ExperienceOrb ID: 2
+---| "minecraft:eye_of_ender" EnderSignal ID: 15
+---| "minecraft:falling_block" FallingBlock ID: 21
+---| "minecraft:fireball" Fireball ID: 12
+---| "minecraft:firework_rocket" Firework ID: 22
+---| "minecraft:fishing_bobber" FishHook
+---| "minecraft:fox" Fox
+---| "minecraft:frog" Frog
+---| "minecraft:furnace_minecart" PoweredMinecart ID: 44
+---| "minecraft:ghast" Ghast ID: 56
+---| "minecraft:giant" Giant ID: 53
+---| "minecraft:glow_item_frame" GlowItemFrame
+---| "minecraft:glow_squid" GlowSquid
+---| "minecraft:goat" Goat
+---| "minecraft:guardian" Guardian ID: 68
+---| "minecraft:happy_ghast" HappyGhast
+---| "minecraft:hoglin" Hoglin
+---| "minecraft:hopper_minecart" HopperMinecart ID: 46
+---| "minecraft:horse" Horse ID: 100
+---| "minecraft:husk" Husk ID: 23
+---| "minecraft:illusioner" Illusioner ID: 37
+---| "minecraft:interaction" Interaction
+---| "minecraft:iron_golem" IronGolem ID: 99
+---| "minecraft:item" Item ID: 1
+---| "minecraft:item_display" ItemDisplay
+---| "minecraft:item_frame" ItemFrame ID: 18
+---| "minecraft:jungle_boat" JungleBoat
+---| "minecraft:jungle_chest_boat" JungleChestBoat
+---| "minecraft:leash_knot" LeashHitch ID: 8
+---| "minecraft:lightning_bolt" LightningStrike
+---| "minecraft:lingering_potion" LingeringPotion
+---| "minecraft:llama" Llama ID: 103
+---| "minecraft:llama_spit" LlamaSpit ID: 104
+---| "minecraft:magma_cube" MagmaCube ID: 62
+---| "minecraft:mangrove_boat" MangroveBoat
+---| "minecraft:mangrove_chest_boat" MangroveChestBoat
+---| "minecraft:marker" Marker
+---| "minecraft:minecart" RideableMinecart ID: 42
+---| "minecraft:mooshroom" MushroomCow ID: 96
+---| "minecraft:mule" Mule ID: 32
+---| "minecraft:oak_boat" OakBoat
+---| "minecraft:oak_chest_boat" OakChestBoat
+---| "minecraft:ocelot" Ocelot ID: 98
+---| "minecraft:ominous_item_spawner" OminousItemSpawner
+---| "minecraft:painting" Painting ID: 9
+---| "minecraft:pale_oak_boat" PaleOakBoat
+---| "minecraft:pale_oak_chest_boat" PaleOakChestBoat
+---| "minecraft:panda" Panda
+---| "minecraft:parrot" Parrot ID: 105
+---| "minecraft:phantom" Phantom
+---| "minecraft:pig" Pig ID: 90
+---| "minecraft:piglin" Piglin
+---| "minecraft:piglin_brute" PiglinBrute
+---| "minecraft:pillager" Pillager
+---| "minecraft:player" Player
+---| "minecraft:polar_bear" PolarBear ID: 102
+---| "minecraft:pufferfish" PufferFish
+---| "minecraft:rabbit" Rabbit ID: 101
+---| "minecraft:ravager" Ravager
+---| "minecraft:salmon" Salmon
+---| "minecraft:sheep" Sheep ID: 91
+---| "minecraft:shulker" Shulker ID: 69
+---| "minecraft:shulker_bullet" ShulkerBullet ID: 25
+---| "minecraft:silverfish" Silverfish ID: 60
+---| "minecraft:skeleton" Skeleton ID: 51
+---| "minecraft:skeleton_horse" SkeletonHorse ID: 28
+---| "minecraft:slime" Slime ID: 55
+---| "minecraft:small_fireball" SmallFireball ID: 13
+---| "minecraft:sniffer" Sniffer
+---| "minecraft:snow_golem" Snowman ID: 97
+---| "minecraft:snowball" Snowball ID: 11
+---| "minecraft:spawner_minecart" SpawnerMinecart ID: 47
+---| "minecraft:spectral_arrow" SpectralArrow ID: 24
+---| "minecraft:spider" Spider ID: 52
+---| "minecraft:splash_potion" SplashPotion ID: 16
+---| "minecraft:spruce_boat" SpruceBoat
+---| "minecraft:spruce_chest_boat" SpruceChestBoat
+---| "minecraft:squid" Squid ID: 94
+---| "minecraft:stray" Stray ID: 6
+---| "minecraft:strider" Strider
+---| "minecraft:tadpole" Tadpole
+---| "minecraft:text_display" TextDisplay
+---| "minecraft:tnt" TNTPrimed ID: 20
+---| "minecraft:tnt_minecart" ExplosiveMinecart ID: 45
+---| "minecraft:trader_llama" TraderLlama
+---| "minecraft:trident" Trident
+---| "minecraft:tropical_fish" TropicalFish
+---| "minecraft:turtle" Turtle
+---| "minecraft:vex" Vex ID: 35
+---| "minecraft:villager" Villager ID: 120
+---| "minecraft:vindicator" Vindicator ID: 36
+---| "minecraft:wandering_trader" WanderingTrader
+---| "minecraft:warden" Warden
+---| "minecraft:wind_charge" WindCharge
+---| "minecraft:witch" Witch ID: 66
+---| "minecraft:wither" Wither ID: 64
+---| "minecraft:wither_skeleton" WitherSkeleton ID: 5
+---| "minecraft:wither_skull" WitherSkull ID: 19
+---| "minecraft:wolf" Wolf ID: 95
+---| "minecraft:zoglin" Zoglin
+---| "minecraft:zombie" Zombie ID: 54
+---| "minecraft:zombie_horse" ZombieHorse ID: 29
+---| "minecraft:zombie_villager" ZombieVillager ID: 27
+---| "minecraft:zombified_piglin" PigZombie ID: 57
+
+---@class bukkit.EntityType : java.Enum, bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware
+---@field getEntityClass fun(): java.Class<bukkit.Entity>
+---@field getTranslationKey fun(): string
+---@field isEnabledByFeature fun(world: bukkit.World): boolean
