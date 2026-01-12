@@ -12,7 +12,6 @@ end
 --#region Vector
 local Vector = import("org.bukkit.util.Vector")
 
-
 ---@param x number
 ---@param y number
 ---@param z number

@@ -1,4 +1,6 @@
----@class bukkit.Vector : java.Object, {
+---@alias bukkit.Vector bukkit.util.Vector
+
+---@class bukkit.util.Vector : java.Object, {
 --- add: fun(vec: bukkit.Vector): bukkit.Vector;
 --- subtract: fun(vec: bukkit.Vector): bukkit.Vector;
 --- multiply: fun(o: bukkit.Vector | number): bukkit.Vector;

@@ -1,13 +1,10 @@
-local TextComponent = import("net.md_5.bungee.api.chat.TextComponent")
-
-
 ---@deprecated
 local this = {}
 
----Converts `§#FFFFFF` into `§x§F§F§F§F§F§F`.
----@param input string
+---@deprecated
 ---@return string
 function this.convertHex(input)
+    scripting.warningDeprecated("bukkit.components.convertHex")
     local output = input:gsub("§#(%x%x%x%x%x%x)", function(hex)
         return "§x§"..hex:sub(1, 1).."§"..hex:sub(2, 2)..
             "§"..hex:sub(3, 3).."§"..hex:sub(4, 4)..
@@ -16,12 +13,25 @@ function this.convertHex(input)
     return output
 end
 
+---@deprecated
 ---@param message string
 ---@return java.Object
 function this.parse(message)
+    scripting.warningDeprecated("bukkit.components.parse")
+    local TextComponent = import("net.md_5.bungee.api.chat.TextComponent")
+    ---@diagnostic disable-next-line: deprecated
     return TextComponent.fromLegacy(this.convertHex(message))
 end
 
-bukkit.components = this
+---@deprecated
+function this.deserialize(data)
+    scripting.warningDeprecated("bukkit.components.deserialize")
+    if type(data) == "table" then
+        local json = require("@base/json")
+        data = json.encode(data)
+    end
+    local ComponentSerializer = import("net.md_5.bungee.chat.ComponentSerializer")
+    return ComponentSerializer.parse(data)
+end
 
-require("@bukkit/components/deserialize")
+bukkit.components = this
