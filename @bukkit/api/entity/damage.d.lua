@@ -1,0 +1,77 @@
+--#region DamageType
+
+---@alias bukkit.DamageTypeLike bukkit.NamespacedKeyLike|bukkit.DamageType*|bukkit.DamageType
+
+---#minecraft_version(1.21.8)
+---@alias bukkit.DamageType* string
+---| "arrow"
+---| "bad_respawn_point"
+---| "cactus"
+---| "campfire"
+---| "cramming"
+---| "dragon_breath"
+---| "drown"
+---| "dry_out"
+---| "ender_pearl"
+---| "explosion"
+---| "fall"
+---| "falling_anvil"
+---| "falling_block"
+---| "falling_stalactite"
+---| "fireball"
+---| "fireworks"
+---| "fly_into_wall"
+---| "freeze"
+---| "generic"
+---| "generic_kill"
+---| "hot_floor"
+---| "in_fire"
+---| "in_wall"
+---| "indirect_magic"
+---| "lava"
+---| "lightning_bolt"
+---| "mace_smash"
+---| "magic"
+---| "mob_attack"
+---| "mob_attack_no_aggro"
+---| "mob_projectile"
+---| "on_fire"
+---| "out_of_world"
+---| "outside_border"
+---| "player_attack"
+---| "player_explosion"
+---| "sonic_boom"
+---| "spit"
+---| "stalagmite"
+---| "starve"
+---| "sting"
+---| "sweet_berry_bush"
+---| "thorns"
+---| "thrown"
+---| "trident"
+---| "unattributed_fireball"
+---| "wind_charge"
+---| "wither"
+---| "wither_skull
+
+---@class bukkit.DamageType : bukkit.Keyed, bukkit.Translatable
+---@field getDamageScaling fun(): java.Enum -- TODO
+---@field getDamageEffect fun(): java.Object -- TODO
+---@field getDeathMessageType fun(): java.Enum -- TODO
+---@field getExhaustion fun(): java.float
+
+--#endregion
+
+--#region DamageSource
+
+---@class bukkit.DamageSource : java.Object
+---@field getDamageType fun(): bukkit.DamageType
+---@field getCausingEntity fun(): bukkit.Entity?
+---@field getDirectEntity fun(): bukkit.Entity?
+---@field getDamageLocation fun(): bukkit.Location?
+---@field getSourceLocation fun(): bukkit.Location?
+---@field isIndirect fun(): boolean
+---@field getFoodExhaustion fun(): java.float
+---@field scalesWithDifficulty fun(): boolean
+
+--#endregion
