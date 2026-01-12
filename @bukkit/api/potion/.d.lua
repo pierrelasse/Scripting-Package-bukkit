@@ -1,0 +1,130 @@
+--#region PotionEffect
+
+---@class bukkit.PotionEffect : java.Object
+---@field getAmplifier fun(): integer
+---@field getDuration fun(): integer -- the duration (in ticks) the effect will run for when applied. `-1` for infinite
+---@field isInfinite fun(): boolean
+---@field getType fun(): bukkit.PotionEffectType
+---@field isAmbient fun(): boolean
+---@field hasParticles fun(): boolean
+---@field hasIcon fun(): boolean
+---@field getHiddenPotionEffect fun(): bukkit.PotionEffect? ---#paper
+---@field isShorterThan fun(other: bukkit.PotionEffect): boolean
+---@field apply fun(entity: bukkit.entity.LivingEntity): boolean
+
+--#endregion
+
+--#region PotionEffectType
+
+---@alias bukkit.PotionEffectTypeLike bukkit.NamespacedKeyLike|bukkit.PotionEffectType*|bukkit.PotionEffectType
+
+---#minecraft_version(1.21.8)
+---@alias bukkit.PotionEffectType* string
+---| "speed" # Increases movement speed.
+---| "slowness" # Decreases movement speed.
+---| "haste" # Increases dig speed.
+---| "mining_fatigue" # Decreases dig speed.
+---| "strength" # Increases damage dealt.
+---| "instant_health" # Heals an entity.
+---| "instant_damage" # Hurts an entity.
+---| "jump_boost" # Increases jump height.
+---| "nausea" # Warps vision on the client.
+---| "regeneration" # Regenerates health.
+---| "resistance" # Decreases damage dealt to an entity.
+---| "fire_resistance" # Stops fire damage.
+---| "water_breathing" # Allows breathing underwater.
+---| "invisibility" # Grants invisibility.
+---| "blindness" # Blinds an entity.
+---| "night_vision" # Allows an entity to see in the dark.
+---| "hunger" # Increases hunger.
+---| "weakness" # Decreases damage dealt by an entity.
+---| "poison" # Deals damage to an entity over time.
+---| "wither" # Deals damage to an entity over time and gives the health to the<br>shooter.
+---| "health_boost" # Increases the maximum health of an entity.
+---| "absorption" # Increases the maximum health of an entity with health that cannot be<br>regenerated, but is refilled every 30 seconds.
+---| "saturation" # Increases the food level of an entity each tick.
+---| "glowing" # Outlines the entity so that it can be seen from afar.
+---| "levitation" # Causes the entity to float into the air.
+---| "luck" # Loot table luck.
+---| "unluck" # Loot table unluck.
+---| "slow_falling" # Slows entity fall rate.
+---| "conduit_power" # Effects granted by a nearby conduit. Includes enhanced underwater abilities.
+---| "dolphins_grace" # Increses underwater movement speed.<br>Squee'ek uh'k kk'kkkk squeek eee'eek.
+---| "bad_omen" # Triggers an ominous event when the player enters a village or trial chambers.<br>oof.
+---| "hero_of_the_village" # Reduces the cost of villager trades.<br>\o/.
+---| "darkness" # Causes the player's vision to dim occasionally.
+---| "trial_omen" # Causes trial spawners to become ominous.
+---| "raid_omen" # Triggers a raid when a player enters a village.
+---| "wind_charged" # Emits a wind burst upon death.
+---| "weaving" # Creates cobwebs upon death.
+---| "oozing" # Causes slimes to spawn upon death.
+---| "infested" # Chance of spawning silverfish when hurt.
+
+---@class bukkit.PotionEffectType : bukkit.Keyed, bukkit.Translatable, adventure.translation.Translatable
+---@field isInstant fun(): boolean
+---@field getCategory fun(): java.Object
+---@field getColor fun(): bukkit.Color*
+---@field getKeyOrThrow fun(): bukkit.NamespacedKey
+
+--#endregion
+
+--#region PotionType
+
+---@alias bukkit.PotionTypeLike bukkit.NamespacedKeyLike|bukkit.PotionType*|bukkit.PotionType
+
+---#minecraft_version(1.21.8)
+---@alias bukkit.PotionType*
+---| "awkward"
+---| "fire_resistance"
+---| "harming"
+---| "healing"
+---| "infested"
+---| "invisibility"
+---| "leaping"
+---| "long_fire_resistance"
+---| "long_invisibility"
+---| "long_leaping"
+---| "long_night_vision"
+---| "long_poison"
+---| "long_regeneration"
+---| "long_slow_falling"
+---| "long_slowness"
+---| "long_strength"
+---| "long_swiftness"
+---| "long_turtle_master"
+---| "long_water_breathing"
+---| "long_weakness"
+---| "luck"
+---| "mundane"
+---| "night_vision"
+---| "oozing"
+---| "poison"
+---| "regeneration"
+---| "slow_falling"
+---| "slowness"
+---| "strength"
+---| "strong_harming"
+---| "strong_healing"
+---| "strong_leaping"
+---| "strong_poison"
+---| "strong_regeneration"
+---| "strong_slowness"
+---| "strong_strength"
+---| "strong_swiftness"
+---| "strong_turtle_master"
+---| "swiftness"
+---| "thick"
+---| "turtle_master"
+---| "water"
+---| "water_breathing"
+---| "weakness"
+---| "weaving"
+---| "wind_charged"
+
+---@class bukkit.PotionType : bukkit.Keyed
+---@field getMaxLevel fun(): integer
+---@field getPotionEffects fun(): java.List<bukkit.PotionEffect>
+---@field isUpgradeable fun(): boolean If the potion type has an upgraded state. This refers to whether the potion type can be Tier 2, such as Potion of Fire Resistance II.
+---@field isExtendable fun(): boolean If the potion type has an extended state. This refers to the extended duration potions.
+
+--#endregion
