@@ -1,0 +1,161 @@
+---@alias bukkit.EntityTypeLike bukkit.NamespacedKeyLike|bukkit.EntityType*|bukkit.EntityType
+
+---#minecraft_version(1.21.8)
+---@alias bukkit.EntityType*
+---| "UNKNOWN"
+---| "acacia_boat" AcaciaBoat
+---| "acacia_chest_boat" AcaciaChestBoat
+---| "allay" Allay
+---| "area_effect_cloud" AreaEffectCloud ID: 3
+---| "armadillo" Armadillo
+---| "armor_stand" ArmorStand ID: 30
+---| "arrow" Arrow ID: 10
+---| "axolotl" Axolotl
+---| "bamboo_chest_raft" BambooChestRaft
+---| "bamboo_raft" BambooRaft
+---| "bat" Bat ID: 65
+---| "bee" Bee
+---| "birch_boat" BirchBoat
+---| "birch_chest_boat" BirchChestBoat
+---| "blaze" Blaze ID: 61
+---| "block_display" BlockDisplay
+---| "bogged" Bogged
+---| "breeze" Breeze
+---| "breeze_wind_charge" BreezeWindCharge
+---| "camel" Camel
+---| "cat" Cat
+---| "cave_spider" CaveSpider ID: 59
+---| "cherry_boat" CherryBoat
+---| "cherry_chest_boat" CherryChestBoat
+---| "chest_minecart" StorageMinecart ID: 43
+---| "chicken" Chicken ID: 93
+---| "cod" Cod
+---| "command_block_minecart" CommandMinecart ID: 40
+---| "cow" Cow ID: 92
+---| "creaking" Creaking
+---| "creeper" Creeper ID: 50
+---| "dark_oak_boat" DarkOakBoat
+---| "dark_oak_chest_boat" DarkOakChestBoat
+---| "dolphin" Dolphin
+---| "donkey" Donkey ID: 31
+---| "dragon_fireball" DragonFireball ID: 26
+---| "drowned" Drowned
+---| "egg" Egg ID: 7
+---| "elder_guardian" ElderGuardian ID: 4
+---| "end_crystal" EnderCrystal ID: 200
+---| "ender_dragon" EnderDragon ID: 63
+---| "ender_pearl" EnderPearl ID: 14
+---| "enderman" Enderman ID: 58
+---| "endermite" Endermite ID: 67
+---| "evoker" Evoker ID: 34
+---| "evoker_fangs" EvokerFangs ID: 33
+---| "experience_bottle" ThrownExpBottle ID: 17
+---| "experience_orb" ExperienceOrb ID: 2
+---| "eye_of_ender" EnderSignal ID: 15
+---| "falling_block" FallingBlock ID: 21
+---| "fireball" Fireball ID: 12
+---| "firework_rocket" Firework ID: 22
+---| "fishing_bobber" FishHook
+---| "fox" Fox
+---| "frog" Frog
+---| "furnace_minecart" PoweredMinecart ID: 44
+---| "ghast" Ghast ID: 56
+---| "giant" Giant ID: 53
+---| "glow_item_frame" GlowItemFrame
+---| "glow_squid" GlowSquid
+---| "goat" Goat
+---| "guardian" Guardian ID: 68
+---| "happy_ghast" HappyGhast
+---| "hoglin" Hoglin
+---| "hopper_minecart" HopperMinecart ID: 46
+---| "horse" Horse ID: 100
+---| "husk" Husk ID: 23
+---| "illusioner" Illusioner ID: 37
+---| "interaction" Interaction
+---| "iron_golem" IronGolem ID: 99
+---| "item" Item ID: 1
+---| "item_display" ItemDisplay
+---| "item_frame" ItemFrame ID: 18
+---| "jungle_boat" JungleBoat
+---| "jungle_chest_boat" JungleChestBoat
+---| "leash_knot" LeashHitch ID: 8
+---| "lightning_bolt" LightningStrike
+---| "lingering_potion" LingeringPotion
+---| "llama" Llama ID: 103
+---| "llama_spit" LlamaSpit ID: 104
+---| "magma_cube" MagmaCube ID: 62
+---| "mangrove_boat" MangroveBoat
+---| "mangrove_chest_boat" MangroveChestBoat
+---| "marker" Marker
+---| "minecart" RideableMinecart ID: 42
+---| "mooshroom" MushroomCow ID: 96
+---| "mule" Mule ID: 32
+---| "oak_boat" OakBoat
+---| "oak_chest_boat" OakChestBoat
+---| "ocelot" Ocelot ID: 98
+---| "ominous_item_spawner" OminousItemSpawner
+---| "painting" Painting ID: 9
+---| "pale_oak_boat" PaleOakBoat
+---| "pale_oak_chest_boat" PaleOakChestBoat
+---| "panda" Panda
+---| "parrot" Parrot ID: 105
+---| "phantom" Phantom
+---| "pig" Pig ID: 90
+---| "piglin" Piglin
+---| "piglin_brute" PiglinBrute
+---| "pillager" Pillager
+---| "player" Player
+---| "polar_bear" PolarBear ID: 102
+---| "pufferfish" PufferFish
+---| "rabbit" Rabbit ID: 101
+---| "ravager" Ravager
+---| "salmon" Salmon
+---| "sheep" Sheep ID: 91
+---| "shulker" Shulker ID: 69
+---| "shulker_bullet" ShulkerBullet ID: 25
+---| "silverfish" Silverfish ID: 60
+---| "skeleton" Skeleton ID: 51
+---| "skeleton_horse" SkeletonHorse ID: 28
+---| "slime" Slime ID: 55
+---| "small_fireball" SmallFireball ID: 13
+---| "sniffer" Sniffer
+---| "snow_golem" Snowman ID: 97
+---| "snowball" Snowball ID: 11
+---| "spawner_minecart" SpawnerMinecart ID: 47
+---| "spectral_arrow" SpectralArrow ID: 24
+---| "spider" Spider ID: 52
+---| "splash_potion" SplashPotion ID: 16
+---| "spruce_boat" SpruceBoat
+---| "spruce_chest_boat" SpruceChestBoat
+---| "squid" Squid ID: 94
+---| "stray" Stray ID: 6
+---| "strider" Strider
+---| "tadpole" Tadpole
+---| "text_display" TextDisplay
+---| "tnt" TNTPrimed ID: 20
+---| "tnt_minecart" ExplosiveMinecart ID: 45
+---| "trader_llama" TraderLlama
+---| "trident" Trident
+---| "tropical_fish" TropicalFish
+---| "turtle" Turtle
+---| "vex" Vex ID: 35
+---| "villager" Villager ID: 120
+---| "vindicator" Vindicator ID: 36
+---| "wandering_trader" WanderingTrader
+---| "warden" Warden
+---| "wind_charge" WindCharge
+---| "witch" Witch ID: 66
+---| "wither" Wither ID: 64
+---| "wither_skeleton" WitherSkeleton ID: 5
+---| "wither_skull" WitherSkull ID: 19
+---| "wolf" Wolf ID: 95
+---| "zoglin" Zoglin
+---| "zombie" Zombie ID: 54
+---| "zombie_horse" ZombieHorse ID: 29
+---| "zombie_villager" ZombieVillager ID: 27
+---| "zombified_piglin" PigZombie ID: 57
+
+---@class bukkit.EntityType : java.Enum, bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware
+---@field getEntityClass fun(): java.Class<bukkit.Entity>
+---@field getTranslationKey fun(): string
+---@field isEnabledByFeature fun(world: bukkit.World): boolean
