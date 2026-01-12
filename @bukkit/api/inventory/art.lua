@@ -1,11 +1,7 @@
+-- TODO
+
 local Art = import("org.bukkit.Art")
 
-
----@alias bukkit.Art* string
-
----@class bukkit.Art : java.Object
----@field getBlockWidth fun(): integer
----@field getBlockHeight fun(): integer
 
 ---@param id bukkit.Art*|bukkit.NamespacedKey|bukkit.Art
 ---@return bukkit.Art?

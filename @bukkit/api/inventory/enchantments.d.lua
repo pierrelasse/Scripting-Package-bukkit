@@ -1,0 +1,70 @@
+--#region Enchantment
+
+---@alias bukkit.enchantments.EnchantmentLike bukkit.NamespacedKeyLike|bukkit.enchantments.Enchantment*|bukkit.enchantments.Enchantment
+
+---#minecraft_version(1.21.8)
+---@alias bukkit.enchantments.Enchantment*
+---| "protection" # Provides protection against environmental damage
+---| "fire_protection" # Provides protection against fire damage
+---| "feather_falling" # Provides protection against fall damage
+---| "blast_protection" # Provides protection against explosive damage
+---| "projectile_protection" # Provides protection against projectile damage
+---| "respiration" # Decreases the rate of air loss whilst underwater
+---| "aqua_affinity" # Increases the speed at which a player may mine underwater
+---| "thorns" # Damages the attacker
+---| "depth_strider" # Increases walking speed while in water
+---| "frost_walker" # Freezes any still water adjacent to ice / frost which player is walking on
+---| "binding_curse" # Item cannot be removed
+---| "sharpness" # Increases damage against all targets
+---| "smite" # Increases damage against undead targets
+---| "bane_of_arthropods" # Increases damage against arthropod targets
+---| "knockback" # All damage to other targets will knock them back when hit
+---| "fire_aspect" # When attacking a target, has a chance to set them on fire
+---| "looting" # Provides a chance of gaining extra loot when killing monsters
+---| "sweeping_edge" # Increases damage against targets when using a sweep attack
+---| "efficiency" # Increases the rate at which you mine/dig
+---| "silk_touch" # Allows blocks to drop themselves instead of fragments (for example,<br> stone instead of cobblestone)
+---| "unbreaking" # Decreases the rate at which a tool looses durability
+---| "fortune" # Provides a chance of gaining extra loot when destroying blocks
+---| "power" # Provides extra damage when shooting arrows from bows
+---| "punch" # Provides a knockback when an entity is hit by an arrow from a bow
+---| "flame" # Sets entities on fire when hit by arrows shot from a bow
+---| "infinity" # Provides infinite arrows when shooting a bow
+---| "luck_of_the_sea" # Decreases odds of catching worthless junk
+---| "lure" # Increases rate of fish biting your hook
+---| "loyalty" # Causes a thrown trident to return to the player who threw it
+---| "impaling" # Deals more damage to mobs that live in the ocean
+---| "riptide" # When it is rainy, launches the player in the direction their trident is thrown
+---| "channeling" # Strikes lightning when a mob is hit with a trident if conditions are<br> stormy
+---| "multishot" # Shoot multiple arrows from crossbows
+---| "quick_charge" # Charges crossbows quickly
+---| "piercing" # Crossbow projectiles pierce entities
+---| "density" # Increases fall damage of maces
+---| "breach" # Reduces armor effectiveness against maces
+---| "wind_burst" # Emits wind burst upon hitting enemy
+---| "mending" # Allows mending the item using experience orbs
+---| "vanishing_curse" # Item disappears instead of dropping
+---| "soul_speed" # Walk quicker on soul blocks
+---| "swift_sneak" # Walk quicker while sneaking
+
+---@class bukkit.enchantments.Enchantment : bukkit.Keyed, bukkit.Translatable, adventure.translation.Translatable
+---@field getMaxLevel fun(): integer
+---@field getStartLevel fun(): integer
+---@field conflictsWith fun(other: bukkit.enchantments.Enchantment): boolean
+---@field canEnchantItem fun(item: bukkit.ItemStack): boolean
+---@field isCursed fun(): boolean
+---@field isTradeable fun(): boolean
+---@field isDiscoverable fun(): boolean
+---@field getMinModifiedCost fun(level: integer): integer
+---@field getMaxModifiedCost fun(level: integer): integer
+---@field getAnvilCost fun(): integer
+
+--#endregion
+
+---@class bukkit.enchantments.EnchantmentOffer : java.Object
+---@field getEnchantment fun(): bukkit.enchantments.Enchantment
+---@field setEnchantment fun(v: bukkit.enchantments.Enchantment)
+---@field getEnchantmentLevel fun(): integer
+---@field setEnchantmentLevel fun(v: integer)
+---@field getCost fun(): integer
+---@field setCost fun(v: integer)

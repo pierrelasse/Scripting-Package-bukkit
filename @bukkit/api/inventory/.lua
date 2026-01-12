@@ -1,27 +1,13 @@
-local EquipmentSlot = import("org.bukkit.inventory.EquipmentSlot")
-local EquipmentSlotGroup = import("org.bukkit.inventory.EquipmentSlotGroup")
+--#region InventoryType
 
+-- TODO
 
----@param name bukkit.inventory.EquipmentSlot*|bukkit.inventory.EquipmentSlot
----@return bukkit.inventory.EquipmentSlot
-function bukkit.equipmentSlot(name)
-    if type(name) ~= "string" then return name end
-    return EquipmentSlot.valueOf(name)
-end
-
----@param name bukkit.inventory.EquipmentSlotGroup*|bukkit.inventory.EquipmentSlotGroup
----@return bukkit.inventory.EquipmentSlotGroup
-function bukkit.equipmentSlotGroup(name)
-    if type(name) ~= "string" then return name end
-    return EquipmentSlotGroup.getByName(name)
-end
+--#endregion
 
 --TODO
 ---@param ... bukkit.ItemStack
 ---@return java.array<bukkit.ItemStack>
-function bukkit.itemArray(...)
-    return arrayOf(...)
-end
+function bukkit.itemArray(...) return arrays.of(...) end
 
 --TODO
 ---Adds item(s) to a entity's inventory.
@@ -55,3 +41,27 @@ function bukkit.hasInventorySpace(inventory, itemStack)
 
     return false
 end
+
+--#region EquipmentSlot
+local EquipmentSlot = import("org.bukkit.inventory.EquipmentSlot")
+
+---@param name bukkit.inventory.EquipmentSlot*|bukkit.inventory.EquipmentSlot
+---@return bukkit.inventory.EquipmentSlot
+function bukkit.equipmentSlot(name)
+    if type(name) ~= "string" then return name end
+    return EquipmentSlot.valueOf(name:upper())
+end
+
+--#endregion
+
+--#region EquipmentSlotGroup
+local EquipmentSlotGroup = import("org.bukkit.inventory.EquipmentSlotGroup")
+
+---@param name bukkit.inventory.EquipmentSlotGroup*|bukkit.inventory.EquipmentSlotGroup
+---@return bukkit.inventory.EquipmentSlotGroup
+function bukkit.equipmentSlotGroup(name)
+    if type(name) ~= "string" then return name end
+    return EquipmentSlotGroup.getByName(name:upper())
+end
+
+--#endregion
