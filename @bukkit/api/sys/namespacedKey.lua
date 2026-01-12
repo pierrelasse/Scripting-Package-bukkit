@@ -11,7 +11,7 @@ function bukkit.isNamespacedKey(v) return instanceof(v, NamespacedKey) end
 function bukkit.nsk(v)
     if adventure then
         if adventure.isKey(v) then ---@cast v adventure.key.Key
-            return NamespacedKey(v.namespace(), v.key())
+            return NamespacedKey(v.namespace(), v.value())
         end
         if adventure.isKeyed(v) then ---@cast v adventure.key.Keyed
             return bukkit.nsk(v.key())

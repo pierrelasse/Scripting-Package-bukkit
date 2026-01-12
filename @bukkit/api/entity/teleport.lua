@@ -41,7 +41,7 @@ if bukkit.isPaper then
             arr,
             function(e) return e ~= nil end
         ) ---@cast arr java.array<bukkit.entity.teleport.TeleportFlag>
-        return arr
+        return arrays.of(arrays.unpack(arr))
     end
 end
 
@@ -65,20 +65,21 @@ end
 ---@param flags? (nil|bukkit.entity.teleport.TeleportFlag*|bukkit.entity.teleport.TeleportFlag)[]
 function bukkit.teleport(entity, location, callback, cause, flags) ---@cast entity bukkit.Entity
     if bukkit.isPaper then
-        if callback ~= nil then
+        if callback ~= nil or flags ~= nil then
             entity.teleportAsync(
                 location,
                 cause or bukkit.teleportCause("plugin"),
                 bukkit.teleportFlagsArr(flags)
             )
                 .thenAccept(java.consumer(function(success)
-                    callback(entity, success)
+                    if callback then callback(entity, success) end
                 end))
             return
         end
-        if bukkit.isFolia then error("can't teleport entities asynchronously") end
+        if bukkit.isFolia then error("can't teleport entities synchronously") end
     end
-    entity.teleport(location)
+
+    entity.teleport(location) -- TODO
     if callback ~= nil then callback(entity, true) end
 end
 

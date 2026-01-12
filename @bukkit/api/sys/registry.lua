@@ -23,7 +23,7 @@ local Registry = import("org.bukkit.Registry")
 --- SOUNDS: bukkit.Registry<java.Object>;
 --- TRIM_MATERIAL: bukkit.Registry<java.Object>;
 --- TRIM_PATTERN: bukkit.Registry<java.Object>;
---- DAMAGE_TYPE: bukkit.Registry<java.Object>;
+--- DAMAGE_TYPE: bukkit.Registry<bukkit.DamageType>;
 --- JUKEBOX_SONG: bukkit.Registry<java.Object>;
 --- VILLAGER_PROFESSION: bukkit.Registry<java.Object>;
 --- VILLAGER_TYPE: bukkit.Registry<java.Object>;
