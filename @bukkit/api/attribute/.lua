@@ -1,29 +1,44 @@
-local Attribute = import("org.bukkit.attribute.Attribute")
 local AttributeModifier = import("org.bukkit.attribute.AttributeModifier")
-local AttributeModifier_Operation = import("org.bukkit.attribute.AttributeModifier$Operation")
 
 
 local this = {}
 
----@param id bukkit.attribute.Attribute*|bukkit.NamespacedKey|bukkit.attribute.Attribute
+--#region Attribute
+local Attribute = import("org.bukkit.attribute.Attribute")
+
+---@param v bukkit.attribute.Attribute|any
+function this.is(v) return instanceof(v, Attribute) end
+
+---@param id bukkit.NamespacedKeyLike|bukkit.attribute.Attribute*|bukkit.attribute.Attribute
 ---@return bukkit.attribute.Attribute?
 function bukkit.attribute(id)
-    if type(id) == "string" then
-        return Attribute.valueOf(id)
+    if bukkit.attributes.is(id) then ---@cast id bukkit.attribute.Attribute
+        return id
+    end ---@cast id bukkit.NamespacedKeyLike|bukkit.attribute.Attribute*
+
+    if type(id) == "string" and not id:contains(":") then
+        id = id:lower()
     end
-    if bukkit.isNamespacedKey(id) then ---@cast id bukkit.NamespacedKey
-        return bukkit.registry.ATTRIBUTE.get(id)
-    end
-    ---@cast id bukkit.attribute.Attribute
-    return id
+
+    return bukkit.registry.ATTRIBUTE.get(bukkit.nsk(id))
 end
+
+--#endregion
+
+--#region AttributeModifier_Operation
+
+local AttributeModifier_Operation = import("org.bukkit.attribute.AttributeModifier$Operation")
 
 ---@param name bukkit.attribute.AttributeModifierOperation*|bukkit.attribute.AttributeModifierOperation
 ---@return bukkit.attribute.AttributeModifierOperation
 function this.modifierOperation(name)
     if type(name) ~= "string" then return name end
-    return AttributeModifier_Operation.valueOf(name)
+    return AttributeModifier_Operation.valueOf(name:upper())
 end
+
+--#endregion
+
+--#region AttributeModifier
 
 ---@param key bukkit.NamespacedKeyLike
 ---@param amount number
@@ -39,6 +54,8 @@ function this.modifier(key, amount, operation, slot)
         bukkit.equipmentSlotGroup(slot)
     )
 end
+
+--#endregion
 
 ---@deprecated
 bukkit.attributeModifier = this.modifier
