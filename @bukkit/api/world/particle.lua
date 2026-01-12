@@ -8,7 +8,7 @@ local Particle_Trail = import("org.bukkit.Particle$Trail")
 ---@param v bukkit.Particle|any
 function bukkit.isParticle(v) return instanceof(v, Particle) end
 
----@param id bukkit.NamespacedKeyLike|bukkit.Particle*|bukkit.Particle
+---@param id bukkit.ParticleLike
 ---@return bukkit.Particle?
 function bukkit.particle(id)
     if bukkit.isParticle(id) then ---@cast id bukkit.Particle
@@ -61,15 +61,16 @@ function ParticleBuilder:clone()
     return setmetatable(table.clone(self), ParticleBuilder)
 end
 
-function ParticleBuilder:spawn()
+---@param location? bukkit.Location
+function ParticleBuilder:spawn(location)
     local particle = self._particle
     if particle == nil then return end
 
     local receivers = self._receivers
 
-    local location = self._location
+    if location == nil then location = self._location end
     if location == nil then return end
-    local world = self._location.getWorld()
+    local world = location.getWorld()
     if world == nil then return end
 
     local source = self._source
@@ -170,6 +171,13 @@ function ParticleBuilder:count(v)
     return self
 end
 
+---@param v integer
+---@return self
+function ParticleBuilder:amount(v)
+    self._count = v
+    return self
+end
+
 ---@param x number?
 ---@param y number?
 ---@param z number?
@@ -251,7 +259,7 @@ function ParticleBuilder:trail(target, color, duration)
     return self
 end
 
----@param id bukkit.NamespacedKeyLike|bukkit.Particle*|bukkit.Particle
+---@param id bukkit.ParticleLike
 function bukkit.particleBuilder(id)
     return setmetatable({ _particle = bukkit.particle(id) }, ParticleBuilder)
 end

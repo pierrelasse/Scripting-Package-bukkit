@@ -1,3 +1,5 @@
+---@alias bukkit.ParticleLike bukkit.NamespacedKeyLike|bukkit.Particle*|bukkit.Particle
+
 ---@alias bukkit.Particle* string
 ---| "minecraft:poof"
 ---| "minecraft:explosion"
