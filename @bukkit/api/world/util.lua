@@ -43,12 +43,12 @@ end
 ---@param location bukkit.Location|bukkit.Entity
 ---@param radius number|bukkit.tVec3|{ distance: number }
 ---@param filter? fun(ent: bukkit.Entity): nil|false|boolean
----@param fn? fun(ent: bukkit.Entity)
+---@param fn? fun(ent: bukkit.Entity): nil|true|boolean
 function bukkit.nearbyEntities(location, radius, filter, fn)
     local entities = bukkit.nearbyEntitiesL(location, radius, filter)
     if fn ~= nil then
         for ent in forEach(entities) do
-            fn(ent)
+            if fn(ent) == true then break end
         end
     else
         return forEach(entities)
@@ -70,7 +70,7 @@ end
 ---@param location bukkit.Location|bukkit.Entity
 ---@param radius number|bukkit.tVec3|{ distance: number }
 ---@param filter? fun(ent: bukkit.entity.LivingEntity): nil|false|boolean
----@param fn? fun(ent: bukkit.entity.LivingEntity)
+---@param fn? fun(ent: bukkit.entity.LivingEntity): nil|true|boolean
 function bukkit.nearbyLivingEntities(location, radius, filter, fn)
     return bukkit.nearbyEntities(location, radius, function(ent)
         if not bukkit.isLivingEntity(ent) then return false end ---@cast ent bukkit.entity.LivingEntity
@@ -93,7 +93,7 @@ end
 ---@param location bukkit.Location|bukkit.Entity
 ---@param radius number|bukkit.tVec3|{ distance: number }
 ---@param filter? fun(p: bukkit.entity.Player): nil|false|boolean
----@param fn? fun(p: bukkit.entity.Player)
+---@param fn? fun(p: bukkit.entity.Player): nil|true|boolean
 function bukkit.nearbyPlayers(location, radius, filter, fn)
     return bukkit.nearbyEntities(location, radius, function(ent)
         if not bukkit.isPlayer(ent) then return false end ---@cast ent bukkit.entity.Player
