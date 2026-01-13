@@ -50,7 +50,7 @@ function bukkit.spawnArrow(location, direction, speed, spread, clazz)
     end
 end
 
----@param source bukkit.Location|bukkit.projectiles.ProjectileSource
+---@param source bukkit.projectiles.ProjectileSource
 ---@param type bukkit.EntityType|bukkit.EntityType*
 ---@param velocity? bukkit.Vector
 function bukkit.spawnProjectile(source, type, velocity)

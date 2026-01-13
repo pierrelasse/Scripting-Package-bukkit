@@ -121,7 +121,7 @@ end
 
 ---@param id bukkit.PotionEffectTypeLike
 function bukkit.potionEffectBuilder(id)
-    return setmetatable({ type = bukkit.potionEffectType(id) }, PotionEffectBuilder)
+    return setmetatable({ _type = bukkit.potionEffectType(id) }, PotionEffectBuilder)
 end
 
 --#endregion

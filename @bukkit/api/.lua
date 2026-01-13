@@ -20,10 +20,10 @@ end
 
 require("@bukkit/api/deprecated/")
 require("@bukkit/api/deprecated/chatColor")
+require("@bukkit/api/deprecated/particles")
 
 require("@bukkit/api/attribute/")
 
-require("@bukkit/api/block/")
 require("@bukkit/api/block/banner")
 require("@bukkit/api/block/biome")
 require("@bukkit/api/block/data")
@@ -31,6 +31,7 @@ require("@bukkit/api/block/structure")
 
 require("@bukkit/api/entity/")
 require("@bukkit/api/entity/player/")
+require("@bukkit/api/entity/damage")
 require("@bukkit/api/entity/entityType")
 require("@bukkit/api/entity/teleport")
 
@@ -40,10 +41,8 @@ require("@bukkit/api/inventory/dyeColor")
 require("@bukkit/api/inventory/enchantments")
 require("@bukkit/api/inventory/ItemBuilder")
 require("@bukkit/api/inventory/itemFlag")
-require("@bukkit/api/ItemBuilder")
 
 require("@bukkit/api/potion/")
-require("@bukkit/api/potion/potionEffect")
 
 require("@bukkit/api/scoreboard/")
 require("@bukkit/api/scoreboard/team")
@@ -66,7 +65,6 @@ require("@bukkit/api/world/sound")
 require("@bukkit/api/world/spawnAndPlay")
 require("@bukkit/api/world/util")
 
-require("@bukkit/api/damage")
 require("@bukkit/api/gameMode")
 require("@bukkit/api/material")
 require("@bukkit/api/metadata")

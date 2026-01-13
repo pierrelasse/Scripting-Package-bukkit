@@ -10,12 +10,12 @@
 ---@field getJumpStrength fun(): integer
 ---@field setJumpStrength fun(v: integer)
 ---@field getInventory fun(): java.Object -- TODO
----@field isEatingGrass fun(): boolean -- Paper
----@field setEatingGrass fun(v: boolean) -- Paper
----@field isRearing fun(): boolean -- Paper
----@field setRearing fun(v: boolean) -- Paper
----@field isEating fun(): boolean -- Paper
----@field setEating fun(v: boolean) -- Paper
+---@field isEatingGrass fun(): boolean --#paper
+---@field setEatingGrass fun(v: boolean) --#paper
+---@field isRearing fun(): boolean --#paper
+---@field setRearing fun(v: boolean) --#paper
+---@field isEating fun(): boolean --#paper
+---@field setEating fun(v: boolean) --#paper
 
 ---org.bukkit.entity.AbstractSkeleton
 ---@class bukkit.entity.AbstractSkeleton : bukkit.entity.Monster
@@ -64,8 +64,8 @@
 ---@field setRadiusPerTick fun(v: java.float)
 ---@field getParticle fun(): bukkit.Particle*
 ---@field setParticle fun(v: bukkit.Particle*, data?: unknown)
----@field getBasePotionType fun(): bukkit.PotionType?
----@field setBasePotionType fun(type: bukkit.PotionType?)
+---@field getBasePotionType fun(): bukkit.PotionType*?
+---@field setBasePotionType fun(type: bukkit.PotionType*?)
 ---@field hasCustomEffects fun(): boolean
 ---@field getCustomEffects fun(): java.List<bukkit.PotionEffect>
 ---@field addCustomEffect fun(effect: bukkit.PotionEffect, overwrite: boolean): boolean
@@ -282,16 +282,21 @@
 
 ---org.bukkit.entity.Explosive
 ---@class bukkit.entity.Explosive : bukkit.Entity
----@field setYield fun(yield: java.float) # Set the radius affected by this explosive's explosion.<br>This is the base yield, which may be affected by other entity attributes.
+---@field setYield fun(v: java.float) The radius affected by this explosive's explosion.<br>This is the base yield, which may be affected by other entity attributes.
 ---@field getYield fun(): java.float
----@field setIsIncendiary fun(incendiary: boolean) # Whether or not this explosive creates a fire when exploding.
----@field isIncendiary fun(): boolean # Whether or not this explosive creates a fire when exploding.
+---@field setIsIncendiary fun(v: boolean) if fire should be created
+---@field isIncendiary fun(): boolean
 
 ---org.bukkit.entity.FallingBlock
 ---@class bukkit.entity.FallingBlock
 
 ---org.bukkit.entity.Fireball
----@class bukkit.entity.Fireball : bukkit.entity.Projectile
+---@class bukkit.entity.Fireball : bukkit.entity.Projectile, bukkit.entity.Explosive
+---@field setDirection fun(v: bukkit.Vector)
+---@field getAcceleration fun(): bukkit.Vector
+---@field setAcceleration fun(v: bukkit.Vector)
+---@field getPower fun(): bukkit.Vector #paper
+---@field setPower fun(v: bukkit.Vector) #paper
 
 ---org.bukkit.entity.Firework
 ---@class bukkit.entity.Firework : bukkit.Entity -- TODO
@@ -402,16 +407,28 @@
 ---@field fireworkBoost fun(itemStack: bukkit.ItemStack): bukkit.entity.Firework?
 
 ---org.bukkit.entity.Husk
----@class bukkit.entity.Husk
+---@class bukkit.entity.Husk : bukkit.entity.Zombie -- TODO
 
 ---org.bukkit.entity.Illager
----@class bukkit.entity.Illager
+---@class bukkit.entity.Illager : bukkit.entity.Raider
 
 ---org.bukkit.entity.Illusioner
----@class bukkit.entity.Illusioner
+---@class bukkit.entity.Illusioner : bukkit.entity.Spellcaster
 
 ---org.bukkit.entity.Interaction
----@class bukkit.entity.Interaction
+---@class bukkit.entity.Interaction : bukkit.Entity
+---@field getInteractionWidth fun(): java.float
+---@field setInteractionWidth fun(v: java.float)
+---@field getInteractionHeight fun(): java.float
+---@field setInteractionHeight fun(v: java.float)
+---@field isResponsive fun(): boolean
+---@field setResponsive fun(v: boolean)
+---@field getLastAttack fun(): bukkit.entity.Interaction.PreviousInteraction?
+---@field getLastInteraction fun(): bukkit.entity.Interaction.PreviousInteraction?
+
+---@class bukkit.entity.Interaction.PreviousInteraction : java.Object
+---@field getPlayer fun(): bukkit.OfflinePlayer
+---@field getTimestamp fun(): java.long
 
 ---org.bukkit.entity.IronGolem
 ---@class bukkit.entity.IronGolem
@@ -439,7 +456,7 @@
 
 ---org.bukkit.entity.ItemDisplay
 ---@class bukkit.entity.ItemDisplay : bukkit.entity.Display
----@field getItemStack fun(): bukkit.ItemStack? -- Paper
+---@field getItemStack fun(): bukkit.ItemStack? --#paper
 ---@field setItemStack fun(v: bukkit.ItemStack?)
 ---@field getItemDisplayTransform fun(): java.Object -- TODO
 ---@field setItemDisplayTransform fun(v: java.Object) -- TODO
@@ -464,12 +481,12 @@
 ---@field getEyeHeight fun(ignorePose?: boolean): number
 ---@field getEyeLocation fun(): bukkit.Location
 ---@field getLineOfSight fun(transparent: java.Set<bukkit.Material>, maxDistance: integer): java.List<bukkit.block.Block>
----@field getTargetBlock fun(transparent: java.Set<bukkit.Material>, maxDistance: integer): bukkit.block.Block -- Paper
----@field getTargetBlockFace function -- Paper -- TODO
----@field getTargetBlockInfo function -- Paper -- TODO
----@field getTargetEntity fun(maxDistance: integer, ignoreBlocks?: boolean): bukkit.Entity? -- Paper
----@field getTargetEntityInfo function -- Paper -- TODO
----@field rayTraceEntities fun(maxDistance: integer, ignoreBlocks?: boolean): java.Object? -- Paper -- TODO
+---@field getTargetBlock fun(transparent: java.Set<bukkit.Material>, maxDistance: integer): bukkit.block.Block --#paper
+---@field getTargetBlockFace function --#paper -- TODO
+---@field getTargetBlockInfo function --#paper -- TODO
+---@field getTargetEntity fun(maxDistance: integer, ignoreBlocks?: boolean): bukkit.Entity? --#paper
+---@field getTargetEntityInfo function --#paper -- TODO
+---@field rayTraceEntities fun(maxDistance: integer, ignoreBlocks?: boolean): java.Object? --#paper -- TODO
 ---@field getLastTwoTargetBlocks fun(transparent: java.Set<bukkit.Material>, maxDistance: integer): java.List<bukkit.block.Block>
 ---@field getTargetBlockExact fun(maxDistance: integer, fluidCollisionMode?: java.Object): bukkit.block.Block -- TODO
 ---@field rayTraceBlocks fun(maxDistance: number, fluidCollisionMode: java.Object): java.Object -- TODO
@@ -766,7 +783,7 @@
 ---@class bukkit.entity.Rabbit : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.Raider
----@class bukkit.entity.Raider : bukkit.Entity -- TODO
+---@class bukkit.entity.Raider : bukkit.entity.Monster -- TODO
 
 ---org.bukkit.entity.Ravager
 ---@class bukkit.entity.Ravager : bukkit.Entity -- TODO
@@ -793,7 +810,9 @@
 ---@class bukkit.entity.Sittable : bukkit.Entity -- TODO
 
 ---org.bukkit.entity.SizedFireball
----@class bukkit.entity.SizedFireball : bukkit.Entity -- TODO
+---@class bukkit.entity.SizedFireball : bukkit.entity.Fireball
+---@field getDisplayItem fun(): bukkit.ItemStack
+---@field setDisplayItem fun(v: bukkit.ItemStack)
 
 ---org.bukkit.entity.Skeleton
 ---@class bukkit.entity.Skeleton : bukkit.Entity -- TODO
@@ -809,7 +828,7 @@
 ---@field setWander fun(v: boolean)
 
 ---org.bukkit.entity.SmallFireball
----@class bukkit.entity.SmallFireball : bukkit.Entity -- TODO
+---@class bukkit.entity.SmallFireball : bukkit.entity.SizedFireball
 
 ---org.bukkit.entity.Sniffer
 ---@class bukkit.entity.Sniffer : bukkit.Entity -- TODO
@@ -854,7 +873,7 @@
 ---@class bukkit.entity.Tameable : bukkit.entity.Animals -- TODO
 ---@field isTamed fun(): boolean
 ---@field setTamed fun(v: boolean)
----@field getOwnerUniqueId fun(): java.UUID? -- Paper
+---@field getOwnerUniqueId fun(): java.UUID? --#paper
 ---@field getOwner fun(): bukkit.entity.AnimalTamer?
 ---@field setOwner fun(v: bukkit.entity.AnimalTamer?)
 
