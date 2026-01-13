@@ -1,25 +1,105 @@
+--#region Sound
+local Sound = import("org.bukkit.Sound")
+
+---@param v bukkit.Sound|any
+function bukkit.isSound(v) return instanceof(v, Sound) end
+
+---@param id bukkit.SoundLike
+---@return bukkit.Sound?
+function bukkit.sound(id)
+    if bukkit.isSound(id) then ---@cast id bukkit.Sound
+        return id
+    end ---@cast id bukkit.NamespacedKeyLike|bukkit.Sound*
+    local sound
+    pcall(function() sound = Sound.valueOf(id) end)
+    return sound
+end
+
+--#endregion
+
+--#region SoundCategory
 local SoundCategory = import("org.bukkit.SoundCategory")
 
+---@param v bukkit.SoundCategory|any
+function bukkit.isSoundCategory(v) return instanceof(v, SoundCategory) end
 
----org.bukkit.SoundGroup
----@class bukkit.SoundGroup : java.Object
--- TODO
+---@param id bukkit.SoundCategoryLike
+---@return bukkit.SoundCategory?
+function bukkit.soundCategory(id)
+    if bukkit.isSoundCategory(id) then ---@cast id bukkit.SoundCategory
+        return id
+    end ---@cast id bukkit.SoundCategory*
+    if type(id) == "string" then
+        id = id:upper()
+    end
+    local v = java.enumValueOf(SoundCategory, id)
 
----@alias bukkit.SoundCategory string
----| "MASTER"
----| "MUSIC"
----| "RECORDS"
----| "WEATHER"
----| "BLOCKS"
----| "HOSTILE"
----| "NEUTRAL"
----| "PLAYERS"
----| "AMBIENT"
----| "VOICE"
+    -- FIX: "player" -> "PLAYERS"
+    if v == nil then v = java.enumValueOf(SoundCategory, id.."S") end
 
----@param name bukkit.SoundCategory|java.Object
----@return java.Object soundCategory org.bukkit.SoundCategory
-function bukkit.soundCategory(name)
-    if type(name) ~= "string" then return name end
-    return SoundCategory[name]
+    return v
 end
+
+--#endregion
+
+-- TODO
+---@class bukkit.SoundGroup : java.Object
+
+--#region Builder
+
+---@class bukkit.SoundBuilder : std.io.Applyable
+---@field private _type string
+local SoundBuilder = {
+    ---@private
+    _source = bukkit.soundCategory("master")
+}
+SoundBuilder.__index = SoundBuilder
+
+---@param target bukkit.Location
+function SoundBuilder:play(target)
+    -- TODO
+    bukkit.playSound(
+        target,
+        self._type,
+        self._volume,
+        self._pitch,
+        self._source,
+        self._seed
+    )
+end
+
+---@param v bukkit.SoundCategoryLike
+---@return self
+function SoundBuilder:source(v)
+    self._source = bukkit.soundCategory(v)
+    return self
+end
+
+---@param v java.float #range(0, numbers.i32.limit)
+---@return self
+function SoundBuilder:volume(v)
+    self._volume = v
+    return self
+end
+
+---@param v java.float #range(-1, 1)
+---@return self
+function SoundBuilder:pitch(v)
+    self._pitch = v
+    return self
+end
+
+---@param v java.long?
+---@return self
+function SoundBuilder:seed(v)
+    self._seed = v
+    return self
+end
+
+---@param type bukkit.Sound*
+---@return bukkit.SoundBuilder
+function bukkit.soundBuilder(type)
+    return setmetatable({ _type = type }, SoundBuilder)
+end
+
+--#endregion

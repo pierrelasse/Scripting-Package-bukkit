@@ -20,7 +20,7 @@ local Registry = import("org.bukkit.Registry")
 --- STATISTIC: bukkit.Registry<java.Object>;
 --- STRUCTURE: bukkit.Registry<java.Object>;
 --- STRUCTURE_TYPE: bukkit.Registry<java.Object>;
---- SOUNDS: bukkit.Registry<java.Object>;
+--- SOUNDS: bukkit.Registry<bukkit.Sound>;
 --- TRIM_MATERIAL: bukkit.Registry<java.Object>;
 --- TRIM_PATTERN: bukkit.Registry<java.Object>;
 --- DAMAGE_TYPE: bukkit.Registry<bukkit.DamageType>;
