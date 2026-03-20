@@ -11,7 +11,7 @@ local this = {
 ---@param t core.base64
 ---@return string
 function this.textureIdFromBase64(t)
-    if not base64.is(t) then return t end
+    if type(t) ~= "string" or not t:startsWith("ey") then return t end
     local s = base64.decode(t)
     local j = json.decode(s) ---@type { textures: { SKIN: { url: string } } }
     return j.textures.SKIN.url:sub(#this.URL_PREFIX + 1)

@@ -1,3 +1,7 @@
+--#region Attribute
+
+---@alias bukkit.attribute.AttributeLike bukkit.NamespacedKeyLike|bukkit.attribute.Attribute*|bukkit.attribute.Attribute
+
 ---#minecraft_version(1.21.8)
 ---@alias bukkit.attribute.Attribute* string
 ---| "max_health" Maximum health of an Entity.
@@ -38,8 +42,14 @@
 
 ---@class bukkit.attribute.Attribute : bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware
 
+--#endregion
+
 ---@class bukkit.attribute.Attributable : java.Object
 ---@field getAttribute fun(attribute: bukkit.attribute.Attribute): bukkit.attribute.AttributeInstance?
+
+--#region AttributeModifierOperation
+
+---@alias bukkit.attribute.AttributeModifierOperationLike bukkit.attribute.AttributeModifierOperation*|bukkit.attribute.AttributeModifierOperation
 
 ---@alias bukkit.attribute.AttributeModifierOperation* string
 ---| "add_number"
@@ -47,6 +57,8 @@
 ---| "multiply_scalar_1"
 
 ---@class bukkit.attribute.AttributeModifierOperation : java.Object
+
+--#endregion
 
 -- TODO
 ---@class bukkit.attribute.AttributeModifier : bukkit.Keyed

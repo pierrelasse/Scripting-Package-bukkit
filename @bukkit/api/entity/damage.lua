@@ -41,6 +41,7 @@ function DamageSourceBuilder:damage(entity, amount)
     bukkit.damage(entity, amount, self:build())
 end
 
+---**Direct entity has to be set!**
 ---@param entity bukkit.Entity
 ---@return self
 function DamageSourceBuilder:causingEntity(entity)

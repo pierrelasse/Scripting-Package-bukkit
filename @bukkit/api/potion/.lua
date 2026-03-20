@@ -28,7 +28,7 @@ end
 
 --#region Builder
 
----@class bukkit.PotionEffectBuilder
+---@class bukkit.PotionEffectBuilder : std.io.Cloneable, std.io.Applyable
 ---@field protected _type bukkit.PotionEffectType
 ---@field protected _amplifier? integer
 ---@field protected _duration? integer
@@ -38,8 +38,16 @@ end
 local PotionEffectBuilder = {}
 PotionEffectBuilder.__index = PotionEffectBuilder
 
+---@return bukkit.PotionEffectBuilder
 function PotionEffectBuilder:clone()
     return setmetatable(table.clone(self), PotionEffectBuilder)
+end
+
+---@param fn fun(th: bukkit.PotionEffectBuilder)
+---@return self
+function PotionEffectBuilder:apply(fn)
+    fn(self)
+    return self
 end
 
 ---@return bukkit.PotionEffect
@@ -83,8 +91,14 @@ function PotionEffectBuilder:amplifier(v)
     return self
 end
 
+---A higher amplifier means the potion effect happens more often over<br>
+---its duration and in some cases has more effect on its target.
+---@see bukkit.PotionEffectBuilder.amplifier
+---@param v integer
+---@return self
 function PotionEffectBuilder:level(v)
-    return PotionEffectBuilder:amplifier(v - 1)
+    self:amplifier(v - 1)
+    return self
 end
 
 ---@param v integer
@@ -111,6 +125,13 @@ function PotionEffectBuilder:particles(v)
     return self
 end
 
+---@see bukkit.PotionEffectBuilder.particles
+---@return self
+function PotionEffectBuilder:hideParticles()
+    self._particles = false
+    return self
+end
+
 ---#default(self._particles)
 ---@param v boolean?
 ---@return self
@@ -121,7 +142,7 @@ end
 
 ---@param id bukkit.PotionEffectTypeLike
 function bukkit.potionEffectBuilder(id)
-    return setmetatable({ _type = bukkit.potionEffectType(id) }, PotionEffectBuilder)
+    return setmetatable({ _type = bukkit.potionEffectType(id) or error() }, PotionEffectBuilder)
 end
 
 --#endregion

@@ -1,6 +1,3 @@
-local AttributeModifier = import("org.bukkit.attribute.AttributeModifier")
-
-
 local this = {}
 
 --#region Attribute
@@ -9,7 +6,7 @@ local Attribute = import("org.bukkit.attribute.Attribute")
 ---@param v bukkit.attribute.Attribute|any
 function this.is(v) return instanceof(v, Attribute) end
 
----@param id bukkit.NamespacedKeyLike|bukkit.attribute.Attribute*|bukkit.attribute.Attribute
+---@param id bukkit.attribute.AttributeLike
 ---@return bukkit.attribute.Attribute?
 function bukkit.attribute(id)
     if bukkit.attributes.is(id) then ---@cast id bukkit.attribute.Attribute
@@ -26,7 +23,6 @@ end
 --#endregion
 
 --#region AttributeModifier_Operation
-
 local AttributeModifier_Operation = import("org.bukkit.attribute.AttributeModifier$Operation")
 
 ---@param name bukkit.attribute.AttributeModifierOperation*|bukkit.attribute.AttributeModifierOperation
@@ -39,6 +35,7 @@ end
 --#endregion
 
 --#region AttributeModifier
+local AttributeModifier = import("org.bukkit.attribute.AttributeModifier")
 
 ---@param key bukkit.NamespacedKeyLike
 ---@param amount number
@@ -46,7 +43,7 @@ end
 ---@param slot? bukkit.inventory.EquipmentSlotGroup*|bukkit.inventory.EquipmentSlotGroup
 ---@return bukkit.attribute.AttributeModifier
 function this.modifier(key, amount, operation, slot)
-    if slot == nil then slot = "ANY" end
+    if slot == nil then slot = "any" end
     return AttributeModifier(
         bukkit.nsk(key),
         amount,

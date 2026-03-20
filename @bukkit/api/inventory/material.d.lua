@@ -1,3 +1,5 @@
+---@alias bukkit.MaterialLike bukkit.NamespacedKeyLike|bukkit.Material*|bukkit.Material
+
 ---@alias bukkit.Material* bukkit.MaterialItem*|bukkit.MaterialBlock*
 
 ---@class bukkit.Material : java.Enum, bukkit.Keyed, bukkit.Translatable, bukkit.registry.RegistryAware

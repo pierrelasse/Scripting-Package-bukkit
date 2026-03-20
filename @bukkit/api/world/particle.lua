@@ -23,7 +23,7 @@ end
 
 --#region ParticleBuilder
 
----@class bukkit.ParticleBuilder
+---@class bukkit.ParticleBuilder : std.io.Cloneable, std.io.Applyable
 ---@field protected _particle? bukkit.Particle
 ---@field protected _receivers? java.List<bukkit.entity.Player>
 ---@field protected _source? bukkit.entity.Player
@@ -57,8 +57,16 @@ local ParticleBuilder = {
 }
 ParticleBuilder.__index = ParticleBuilder
 
+---@return bukkit.ParticleBuilder
 function ParticleBuilder:clone()
     return setmetatable(table.clone(self), ParticleBuilder)
+end
+
+---@param fn fun(th: bukkit.ParticleBuilder)
+---@return self
+function ParticleBuilder:apply(fn)
+    fn(self)
+    return self
 end
 
 ---@param location? bukkit.Location

@@ -47,18 +47,34 @@ end
 
 --#region Builder
 
----@class bukkit.SoundBuilder : std.io.Applyable
+---@class bukkit.SoundBuilder : std.io.Cloneable, std.io.Applyable
 ---@field private _type string
+---@field private _volume java.float #range(0, numbers.i32.limit)
+---@field private _pitch java.float #range(-1, 1)
+---@field private _seed java.long?
 local SoundBuilder = {
     ---@private
     _source = bukkit.soundCategory("master")
 }
 SoundBuilder.__index = SoundBuilder
 
----@param target bukkit.Location
+---@return bukkit.SoundBuilder
+function SoundBuilder:clone()
+    return setmetatable(table.clone(self), SoundBuilder)
+end
+
+---@param fn fun(th: bukkit.SoundBuilder)
+---@return self
+function SoundBuilder:apply(fn)
+    fn(self)
+    return self
+end
+
+---@param target bukkit.Location|adventure.audience.Audience
 function SoundBuilder:play(target)
     -- TODO
     bukkit.playSound(
+    ---@diagnostic disable-next-line: param-type-mismatch
         target,
         self._type,
         self._volume,
@@ -66,6 +82,12 @@ function SoundBuilder:play(target)
         self._source,
         self._seed
     )
+end
+
+-- TODO
+---@param target bukkit.entity.Player
+function SoundBuilder:to(target)
+    return self
 end
 
 ---@param v bukkit.SoundCategoryLike

@@ -41,6 +41,7 @@ require("@bukkit/api/inventory/dyeColor")
 require("@bukkit/api/inventory/enchantments")
 require("@bukkit/api/inventory/ItemBuilder")
 require("@bukkit/api/inventory/itemFlag")
+require("@bukkit/api/inventory/material")
 
 require("@bukkit/api/potion/")
 
@@ -66,7 +67,6 @@ require("@bukkit/api/world/spawnAndPlay")
 require("@bukkit/api/world/util")
 
 require("@bukkit/api/gameMode")
-require("@bukkit/api/material")
 require("@bukkit/api/metadata")
 require("@bukkit/api/offlinePlayer")
 require("@bukkit/api/persistence")

@@ -118,15 +118,15 @@ function bukkit.playEffect(location, effect, data, radius)
 end
 
 ---@param target bukkit.Location|bukkit.Entity
----@param sound string|java.Object
+---@param sound bukkit.SoundLike
 ---@param volume number?=`1`
 ---@param pitch number?=`1`
----@param category? bukkit.SoundCategory|java.Object
+---@param category? bukkit.SoundCategoryLike
 ---@param seed? integer
 function bukkit.playSound(target, sound, volume, pitch, category, seed)
     if volume == nil then volume = 1 end
     if pitch == nil then pitch = 1 end
-    if category == nil then category = "MASTER" end
+    if category == nil then category = "master" end
 
     local args = {
         target,
