@@ -161,6 +161,9 @@ function bukkit.potionEffectType(id)
     if bukkit.isPotionEffectType(id) then ---@cast id bukkit.PotionEffectType
         return id
     end ---@cast id bukkit.NamespacedKeyLike|bukkit.EntityType*
+    if type(id) == "string" and not id:contains(":") then
+        id = id:lower()
+    end
     return bukkit.registry.MOB_EFFECT.get(bukkit.nsk(id))
 end
 
