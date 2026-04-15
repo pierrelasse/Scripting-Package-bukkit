@@ -3,7 +3,7 @@
 ---@alias bukkit.enchantments.EnchantmentLike bukkit.NamespacedKeyLike|bukkit.enchantments.Enchantment*|bukkit.enchantments.Enchantment
 
 ---#minecraft_version(1.21.8)
----@alias bukkit.enchantments.Enchantment*
+---@alias bukkit.enchantments.Enchantment* string
 ---| "protection" # Provides protection against environmental damage
 ---| "fire_protection" # Provides protection against fire damage
 ---| "feather_falling" # Provides protection against fall damage

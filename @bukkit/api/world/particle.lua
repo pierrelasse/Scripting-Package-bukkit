@@ -21,6 +21,8 @@ function bukkit.particle(id)
     return bukkit.registry.PARTICLE_TYPE.get(bukkit.nsk(id))
 end
 
+bukkit.particleOrNil = bukkit.particle
+
 --#region ParticleBuilder
 
 ---@class bukkit.ParticleBuilder : std.io.Cloneable, std.io.Applyable

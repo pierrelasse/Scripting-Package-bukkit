@@ -1,5 +1,6 @@
 ---org.bukkit.Location
 ---@class bukkit.Location : java.Object
+---@field clone fun(): bukkit.Location
 ---@field setWorld fun(world: bukkit.World)
 ---@field isWorldLoaded fun(): boolean
 ---@field getWorld fun(): bukkit.World?
@@ -32,5 +33,4 @@
 ---@field multiply fun(v: number): bukkit.Location
 ---@field zero fun(): bukkit.Location
 ---@field toVector fun(): bukkit.Vector
----@field clone fun(): bukkit.Location
 ---@field checkFinite fun()

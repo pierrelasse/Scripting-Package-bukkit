@@ -5,7 +5,7 @@ local ItemRarity = import("org.bukkit.inventory.ItemRarity")
 local playerHeads = require("@bukkit/api/inventory/playerHeads")
 
 
----@class bukkit.ItemBuilder
+---@class bukkit.ItemBuilder : std.io.Cloneable, std.io.Applyable
 ---@field itemStack bukkit.ItemStack
 ---@field meta java.Object
 local this = {}
@@ -37,16 +37,22 @@ end
 ---```
 ---@param material bukkit.MaterialItem*|bukkit.Material
 function this.of(material)
-    return this.fromItemStack(ItemStack(bukkit.material(material)))
+    return this.fromItemStack(ItemStack(bukkit.material(material) or error()))
 end
 
+---@return bukkit.ItemBuilder
 function this:clone()
-    local cloned = setmetatable({}, this)
+    return setmetatable({
+        itemStack = self.itemStack.clone(),
+        meta = self.meta.clone()
+    }, this)
+end
 
-    cloned.itemStack = self.itemStack.clone()
-    cloned.meta = self.meta.clone()
-
-    return cloned
+---@param fn fun(th: bukkit.ItemBuilder)
+---@return self
+function this:apply(fn)
+    fn(self)
+    return self
 end
 
 ---@param cb fun(meta: java.Object)
@@ -308,7 +314,7 @@ function this:name(v)
 end
 
 ---Sets the lore/description of the item.
----@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>|java.array<string>|fun(list: java.List<string>)
+---@param v nil|string|(string|adventure.text.Component)[]|adventure.text.Component|java.List<string>|java.array<string>|fun(lines: java.List<string|adventure.text.Component>)
 ---@return self
 function this:lore(v)
     if v == nil then
@@ -336,10 +342,20 @@ function this:lore(v)
     elseif arrays.is(v) then ---@cast v java.array<string>
         self.meta.setLore(arrays.toList(v))
     elseif type(v) == "function" then
-        ---@type java.List<string>
+        ---@type java.List<string|adventure.text.Component>
         local list = self.meta.getLore() or java.list()
+
         v(list)
-        self.meta.setLore(list)
+
+        local newList = java.list(list.size()) ---@type java.List<string>
+        for line in forEach(list) do
+            if adventure ~= nil and comp.is(line) then ---@cast line adventure.text.Component
+                newList.add(comp.legacySerialize(line))
+            else ---@cast line string
+                newList.add(line)
+            end
+        end
+        self.meta.setLore(newList)
     else
         self.meta.setLore(v)
     end
@@ -503,13 +519,13 @@ function this:tooltipStyle(v)
     return self
 end
 
----@param v nil|bukkit.NamespacedKey
+---@param v nil|bukkit.NamespacedKeyLike
 ---@return self
 function this:itemModel(v)
     if v == nil then
         self.meta.setItemModel(nil)
-    elseif bukkit.isNamespacedKey(v) then
-        self.meta.setItemModel(v)
+    else
+        self.meta.setItemModel(bukkit.nsk(v))
     end
 
     return self
@@ -633,7 +649,7 @@ function this:equippable(v)
         self.meta.setEquippable(nil)
     else
         local component = self.meta.getEquippable()
-        v(component)
+        component = v(component) or component
         self.meta.setEquippable(component)
     end
 
@@ -828,7 +844,7 @@ function this:potion_baseData(data)
     return self
 end
 
----@param type bukkit.PotionType
+---@param type bukkit.PotionType*
 ---@return self
 function this:potion_baseType(type)
     self.meta.setBasePotionType(bukkit.potionType(type))

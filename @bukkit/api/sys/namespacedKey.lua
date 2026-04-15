@@ -1,8 +1,6 @@
 local NamespacedKey = import("org.bukkit.NamespacedKey")
 
 
----@alias bukkit.NamespacedKeyLike adventure.key.Key|adventure.key.Keyed|bukkit.NamespacedKey|string
-
 ---@param v any
 function bukkit.isNamespacedKey(v) return instanceof(v, NamespacedKey) end
 
@@ -23,7 +21,9 @@ function bukkit.nsk(v)
     end
 
     if type(v) == "string" then
-        return NamespacedKey.fromString(v)
+        local key = NamespacedKey.fromString(v)
+        if key == nil then error("creating key from '"..v.."'") end
+        return key
     end
 
     error()
@@ -45,4 +45,14 @@ bukkit.namespacedKeyMinecraft = bukkit.nskM
 function bukkit.namespacedKey(value, namespace)
     if type(value) ~= "string" then return value end
     return NamespacedKey(namespace or bukkit.platform, value)
+end
+
+---@param id any
+---@param class java.Enum
+---@return unknown?
+function bukkit._valueFromEnum(id, class)
+    if type(id) == "string" and id:startsWith("minecraft:") then
+        -- TODO: error handling
+        return class.valueOf(id:sub(10):upper())
+    end
 end

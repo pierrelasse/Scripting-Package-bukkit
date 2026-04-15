@@ -17,6 +17,8 @@ function bukkit.material(id)
     return bukkit.registry.MATERIAL.get(bukkit.nsk(id))
 end
 
+bukkit.materialOrNil = bukkit.material
+
 ---@param id bukkit.MaterialLike
 ---@return bukkit.Material
 function bukkit.materialNN(id)

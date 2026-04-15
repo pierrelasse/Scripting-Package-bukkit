@@ -167,6 +167,14 @@ function bukkit.potionEffectType(id)
     return bukkit.registry.MOB_EFFECT.get(bukkit.nsk(id))
 end
 
+---@param id bukkit.PotionEffectTypeLike
+---@return bukkit.PotionEffectType
+function bukkit.potionEffectTypeNN(id)
+    local v = bukkit.potionEffectType(id)
+    if v == nil then error("potionEffectType with id '"..id.."' not found") end
+    return v
+end
+
 --#endregion
 
 --#region PotionData

@@ -19,6 +19,7 @@ function bukkit.isColor(v) return instanceof(v, Color) end
 ---@overload fun(textColor: adventure.text.format.TextColor, alpha?: integer): bukkit.Color
 ---@overload fun(color: bukkit.Color): bukkit.Color
 ---@overload fun(id: bukkit.Color*): bukkit.Color
+---@overload fun(rgb: integer): bukkit.Color
 ---@param r integer 0-255
 ---@param g integer 0-255
 ---@param b integer 0-255
@@ -32,6 +33,11 @@ function bukkit.color(r, g, b, a)
     end
 
     if type(r) == "string" then
+        if r:at(1) == "#" then
+            if adventure == nil then error("hex not supported without adventure") end
+            return bukkit.color(adventure.colorH(r))
+        end
+
         local id
         id = r ---@cast id bukkit.Color*
         return Color[id:upper()]
@@ -51,6 +57,10 @@ function bukkit.color(r, g, b, a)
     end
 
     if a == nil then
+        if b == nil then
+            -- TODO g as alpha
+            return Color.fromRGB(r)
+        end
         return Color.fromRGB(r, g, b)
     else
         return Color.fromARGB(a, r, g, b)

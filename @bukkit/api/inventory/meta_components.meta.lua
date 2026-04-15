@@ -11,9 +11,10 @@
 ---@class bukkit.inventory.meta.components.EquippableComponent : java.Object
 ---@field getSlot fun(): bukkit.inventory.EquipmentSlot
 ---@field setSlot fun(v: bukkit.inventory.EquipmentSlot)
----@field getEquipSound fun(): java.Object ---#Paper -- TODO
----@field setEquipSound fun(v: java.Object) -- TODO
+---@field getEquipSound fun(): bukkit.Sound
+---@field setEquipSound fun(v: bukkit.Sound)
 ---@field getModel fun(): bukkit.NamespacedKey?
+---@field setModel fun(v: bukkit.NamespacedKey?)
 ---@field getCameraOverlay fun(): bukkit.NamespacedKey?
 ---@field setCameraOverlay fun(v: bukkit.NamespacedKey?)
 ---@field getAllowedEntities fun(): java.Collection<bukkit.EntityType>?

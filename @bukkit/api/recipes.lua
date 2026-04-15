@@ -59,7 +59,7 @@ end
 ---@param ... string the rows of the recipe (up to 3)
 ---@return java.Object recipe org.bukkit.inventory.ShapedRecipe
 function this.shape(recipe, ...)
-    recipe.shape(makeArray(String, #arrayOf(...), ...)) -- TODO
+    recipe.shape(arrays.create(String, #arrays.of(...), ...)) -- TODO
     return recipe
 end
 
@@ -77,7 +77,7 @@ end
 ---@param ... bukkit.MaterialItem* Materials to test for.
 ---@return java.Object recipeChoice org.bukkit.inventory.RecipeChoice
 function this.materialChoice(...)
-    return RecipeChoice_MaterialChoice(makeArray(Material, #arrayOf(...), ...)) -- TODO
+    return RecipeChoice_MaterialChoice(arrays.create(Material, #arrays.of(...), ...)) -- TODO
 end
 
 ---Represents a choice that will be valid only if one of the stacks is exactly matched (aside from<br>

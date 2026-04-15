@@ -501,7 +501,7 @@
 ---@field setArrowCooldown fun(ticks: integer)
 ---@field getArrowsInBody fun(): integer
 ---@field setArrowsInBody fun(amount: integer)
----@field getMaxmimumNoDamageTicks fun(): integer
+---@field getMaximumNoDamageTicks fun(): integer
 ---@field setMaximumNoDamageTicks fun(ticks: integer)
 ---@field getLastDamage fun(): number
 ---@field setLastDamage fun(damage: number)
@@ -622,7 +622,7 @@
 ---@class bukkit.entity.Pillager
 
 ---org.bukkit.entity.Player
----@class bukkit.entity.Player : bukkit.entity.HumanEntity, bukkit.OfflinePlayer, adventure.identity.Identified, adventure.bossBar.BossBarViewer
+---@class bukkit.entity.Player : bukkit.entity.HumanEntity, bukkit.OfflinePlayer, adventure.identity.Identified, adventure.bossBar.BossBarViewer, adventure.audience.Audience
 ---@field getHandle fun(): java.Object
 ---@field getName fun(): string
 ---@field getDisplayName fun(): string

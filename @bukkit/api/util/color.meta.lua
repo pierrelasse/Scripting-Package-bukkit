@@ -1,4 +1,4 @@
----@alias bukkit.ColorLike adventure.text.format.TextColor|bukkit.Color*|bukkit.Color
+---@alias bukkit.ColorLike adventure.text.format.TextColor|integer|bukkit.Color*|bukkit.Color
 
 ---@alias bukkit.Color* string
 ---|>"white" 0xFFFFFF

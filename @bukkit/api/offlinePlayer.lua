@@ -6,7 +6,7 @@ function bukkit.offlinePlayer(name)
     return bukkit.Bukkit.getOfflinePlayer(name)
 end
 
----@param uuid nil|string|java.Object
+---@param uuid nil|string|java.UUID
 ---@return bukkit.OfflinePlayer?
 function bukkit.offlinePlayerByUUID(uuid)
     if type(uuid) == "string" then uuid = java.uuidFromString(uuid) end
