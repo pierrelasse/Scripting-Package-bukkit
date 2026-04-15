@@ -142,15 +142,15 @@ end
 
 ---@deprecated
 ---@param slot integer 0-based
----@param item bukkit.ItemStack?
-function this:set(slot, item)
-    self.inv.setItem(slot, item)
+---@param itemStack bukkit.ItemStack?
+function this:set(slot, itemStack)
+    self.inv.setItem(slot, itemStack)
 end
 
 ---@param slot integer
----@param item bukkit.ItemStack?
-function this:set1(slot, item)
-    return self:set(slot - 1, item)
+---@param itemStack bukkit.ItemStack?
+function this:set1(slot, itemStack)
+    return self:set(slot - 1, itemStack)
 end
 
 --#region Util
@@ -170,14 +170,14 @@ function this:slot1(row, column)
     return self:slot(row, column) + 1
 end
 
----@param item bukkit.ItemStack?
+---@param itemStack bukkit.ItemStack?
 ---@param from? integer
 ---@param to? integer
-function this:fill(item, from, to)
+function this:fill(itemStack, from, to)
     if from == nil then from = 1 end
     if to == nil then to = self:slotAmount() end
     for slot = from, to do
-        self:set1(slot, item)
+        self:set1(slot, itemStack)
     end
 end
 
@@ -200,19 +200,19 @@ end
 
 ---@deprecated
 ---@param slot integer
----@param item bukkit.ItemStack
+---@param itemStack bukkit.ItemStack
 ---@param cb? fun()|fun(event: bukkit.guimaker.ClickEvent)
-function this:button(slot, item, cb)
-    self:set(slot, item)
+function this:button(slot, itemStack, cb)
+    self:set(slot, itemStack)
     self:click(slot, cb)
 end
 
 ---@param slot integer
----@param item bukkit.ItemStack
+---@param itemStack bukkit.ItemStack
 ---@param cb? fun()|fun(event: bukkit.guimaker.ClickEvent)
-function this:button1(slot, item, cb)
+function this:button1(slot, itemStack, cb)
     self:click1(slot, cb)
-    self:set1(slot, item)
+    self:set1(slot, itemStack)
 end
 
 ---@param slot integer
