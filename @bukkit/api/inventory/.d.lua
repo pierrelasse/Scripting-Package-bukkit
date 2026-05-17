@@ -191,3 +191,37 @@
 ---@field test fun(slot: bukkit.inventory.EquipmentSlot): boolean
 
 --#endregion
+
+---#version(1.21.11)
+---@class bukkit.inventory.EntityEquipment : java.Object
+---@field setItem fun(slot: bukkit.inventory.EquipmentSlot, itemStack: bukkit.ItemStack?, silent?: boolean)
+---@field getItem fun(slot: bukkit.inventory.EquipmentSlot): bukkit.ItemStack
+---@field getItemInMainHand fun(): bukkit.ItemStack
+---@field setItemInMainHand fun(itemStack: bukkit.ItemStack?, silent?: boolean)
+---@field getItemInOffHand fun(): bukkit.ItemStack
+---@field setItemInOffHand fun(itemStack: bukkit.ItemStack?, silent?: boolean)
+---@field getHelmet fun(): bukkit.ItemStack
+---@field setHelmet fun(v: bukkit.ItemStack, silent?: boolean)
+---@field getChestplate fun(): bukkit.ItemStack
+---@field setChestplate fun(v: bukkit.ItemStack, silent?: boolean)
+---@field getLeggings fun(): bukkit.ItemStack
+---@field setLeggings fun(v: bukkit.ItemStack, silent?: boolean)
+---@field getBoots fun(): bukkit.ItemStack
+---@field setBoots fun(v: bukkit.ItemStack, silent?: boolean)
+---@field setArmorContents fun(v: java.array<bukkit.ItemStack>)
+---@field clear fun()
+---@field getItemInMainHandDropChance fun(): java.float
+---@field setItemInMainHandDropChance fun(v: java.float)
+---@field getItemInOffHandDropChance fun(): java.float
+---@field setItemInOffHandDropChance fun(v: java.float)
+---@field getHelmetDropChance fun(): java.float
+---@field setHelmetDropChance fun(v: java.float)
+---@field getChestplateDropChance fun(): java.float
+---@field setChestplateDropChance fun(v: java.float)
+---@field getLeggingsDropChance fun(): java.float
+---@field setLeggingsDropChance fun(v: java.float)
+---@field getBootsDropChance fun(): java.float
+---@field setBootsDropChance fun(v: java.float)
+---@field getHolder fun(): bukkit.Entity #paper
+---@field getDropChance fun(slot: bukkit.inventory.EquipmentSlot) #paper
+---@field setDropChance fun(slot: bukkit.inventory.EquipmentSlot, v: java.float) #paper

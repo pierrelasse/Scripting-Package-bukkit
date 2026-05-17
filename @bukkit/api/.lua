@@ -14,8 +14,14 @@ if not pcall(function() bukkit.isFolia = bukkit.platform.isFolia end) then
     bukkit.isFolia = importOrNil("io.papermc.paper.threadedregions.RegionizedServer") ~= nil
 end
 
-if bukkit.isPaper and bukkit._DONT_LOAD_ADVENTURE then
-    require("@base/paman").need("adventure")
+if paper == nil then
+    ---#paper
+    paper = {} ---@diagnostic disable-line: lowercase-global
+end
+if bukkit.isPaper then
+    if bukkit._DONT_LOAD_ADVENTURE ~= true then
+        require("@base/paman").need("adventure")
+    end
 end
 
 require("@bukkit/api/deprecated/")
@@ -23,6 +29,8 @@ require("@bukkit/api/deprecated/chatColor")
 require("@bukkit/api/deprecated/particles")
 
 require("@bukkit/api/attribute/")
+
+require("@bukkit/api/auth/profile")
 
 require("@bukkit/api/block/banner")
 require("@bukkit/api/block/biome")

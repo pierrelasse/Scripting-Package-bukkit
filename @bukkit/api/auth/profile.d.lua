@@ -1,0 +1,61 @@
+---#version(1.21.11)
+---@class bukkit.profile.PlayerProfile : java.Object
+---@field clone fun(): bukkit.profile.PlayerProfile
+---@field update fun(): java.Object #paper
+---@field isComplete fun(): boolean
+---@field getUniqueId fun(): java.UUID?
+---@field getName fun(): string?
+---@field getTextures fun(): bukkit.profile.PlayerTextures
+---@field setTextures fun(v: bukkit.profile.PlayerTextures?)
+
+---#version(1.21.11)
+---@class paper.profile.PlayerProfile : bukkit.profile.PlayerProfile
+---@field clone fun(): paper.profile.PlayerProfile
+---@field getId fun(): java.UUID
+---@field getProperties fun(): java.Set<paper.profile.ProfileProperty>
+---@field hasProperty fun(v: paper.profile.ProfileProperty): boolean
+---@field setProperty fun(v: paper.profile.ProfileProperty)
+---@field setProperties fun(v: java.Collection<paper.profile.ProfileProperty>)
+---@field removeProperty (fun(v: string?): boolean)|fun(v: paper.profile.ProfileProperty): boolean
+---@field removeProperties fun(v: java.Collection<paper.profile.ProfileProperty>):boolean
+---@field clearProperties fun()
+---@field completeFromCache (fun(onlineMode: boolean): boolean)|fun(lookupUuid: boolean, onlineMode: boolean): boolean
+---@field complete fun(textures?: boolean, onlineMode?: boolean): boolean
+---@field update fun(): java.Object
+---@field hasTextures fun(): boolean
+
+---#version(1.21.11)
+---@class paper.profile.ProfileProperty : java.Object
+---@field getName fun(): string
+---@field getValue fun(): string
+---@field getSignature fun(): string?
+---@field isSigned fun(): boolean
+
+---#incomplete
+---#version(1.21.11)
+---@class paper.profile.ResolvableProfile : java.Object
+---@field uuid fun(): java.UUID?
+---@field name fun(): string?
+---@field properties fun(): java.Collection<paper.profile.ProfileProperty>
+---@field dynamic fun(): boolean
+
+---#version(1.21.11)
+---@class paper.profile.ResolvableProfile.SkinPatch : java.Object
+
+---#version(1.21.11)
+---@class paper.profile.ResolvableProfile.SkinPatchBuilder : paper.datacomponent.DataComponentBuilder<paper.profile.ResolvableProfile.SkinPatch>
+---@field build fun(): paper.profile.ResolvableProfile.SkinPatch
+---@field body fun(v: adventure.key.Key): paper.profile.ResolvableProfile.SkinPatchBuilder
+---@field cape fun(v: adventure.key.Key): paper.profile.ResolvableProfile.SkinPatchBuilder
+---@field elytra fun(v: adventure.key.Key): paper.profile.ResolvableProfile.SkinPatchBuilder
+---@field model fun(v: bukkit.profile.PlayerTextures.SkinModel): paper.profile.ResolvableProfile.SkinPatchBuilder
+
+---#incomplete
+---#version(1.21.11)
+---@class paper.profile.ResolvableProfile.Builder : paper.datacomponent.DataComponentBuilder<paper.profile.ResolvableProfile>
+---@field build fun(): paper.profile.ResolvableProfile
+---@field name fun(v: string?): paper.profile.ResolvableProfile.Builder
+---@field uuid fun(v: java.UUID?): paper.profile.ResolvableProfile.Builder
+---@field addProperty fun(v: paper.profile.ProfileProperty): paper.profile.ResolvableProfile.Builder
+---@field addProperties fun(v: java.Collection<paper.profile.ProfileProperty>): paper.profile.ResolvableProfile.Builder
+---@field skinPatch fun(configure: paper.profile.ResolvableProfile.SkinPatch|java.Consumer<paper.profile.ResolvableProfile.SkinPatchBuilder>): paper.profile.ResolvableProfile.Builder

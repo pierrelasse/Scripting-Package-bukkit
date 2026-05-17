@@ -1,0 +1,3 @@
+---@class paper.datacomponent.DataComponentBuilder<C> : {
+--- build: fun(): C;
+---}, java.Object

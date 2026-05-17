@@ -477,6 +477,8 @@
 ---@class bukkit.entity.LingeringPotion
 
 ---org.bukkit.entity.LivingEntity
+---#incomplete
+---#version(1.21.11)
 ---@class bukkit.entity.LivingEntity : bukkit.attribute.Attributable, bukkit.entity.Damageable, bukkit.projectiles.ProjectileSource
 ---@field getEyeHeight fun(ignorePose?: boolean): number
 ---@field getEyeLocation fun(): bukkit.Location
@@ -492,24 +494,25 @@
 ---@field rayTraceBlocks fun(maxDistance: number, fluidCollisionMode: java.Object): java.Object -- TODO
 ---@field getTargetEntity fun(maxDistance: integer, ignoreBlocks?: boolean): bukkit.Entity? -- TODO
 ---@field getRemainingAir fun(): integer
----@field setRemainingAir fun(ticks: integer)
+---@field setRemainingAir fun(v: integer)
 ---@field getMaximumAir fun(): integer
----@field setMaximumAir fun(ticks: integer)
+---@field setMaximumAir fun(v: integer)
 ---@field getItemInUseTicks fun(): integer
----@field setItemInUseTicks fun(ticks: integer)
+---@field setItemInUseTicks fun(v: integer)
 ---@field getArrowCooldown fun(): integer
----@field setArrowCooldown fun(ticks: integer)
+---@field setArrowCooldown fun(v: integer)
 ---@field getArrowsInBody fun(): integer
 ---@field setArrowsInBody fun(amount: integer)
 ---@field getMaximumNoDamageTicks fun(): integer
----@field setMaximumNoDamageTicks fun(ticks: integer)
+---@field setMaximumNoDamageTicks fun(v: integer)
 ---@field getLastDamage fun(): number
----@field setLastDamage fun(damage: number)
+---@field setLastDamage fun(v: number)
 ---@field getNoDamageTicks fun(): integer
----@field setNoDamageTicks fun(ticks: integer)
+---@field setNoDamageTicks fun(v: integer)
 ---@field getNoActionTicks fun(): integer
----@field setNoActionTicks fun(ticks: integer)
+---@field setNoActionTicks fun(v: integer)
 ---@field getKiller fun(): bukkit.entity.Player?
+---@field setKiller fun(v: bukkit.entity.Player?) ---#paper
 ---@field addPotionEffect fun(effect: bukkit.PotionEffect): boolean
 ---@field addPotionEffects fun(effects: java.Collection<bukkit.PotionEffect>): boolean
 ---@field hasPotionEffect fun(type: bukkit.PotionEffectType): boolean
@@ -519,7 +522,7 @@
 ---@field hasLineOfSight fun(entity: bukkit.Entity): boolean
 ---@field getRemoveWhenFarAway fun(): boolean
 ---@field setRemoveWhenFarAway fun(v: boolean)
----@field getEquipment fun(): java.Object -- TODO
+---@field getEquipment fun(): bukkit.inventory.EntityEquipment
 ---@field getCanPickupItems fun(): boolean
 ---@field setCanPickupItems fun(v: boolean)
 ---@field isLeashed fun(): boolean
@@ -552,8 +555,34 @@
 ---@field getDrinkingSound fun(): java.Object -- TODO
 ---@field getEatingSound fun(): java.Object -- TODO
 ---@field canBreathUnderwater fun(): boolean
----@field setInvisible fun(v: boolean)
----@field isInvisible fun(): boolean
+---@field getSidewaysMovement fun(): java.float
+---@field getUpwardsMovement fun(): java.float
+---@field getForwardsMovement fun(): java.float
+---@field startUsingItem fun(hand: bukkit.inventory.EquipmentSlot) ---#paper
+---@field completeUsingActiveItem fun() ---#paper
+---@field getActiveItem fun(): bukkit.ItemStack ---#paper
+---@field clearActiveItem fun() ---#paper
+---@field getActiveItemRemainingTime fun(): integer ---#paper
+---@field setActiveItemRemainingTime fun(ticks: integer) ---#paper
+---@field hasActiveItem fun(): boolean ---#paper
+---@field getActiveItemUsedTime fun(): integer ---#paper
+---@field getActiveItemHand fun(): bukkit.inventory.EquipmentSlot ---paper
+---@field isJumping fun(): boolean ---#paper
+---@field setJumping fun(v: boolean) ---#paper
+---@field playPickupItemAnimation fun(item: bukkit.entity.Item, quanitity?: integer) ---#paper
+---@field getHurtDirection fun(): java.float ---#paper
+---@field swingHand fun(hand: bukkit.inventory.EquipmentSlot) ---#paper
+---@field knockback fun(strength: number, directionX: number, directionZ: number) ---#paper
+---@field broadcastSlotBreak fun(slot: bukkit.inventory.EquipmentSlot, players?: java.Collection<bukkit.entity.Player>) ---#paper
+---@field damageItemStack fun(itemStack: bukkit.ItemStack|bukkit.inventory.EquipmentSlot, amount: integer) ---#paper
+---@field getBodyYaw fun(): java.float ---#paper
+---@field setBodyYaw fun(v: java.float) ---#paper
+---@field canUseEquipmentSlot fun(slot: bukkit.inventory.EquipmentSlot): boolean ---#paper
+---@field getCombatTracker fun(): java.Object ---#paper
+---@field getWaypointStyle fun(): adventure.key.Key
+---@field setWaypointStyle fun(key: adventure.key.Key?)
+---@field getWaypointColor fun(): bukkit.Color?
+---@field setWaypointColor fun(color: bukkit.Color?)
 
 ---org.bukkit.entity.Llama
 ---@class bukkit.entity.Llama
@@ -563,6 +592,21 @@
 
 ---org.bukkit.entity.MagmaCube
 ---@class bukkit.entity.MagmaCube
+
+---org.bukkit.entity.Mannequin
+---#version(1.21.11)
+---@class bukkit.entity.Mannequin : bukkit.entity.LivingEntity
+---@field getProfile fun(): paper.profile.ResolvableProfile #paper
+---@field setProfile fun(v: paper.profile.ResolvableProfile) #paper
+---@field getSkinParts fun(): java.Object #paper
+---@field setSkinParts fun(v: java.Object) #paper
+---@field isImmovable fun(): boolean
+---@field setImmovable fun(v: boolean)
+---@field getDescription fun(): adventure.text.Component?
+---@field setDescription fun(v: adventure.text.Component?)
+---@field getMainHand fun(): java.Enum
+---@field setMainHand fun(v: java.Enum)
+---@field getEquipment fun(): bukkit.inventory.EntityEquipment
 
 ---org.bukkit.entity.Marker
 ---@class bukkit.entity.Marker
